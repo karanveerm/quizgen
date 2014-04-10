@@ -3,15 +3,15 @@
 Description: Dead simple way to create HTML quizzes with LaTeX support. Can be used to generate quizzes like: [TODO: insert link here]. Tested with Python 2.6/2.7. Shoot me an email if it doesn't work for newer versions.
 
 ## Table of Contents
-[Setup](#setup)
-[Quiz Format](#format)
-[Creating Quizzes](#create)
-[Samples](#samples)
-[Getting Started](#start)
-[What the files in the directory do](#files)
-[Feature Requests / Contributing changes / Issues](#issues)
-[FAQ](#faq)
-[MIT License](#license)
+[Setup](#setup)   
+[Quiz Format](#format)   
+[Creating Quizzes](#create)   
+[Samples](#samples)   
+[Getting Started](#start)   
+[What the files in the directory do](#files)   
+[Feature Requests / Contributing changes / Issues](#issues)   
+[FAQ](#faq)   
+[MIT License](#license)   
 
 
 <a name="setup"/>
