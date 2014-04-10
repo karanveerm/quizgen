@@ -114,7 +114,7 @@ def parse(filename):
   try:
     quizfile = open(filename, 'r')
   except IOError:
-    print 'No file named %s found' % filename
+    raise Exception('No file named %s found' % filename)
 
   lines = quizfile.readlines()
   lines = [line.strip() for line in lines]
@@ -149,7 +149,7 @@ def parse(filename):
       question = parse_new_question(line_group)
       try:
         quiz['problem_groups'][-1]['questions'].append(question)
-      except Exception:
-        print 'ERROR. Are you sure you started every problem group with "[]"?'
+      except:
+        raise Exception('ERROR. Are you sure you started every problem group with "[]"?')
 
   return quiz
