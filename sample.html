@@ -2,7 +2,8 @@
 <html>
   <head>
     <meta charset="UTF-8" />
-    <title>Sample</title>
+    <title>Sample Quiz Title</title>
+    <link href='http://fonts.googleapis.com/css?family=Josefin+Sans|Alike' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="quiz.css" type="text/css" />
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
     <script type="text/x-mathjax-config">
@@ -23,7 +24,7 @@
       // toggle slide
       $('.selection').click(function(){
         // by calling sibling, we can use same div for all demos
-        $(this).siblings('.response').slideToggle();
+        $(this).siblings('.response').slideToggle('fast');
       });
     });
     </script>
@@ -32,114 +33,118 @@
 <body>
   $\newcommand{\ones}{\mathbf 1}$
   <div>
-	<h1>Sample</h1>
+	<h1>Sample Quiz Title</h1>
 	<fieldset>
 		<legend>Problem Group 1 Title</legend>
 		<div class="intro">This is the statement for problem group one.
 I can add a link to <a href="www.google.com">www.google.com</a>.
-Here's an image <div><img src="http://upload.wikimedia.org/wikipedia/commons/9/9b/Carl_Friedrich_Gauss.jpg"></div>
-Of course, it supports LATEX:
-$
+Here's an image of a famous mathematician <div><img src="http://upload.wikimedia.org/wikipedia/commons/9/9b/Carl_Friedrich_Gauss.jpg"></div>
+Of course, we support LaTeX:
+$$
 a = \begin{pmatrix} 1 \\ 3 \\ 2 \end{pmatrix} \text{ , }
 b = \begin{pmatrix} 2 \\ 6 \\ 4 \end{pmatrix} \text{ , }
 c = \begin{pmatrix} 1 \\ 3 \\ 0 \end{pmatrix} \text{ , }
 d = \begin{pmatrix} 2 \\ 6 \end{pmatrix} \text{ , }
 \text{and }
 e = \begin{pmatrix} 0 \\ 0 \\ 4 \end{pmatrix}
-$</div>
+$$
+A blank line marks the end of this problem group intro and beginning of the first question.</div>
 		<div>
 			<div class="description">
-This is the first question in the problem group with latex: $a_3$?</div>
-			<ul>
+This is the first question in the problem group with some latex: $a_3$ ?</div>
+			<ol type="a">
 				<li class="choice">
 					<div class="selection">This is an option. </div>
-					<div class="response">
+					<div class="response wrong">
 						<span class="wrong">Incorrect. </span>
-						 This is the explanation of why this option is correct/incorrect.
+						 You can add an explanation for an option after the double colon to explain why it is correct/incorrect.
 					</div>
 				</li>
 				<li class="choice">
-					<div class="selection">This is another option. See that explanations are not necessary.</div>
-					<div class="response">
+					<div class="selection">This is another option. Observe that explanations are optional.</div>
+					<div class="response wrong">
 						<span class="wrong">Incorrect. </span>
 						
 					</div>
 				</li>
 				<li class="choice">
 					<div class="selection">This option is the correct option since it has an equal to sign.</div>
-					<div class="response">
+					<div class="response right">
 						<span class="right">Correct! </span>
 						
 					</div>
 				</li>
-			</ul>
+			</ol>
 		</div>
 		<div>
 			<div class="description">
-Here's another question in this problem group $c$ and $d$?</div>
-			<ul>
+Again, a blank line marks the end of the options. Here's another question in this problem group with more latex $c$ and $d$?</div>
+			<ol type="a">
 				<li class="choice">
 					<div class="selection">Yes</div>
-					<div class="response">
+					<div class="response wrong">
 						<span class="wrong">Incorrect. </span>
 						
 					</div>
 				</li>
 				<li class="choice">
 					<div class="selection">No</div>
-					<div class="response">
+					<div class="response right">
 						<span class="right">Correct! </span>
 						
 					</div>
 				</li>
-			</ul>
+			</ol>
 		</div>
 	</fieldset>
 	<br/>
 	<fieldset>
 		<div>
 			<div class="description">
-This problem group has no title and has no intro, this is already a question!?</div>
-			<ul>
+This problem group has no title and has no introduction. When the text following the start of a new problem group is immediately followed by the options, it is inferred to be a question?</div>
+			<ol type="a">
 				<li class="choice">
 					<div class="selection">Yes I understand </div>
-					<div class="response">
+					<div class="response right">
 						<span class="right">Correct! </span>
 						 Great! Here's some latex $\|a + b + c\| $
 					</div>
 				</li>
 				<li class="choice">
 					<div class="selection">No </div>
-					<div class="response">
+					<div class="response wrong">
 						<span class="wrong">Incorrect. </span>
 						 Please email me and I'll help!
 					</div>
 				</li>
-			</ul>
+			</ol>
 		</div>
 		<div>
 			<div class="description">
 This is another question in this problem group?</div>
-			<ul>
+			<ol type="a">
 				<li class="choice">
 					<div class="selection">This is a great tutorial!</div>
-					<div class="response">
+					<div class="response wrong">
 						<span class="wrong">Incorrect. </span>
 						
 					</div>
 				</li>
 				<li class="choice">
 					<div class="selection">This is a terrible tutorial, I'm going to email you with suggestions so you can do a better job.</div>
-					<div class="response">
+					<div class="response right">
 						<span class="right">Correct! </span>
 						
 					</div>
 				</li>
-			</ul>
+			</ol>
 		</div>
 	</fieldset>
 	<br/>
 </div>
 
+  <footer>
+  Page generated using <a href="https://github.com/karanveerm/QGen">QGen: An Open Source HTML Quiz Generator</a>
+  </footer>
 </body>
 </html>

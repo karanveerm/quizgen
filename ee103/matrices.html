@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <title>Matrices</title>
+    <link href='http://fonts.googleapis.com/css?family=Josefin+Sans|Alike' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="quiz.css" type="text/css" />
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
     <script type="text/x-mathjax-config">
@@ -23,7 +24,7 @@
       // toggle slide
       $('.selection').click(function(){
         // by calling sibling, we can use same div for all demos
-        $(this).siblings('.response').slideToggle();
+        $(this).siblings('.response').slideToggle('fast');
       });
     });
     </script>
@@ -39,85 +40,85 @@
 The matrix $\left[ \begin{array}{cc} 1 &amp; -1
 \\ -1 &amp; 1 \end{array} \right]$
 has a left inverse.</div>
-			<ul>
+			<ol type="a">
 				<li class="choice">
 					<div class="selection">True</div>
-					<div class="response">
+					<div class="response wrong">
 						<span class="wrong">Incorrect. </span>
 						
 					</div>
 				</li>
 				<li class="choice">
 					<div class="selection">False</div>
-					<div class="response">
+					<div class="response right">
 						<span class="right">Correct! </span>
 						
 					</div>
 				</li>
-			</ul>
+			</ol>
 		</div>
 		<div>
 			<div class="description">
 If $A^TB = 0$ then</div>
-			<ul>
+			<ol type="a">
 				<li class="choice">
 					<div class="selection">every column of $A$ is orthogonal to every column of $B$.</div>
-					<div class="response">
+					<div class="response right">
 						<span class="right">Correct! </span>
 						
 					</div>
 				</li>
 				<li class="choice">
 					<div class="selection">every row of $A$ is orthogonal to every row of $B$.</div>
-					<div class="response">
+					<div class="response wrong">
 						<span class="wrong">Incorrect. </span>
 						
 					</div>
 				</li>
-			</ul>
+			</ol>
 		</div>
 		<div>
 			<div class="description">
 Let $s = A^T \textbf{1}$. Then the $i^{\text{th}}$ element of $s$,
 $s_i$, is equal to</div>
-			<ul>
+			<ol type="a">
 				<li class="choice">
 					<div class="selection">the sum of the $i^{\text{th}}$ row of $A$</div>
-					<div class="response">
+					<div class="response wrong">
 						<span class="wrong">Incorrect. </span>
 						
 					</div>
 				</li>
 				<li class="choice">
 					<div class="selection">the sum of the $i^{\text{th}}$ column of $A$</div>
-					<div class="response">
+					<div class="response right">
 						<span class="right">Correct! </span>
 						
 					</div>
 				</li>
-			</ul>
+			</ol>
 		</div>
 		<div>
 			<div class="description">
 Let $P \in \mathbf{R}^{m \times n}$ and $q \in \mathbf{R}^n$, where
 $P_{ij}$ is the price of good $j$ in country $i$, and $q_j$ is
 the quantity of good $j$ needed to produce some product. Then $(Pq)_i$ is</div>
-			<ul>
+			<ol type="a">
 				<li class="choice">
 					<div class="selection">the amount of the product you can afford in country $i$.</div>
-					<div class="response">
+					<div class="response wrong">
 						<span class="wrong">Incorrect. </span>
 						
 					</div>
 				</li>
 				<li class="choice">
 					<div class="selection">the total cost of the goods needed to produce the product in country $i$.</div>
-					<div class="response">
+					<div class="response wrong">
 						<span class="wrong">Incorrect. </span>
 						
 					</div>
 				</li>
-			</ul>
+			</ol>
 		</div>
 	</fieldset>
 	<br/>
@@ -127,53 +128,56 @@ the quantity of good $j$ needed to produce some product. Then $(Pq)_i$ is</div>
 			<div class="description">
 Let $x,y \in \textbf{R}^3$. For $i=1,2,3$, $y_i$ is the average
 of $x_1, \ldots, x_i$. Then we have $y=Ax$, with</div>
-			<ul>
+			<ol type="a">
 				<li class="choice">
 					<div class="selection">$A = \left[\begin{array}{ccc}1 &amp; 1 &amp; 1\\ 0 &amp; 1 &amp; 1 \\ 0 &amp; 0 &amp; 1 \end{array}\right]$</div>
-					<div class="response">
+					<div class="response wrong">
 						<span class="wrong">Incorrect. </span>
 						
 					</div>
 				</li>
 				<li class="choice">
 					<div class="selection">$A= \left[\begin{array}{ccc}1 &amp; 0 &amp; 0\\ 1/2 &amp; 1/2 &amp; 0 \\ 1/3 &amp; 1/3 &amp;1/3 \end{array}\right]$</div>
-					<div class="response">
+					<div class="response right">
 						<span class="right">Correct! </span>
 						
 					</div>
 				</li>
 				<li class="choice">
 					<div class="selection">$A = \left[\begin{array}{ccc}1 &amp;1/2 &amp; 1/3\\ 0 &amp; 1 &amp; 1/2 \\ 0 &amp; 0 &amp; 1\end{array}\right]$</div>
-					<div class="response">
+					<div class="response wrong">
 						<span class="wrong">Incorrect. </span>
 						
 					</div>
 				</li>
-			</ul>
+			</ol>
 		</div>
 		<div>
 			<div class="description">
 If $f:\mathbf{R}^n \to \mathbf{R}^m$, with $f(x)=Ax$, then</div>
-			<ul>
+			<ol type="a">
 				<li class="choice">
 					<div class="selection">$A \in \mathbf{R}^{m \times n}$</div>
-					<div class="response">
+					<div class="response right">
 						<span class="right">Correct! </span>
 						
 					</div>
 				</li>
 				<li class="choice">
 					<div class="selection">$A \in \mathbf{R}^{n \times m}$</div>
-					<div class="response">
+					<div class="response wrong">
 						<span class="wrong">Incorrect. </span>
 						
 					</div>
 				</li>
-			</ul>
+			</ol>
 		</div>
 	</fieldset>
 	<br/>
 </div>
 
+  <footer>
+  Page generated using <a href="https://github.com/karanveerm/QGen">QGen: An Open Source HTML Quiz Generator</a>
+  </footer>
 </body>
 </html>

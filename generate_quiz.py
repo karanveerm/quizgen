@@ -19,14 +19,16 @@ def create_dom_from_option(option):
   selector_div.appendChild(doc.createTextNode(option['description']))
 
   response_div = doc.createElement('div')
-  response_div.attributes['class'] = 'response'
+  # response_div.attributes['class'] = 'response'
 
   span = doc.createElement('span')
   if option['correct']:
     span.attributes['class'] = 'right'
+    response_div.attributes['class'] = 'response right'
     span.appendChild(doc.createTextNode('Correct! '))
   else:
     span.attributes['class'] = 'wrong'
+    response_div.attributes['class'] = 'response wrong'
     span.appendChild(doc.createTextNode('Incorrect. '))
   response_div.appendChild(span)
   response_div.appendChild(doc.createTextNode(option['explanation']))
@@ -49,12 +51,13 @@ def create_dom_from_question(question):
   div.appendChild(doc.createTextNode(question['description']))
   wrapper.appendChild(div)
 
-  ul = doc.createElement('ul')
+  ol = doc.createElement('ol')
+  ol.attributes['type'] = 'a'
   for option in question['options']:
     elem = create_dom_from_option(option)
-    ul.appendChild(elem)
+    ol.appendChild(elem)
 
-  wrapper.appendChild(ul)
+  wrapper.appendChild(ol)
   return wrapper
 
 

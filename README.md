@@ -1,10 +1,10 @@
 # QGen: Html Quiz Generator
 
-Description: Dead simple way to create HTML quizzes with LaTeX support. Can be used to generate quizzes like: [TODO: insert link here]. Tested with Python 2.6/2.7. Shoot me an email if it doesn't work for newer versions.
+Description: Dead simple way to create HTML quizzes with LaTeX support. Can be used to generate quizzes like: http://stanford.edu/~kvmohan/QGen/sample.html. Tested with Python 2.6/2.7. Shoot me an email if it doesn't work for newer versions.
 
 ## Table of Contents
 [Setup](#setup)
-[Quiz Format](#format)
+[Quiz Structure](#structure)
 [Creating Quizzes](#create)
 [Samples](#samples)
 [Getting Started](#start)
@@ -13,30 +13,31 @@ Description: Dead simple way to create HTML quizzes with LaTeX support. Can be u
 [FAQ](#faq)
 [MIT License](#license)
 
-
 <a name="setup"/>
 ## Project Setup
 
-How do I start working on the project?
+How do I start using QGen?
 
 1. git clone the repository
 2. Everything you need is in the directory!
 
-<a name="format"/>
-## Quiz Format
+<a name="structure"/>
+## Quiz Structure
 
-- A quiz consists of a title and problem groups where a problem group is a set of problems related to each other in some way, where the relationship usually is a common introduction. For example, if you wish to specify some values that are to be used for the next 2-3 questions, these 2-3 questions should be part of the same problem group.
+- A quiz consists of a quiz title and problem groups.
+- A problem group is a set of problems related in some way, where the relation is usually a common introduction.
+- For example, if you wish to specify some values that are to be used for the next 2-3 questions, these 2-3 questions should be part of the same problem group.
 
 ### Problem Groups
 
-- A problem group consists of a title, an intro (that will be common to all questions in this group) and the questions themselves. Each question will consist of a description of the question, and a set of options. Each option will have an explanation(optional) and whether or not it is correct.
-
+- A problem group consists of a title, an intro (that will be common to all questions in this group) and the questions themselves.
+- Each question will consist of a description of the question, and a set of options. Each option will have an explanation(optional) and whether or not it is correct.
 - Note that it is not necessary for a problem group to have a title and an introduction. If you simply wish to group a few questions together, you can just put them in the same problem group, as explanined below.
 
 <a name="create"/>
 ## Creating Quizzes
 
-- cp 'sample.quiz your_quiz_name.quiz' to get a starter template.
+- `cp sample.quiz your_quiz_name.quiz` to get a starter template.
 - A quiz would look like this:
 
 ```
@@ -54,13 +55,14 @@ d = \begin{pmatrix} 2 \\ 6 \end{pmatrix} \text{ , }
 \text{and }
 e = \begin{pmatrix} 0 \\ 0 \\ 4 \end{pmatrix}
 $
+A blank line marks the end of this problem group intro and beginning of the first question.
 
-This is the first question in the problem group with some latex: $a_3$?
+This is the first question in the problem group with some latex: $a_3$. ?
 * This is an option. :: You can add an explanation for an option after the double colon to explain why it is correct/incorrect.
 * This is another option. Observe that explanations are optional.
 *= This option is the correct option since it has an equal to sign.
 
-Here's another question in this problem group with more latex $c$ and $d$?
+Again, a blank line marks the end of the options. Here's another question in this problem group with more latex $c$ and $d$?
 * Yes
 *= No
 
@@ -106,7 +108,7 @@ sample.quiz is a great place to get started. A list of samples can also be found
 
 1. Why did you work on this?
 
-   Often professors want short, ungraded quizzes at the end of lectures where students can quickly decide how well they understood the material in the class. For eg. I have heard several students really like Coursera's in-video quizzes. I could not find any light-weight way of doing this anywhere, so I hacked one up myself in a few hours.
+   Often professors want short, ungraded quizzes at the end of lectures where students can quickly decide how well they understood the material in the class. For example: I have heard several students really like Coursera's in-video quizzes. I could not find any light-weight way of doing this anywhere, so I hacked one up myself in a few hours.
 
 2. Are there any classes using this?
 

@@ -51,8 +51,6 @@ fieldset {
   border-bottom: 1px solid #ccc;
   padding: 10px 20px;
   padding-left: 0px;
-  margin-bottom: 0px;
-  margin-top: 0px;
 }
 
 table, td, th, tr {
@@ -89,7 +87,6 @@ ol ul {
 legend {
   font-family: Alike, 'Josefin Sans';
   font-size: 20px;
-  padding-left: 0px;
 }
 
 
