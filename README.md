@@ -3,15 +3,15 @@
 Description: Dead simple way to create HTML quizzes with LaTeX support. Can be used to generate quizzes like: http://stanford.edu/~kvmohan/QGen/sample.html. Tested with Python 2.6/2.7. Shoot me an email if it doesn't work for newer versions.
 
 ## Table of Contents
-[Setup](#setup)
-[Quiz Structure](#structure)
-[Creating Quizzes](#create)
-[Samples](#samples)
-[Getting Started](#start)
-[What the files in the directory do](#files)
-[Feature Requests / Contributing changes / Issues](#issues)
-[FAQ](#faq)
-[MIT License](#license)
+[Setup](#setup)   
+[Quiz Structure](#structure)   
+[Creating Quizzes](#create)   
+[Samples](#samples)   
+[Getting Started](#start)   
+[What the files in the directory do](#files)   
+[Feature Requests / Contributing changes / Issues](#issues)   
+[FAQ](#faq)   
+[MIT License](#license)   
 
 <a name="setup"/>
 ## Project Setup
