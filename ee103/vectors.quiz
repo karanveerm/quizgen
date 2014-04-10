@@ -1,0 +1,57 @@
+== Vectors
+[]
+Suppose we have vectors $
+a = \begin{pmatrix} 1 \\ 3 \\ 2 \end{pmatrix} \text{ , }
+b = \begin{pmatrix} 2 \\ 6 \\ 4 \end{pmatrix} \text{ , }
+c = \begin{pmatrix} 1 \\ 3 \\ 0 \end{pmatrix} \text{ , }
+d = \begin{pmatrix} 2 \\ 6 \end{pmatrix} \text{ , }
+\text{and }
+e = \begin{pmatrix} 0 \\ 0 \\ 4 \end{pmatrix}
+$
+
+What is $a_3$?
+* 1
+* 3
+*= 2
+
+Can we add the vectors $c$ and $d$?
+* Yes :: $c$ is a 3-vector while $d$ is a 2-vector.
+*= No
+
+Are $a$ and $b$ linearly independent?
+* Yes :: $a = \frac{1}{2} b$, so $a$ and $b$ are not linearly independent.
+*= No
+
+Can $a$ be written as a linear combination of $c$ and $e$?
+*= Yes
+* No :: $a$ can be written as a linear combination of $c$ and $e$: $a = c + \frac{1}{2}e$
+
+Are $b$, $c$, and $e$ linearly independent?
+* Yes
+*= No
+
+What is the angle between $c$ and $e$?
+* Acute
+*= $90^{\circ}$
+* Obtuse
+
+Suppose we have a linear function $f(x) : \textbf{R}^3 \rightarrow \textbf{R}$.
+If $f(a) = 5$, what is $f(b)$?
+* -5
+* 5
+*= 10
+
+[]
+Can we generalize the triangle inequality to three vectors? i. e.
+Do we have $\|a + b + c\| \leq \|a\| + \|b\| + \|c\|$ for $a, b, c \in \textbf{R}^n$?
+*= Yes :: $\|a + b + c\| \leq \|a + b\| + \|c\| \leq \|a\| + \|b\| + \|c\|$
+* No
+
+Suppose the vector $c \in \textbf{R}^n$ represents the daily earnings of a company
+over a period of $n$ days. That is, on day $i$,
+the company earned $c_i$ dollars, where a negative value of $c_i$ means that the
+company lost $|c_i|$ dollars that day. What does $\textbf{1}^T c$ represent?
+* The last day's earnings
+* The average earnings over the $n$ days.
+*= The net earnings over the $n$ days
+* The difference between the first day's and last day's earnings.

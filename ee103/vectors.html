@@ -1,0 +1,273 @@
+<!DOCTYPE html">
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vectors</title>
+    <link rel="stylesheet" href="quiz.css" type="text/css" />
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+          processEscapes: true
+        }
+      });
+    </script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML.js"></script>
+
+    <script type="text/javascript">
+    $(document).ready(function(){
+      //close all the content divs on page load
+      $('.response').hide();
+
+      // toggle slide
+      $('.selection').click(function(){
+        // by calling sibling, we can use same div for all demos
+        $(this).siblings('.response').slideToggle();
+      });
+    });
+    </script>
+  </head>
+
+<body>
+  $\newcommand{\ones}{\mathbf 1}$
+  <div>
+	<h1>Vectors</h1>
+	<fieldset>
+		<div class="intro">Suppose we have vectors $
+a = \begin{pmatrix} 1 \\ 3 \\ 2 \end{pmatrix} \text{ , }
+b = \begin{pmatrix} 2 \\ 6 \\ 4 \end{pmatrix} \text{ , }
+c = \begin{pmatrix} 1 \\ 3 \\ 0 \end{pmatrix} \text{ , }
+d = \begin{pmatrix} 2 \\ 6 \end{pmatrix} \text{ , }
+\text{and }
+e = \begin{pmatrix} 0 \\ 0 \\ 4 \end{pmatrix}
+$</div>
+		<div>
+			<div class="description">
+What is $a_3$?</div>
+			<ul>
+				<li class="choice">
+					<div class="selection">1</div>
+					<div class="response">
+						<span class="wrong">Incorrect. </span>
+						
+					</div>
+				</li>
+				<li class="choice">
+					<div class="selection">3</div>
+					<div class="response">
+						<span class="wrong">Incorrect. </span>
+						
+					</div>
+				</li>
+				<li class="choice">
+					<div class="selection">2</div>
+					<div class="response">
+						<span class="right">Correct! </span>
+						
+					</div>
+				</li>
+			</ul>
+		</div>
+		<div>
+			<div class="description">
+Can we add the vectors $c$ and $d$?</div>
+			<ul>
+				<li class="choice">
+					<div class="selection">Yes </div>
+					<div class="response">
+						<span class="wrong">Incorrect. </span>
+						 $c$ is a 3-vector while $d$ is a 2-vector.
+					</div>
+				</li>
+				<li class="choice">
+					<div class="selection">No</div>
+					<div class="response">
+						<span class="right">Correct! </span>
+						
+					</div>
+				</li>
+			</ul>
+		</div>
+		<div>
+			<div class="description">
+Are $a$ and $b$ linearly independent?</div>
+			<ul>
+				<li class="choice">
+					<div class="selection">Yes </div>
+					<div class="response">
+						<span class="wrong">Incorrect. </span>
+						 $a = \frac{1}{2} b$, so $a$ and $b$ are not linearly independent.
+					</div>
+				</li>
+				<li class="choice">
+					<div class="selection">No</div>
+					<div class="response">
+						<span class="right">Correct! </span>
+						
+					</div>
+				</li>
+			</ul>
+		</div>
+		<div>
+			<div class="description">
+Can $a$ be written as a linear combination of $c$ and $e$?</div>
+			<ul>
+				<li class="choice">
+					<div class="selection">Yes</div>
+					<div class="response">
+						<span class="right">Correct! </span>
+						
+					</div>
+				</li>
+				<li class="choice">
+					<div class="selection">No </div>
+					<div class="response">
+						<span class="wrong">Incorrect. </span>
+						 $a$ can be written as a linear combination of $c$ and $e$: $a = c + \frac{1}{2}e$
+					</div>
+				</li>
+			</ul>
+		</div>
+		<div>
+			<div class="description">
+Are $b$, $c$, and $e$ linearly independent?</div>
+			<ul>
+				<li class="choice">
+					<div class="selection">Yes</div>
+					<div class="response">
+						<span class="wrong">Incorrect. </span>
+						
+					</div>
+				</li>
+				<li class="choice">
+					<div class="selection">No</div>
+					<div class="response">
+						<span class="right">Correct! </span>
+						
+					</div>
+				</li>
+			</ul>
+		</div>
+		<div>
+			<div class="description">
+What is the angle between $c$ and $e$?</div>
+			<ul>
+				<li class="choice">
+					<div class="selection">Acute</div>
+					<div class="response">
+						<span class="wrong">Incorrect. </span>
+						
+					</div>
+				</li>
+				<li class="choice">
+					<div class="selection">$90^{\circ}$</div>
+					<div class="response">
+						<span class="right">Correct! </span>
+						
+					</div>
+				</li>
+				<li class="choice">
+					<div class="selection">Obtuse</div>
+					<div class="response">
+						<span class="wrong">Incorrect. </span>
+						
+					</div>
+				</li>
+			</ul>
+		</div>
+		<div>
+			<div class="description">
+Suppose we have a linear function $f(x) : \textbf{R}^3 \rightarrow \textbf{R}$.
+If $f(a) = 5$, what is $f(b)$?</div>
+			<ul>
+				<li class="choice">
+					<div class="selection">-5</div>
+					<div class="response">
+						<span class="wrong">Incorrect. </span>
+						
+					</div>
+				</li>
+				<li class="choice">
+					<div class="selection">5</div>
+					<div class="response">
+						<span class="wrong">Incorrect. </span>
+						
+					</div>
+				</li>
+				<li class="choice">
+					<div class="selection">10</div>
+					<div class="response">
+						<span class="right">Correct! </span>
+						
+					</div>
+				</li>
+			</ul>
+		</div>
+	</fieldset>
+	<br/>
+	<fieldset>
+		<div>
+			<div class="description">
+Can we generalize the triangle inequality to three vectors? i. e.
+Do we have $\|a + b + c\| \leq \|a\| + \|b\| + \|c\|$ for $a, b, c \in \textbf{R}^n$?</div>
+			<ul>
+				<li class="choice">
+					<div class="selection">Yes </div>
+					<div class="response">
+						<span class="right">Correct! </span>
+						 $\|a + b + c\| \leq \|a + b\| + \|c\| \leq \|a\| + \|b\| + \|c\|$
+					</div>
+				</li>
+				<li class="choice">
+					<div class="selection">No</div>
+					<div class="response">
+						<span class="wrong">Incorrect. </span>
+						
+					</div>
+				</li>
+			</ul>
+		</div>
+		<div>
+			<div class="description">
+Suppose the vector $c \in \textbf{R}^n$ represents the daily earnings of a company
+over a period of $n$ days. That is, on day $i$,
+the company earned $c_i$ dollars, where a negative value of $c_i$ means that the
+company lost $|c_i|$ dollars that day. What does $\textbf{1}^T c$ represent?</div>
+			<ul>
+				<li class="choice">
+					<div class="selection">The last day's earnings</div>
+					<div class="response">
+						<span class="wrong">Incorrect. </span>
+						
+					</div>
+				</li>
+				<li class="choice">
+					<div class="selection">The average earnings over the $n$ days.</div>
+					<div class="response">
+						<span class="wrong">Incorrect. </span>
+						
+					</div>
+				</li>
+				<li class="choice">
+					<div class="selection">The net earnings over the $n$ days</div>
+					<div class="response">
+						<span class="right">Correct! </span>
+						
+					</div>
+				</li>
+				<li class="choice">
+					<div class="selection">The difference between the first day's and last day's earnings.</div>
+					<div class="response">
+						<span class="wrong">Incorrect. </span>
+						
+					</div>
+				</li>
+			</ul>
+		</div>
+	</fieldset>
+	<br/>
+</div>
+
+</body>
+</html>
