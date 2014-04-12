@@ -1,0 +1,115 @@
+html {
+  min-height: 100%;
+}
+
+body {
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 0 50px 0;
+  font-family: 'PT Sans', 'Helvetica Neue', Helvetica, Arial, Sans-serif;
+  font-size: 16px;
+  position: relative;
+  min-height: 100%;
+  width: 680px;
+  background-color: rgb(250, 250, 250);
+  color: #333;
+}
+
+img {
+  height: 400px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 20px;
+}
+
+div .description {
+  margin-top: 30px;
+  font-style: italic;
+}
+
+a {
+  color: #000066;
+}
+
+div .selection {
+  color: #000066;
+  text-decoration: none;
+}
+
+div .selection:hover {
+  text-decoration: underline;
+}
+
+
+span.right {
+  color:#008800;
+}
+
+fieldset {
+  border: 0px;
+  border-bottom: 1px solid #ccc;
+  padding: 10px 20px;
+  padding-left: 0px;
+  margin-bottom: 0px;
+  margin-top: 0px;
+}
+
+table, td, th, tr {
+  border-collapse: collapse;
+}
+
+table {
+  margin-top: 5px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 20px;
+}
+
+tr {
+  border-bottom: 1px solid #333;
+  margin-right: 10px;
+}
+
+td, th {
+  padding: 5px;
+  padding-right: 50px;
+}
+
+ol ul {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.selection {
+  cursor: pointer;
+  margin-top: 5px;
+}
+
+legend {
+  font-family: Alike, 'Josefin Sans';
+  font-size: 20px;
+  padding-left: 0px;
+}
+
+
+.response.wrong{
+  padding: 8px 10px;
+  color: #D8000C;
+  background-color: #FFBABA;
+}
+
+.response.right{
+  padding: 8px 10px;
+  color: #4F8A10;
+  background-color: #DFF2BF;
+}
+
+footer {
+  height: 50px;
+  line-height: 50px;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  min-width: 1400px;
+}

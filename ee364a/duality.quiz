@@ -1,0 +1,61 @@
+== Duality
+
+[Sensitivity Analysis]
+Consider the convex optimization problem
+\[
+\begin{array}{ll} 
+\mbox{minimize} & f_0(x) \\
+\mbox{subject to} & f_1(x) \leq s, \quad Ax=b,
+\end{array}
+\]
+with variables $x \in \mathbf{R}^n$,
+where $s$ is some fixed real number.
+Let $\lambda^\star$ be an optimal dual variable (Lagrange multiplier)
+associated with the constraint $f_1(x) \leq s$.
+Below we consider scenarios in which we change the value of $s$,
+and then solve the modified problem.
+We are interested in the optimal objective value of this modified problem,
+compared to the original one above.
+
+If $\lambda^\star$ is large, then decreasing $s$
+* might decrease the optimal value
+*= will increase the optimal value a lot
+* can leave the optimal value unchanged
+
+If $\lambda^\star$ is large, then increasing $s$
+* will decrease the optimal value a lot
+* will increase the optimal value a lot
+*= can leave the optimal value unchanged
+
+If $\lambda^\star=0$, then increasing $s$
+* can decrease the objective value
+* can increase the objective value
+*= will leave the optimal value unchanged
+
+[]
+Consider a convex optimization problem 
+\[
+\begin{array}{ll} 
+\mbox{minimize} & f_0(x) \\
+\mbox{subject to} & f_i(x) \leq 0, \quad i=1,\ldots, m\\ & Ax=b,
+\end{array}
+\]
+that satisfies Slater's constraint qualification.
+
+The primal and dual problems have the same objective value.
+*= True.
+* False.
+
+The primal problem has a unique solution.
+* True.
+*= False.
+
+The dual problem is not unbounded.
+*= True.
+* False.
+
+Suppose $x^\star$ is optimal, with $f_1(x^\star) = -0.2$. 
+Then for every dual optimal point $(\lambda^\star,\nu^\star)$,
+we have $\lambda^\star_1=0$.
+*= True.
+* False.

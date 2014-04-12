@@ -1,0 +1,25 @@
+== Approximation
+
+[]
+Let $x^\star$ be optimal for the least-norm problem
+\[
+\begin{array}{ll} 
+\mbox{minimize} & \|x\|_p \\
+\mbox{subject to} & Ax=b,
+\end{array}
+\]
+with variable $x \in \mathrm{R}^n$, where $A\in \mathrm{R}^{m \times n}$,
+with $m \ll n$.
+
+For $p=2$, we would expect to see many components of $x^\star$ equal to zero.
+* True.
+*= False.
+
+For $p=1$, we would expect to see many components of $x^\star$ equal to zero.
+*= True.
+* False.
+
+For $p=\infty$, we would expect many components of $x^\star$
+to take on the values $\pm \|x^\star \|_\infty$.
+*= True.
+* False.

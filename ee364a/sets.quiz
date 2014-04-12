@@ -1,0 +1,85 @@
+== Convex sets
+
+[]
+Define the square (in $\mathbf{R}^2$) 
+$S = \{ x \in \mathbf{R}^2 \mid 0 \leq x_i \leq 1,~i=1,2 \}$,
+and the disk $D = \{ x \in \mathbf{R}^2 \mid \|x\|_2 \leq 1 \}$.
+
+$S \cap D$ is convex.
+*= True. :: Intersection of convex sets is convex.
+* False.
+
+$S \cup D$ is convex.
+*= True. :: In general, the union of convex sets is not convex, but here, it is.
+* False. 
+
+$S \setminus D$ is convex.
+* True.
+*= False.
+
+[]
+$C = \{ (1,0), (1,1), (-1,-1), (0,0) \}$.
+
+$(0,-1/3) \in \mathbb{conv}\; C$.
+*= True.
+* False.
+
+$(0,1/3) \in  \mathbb{conv}\; C$.
+* True.
+*= False.
+
+$(0,1/3)$ is in the conic hull of $C$.
+* True.
+*= False.
+
+[]
+Consider the set $S = \{ (0,2),~ (1,1),~ (2,3),~ (1,2),~ (4,0) \}$.
+
+$(0,2)$ is the minimum element of $S$.
+* True.
+*= False.
+
+$(0,2)$ is a minimal element of $S$.
+*= True.
+* False.
+
+$(2,3)$ is a minimal element of $S$.
+* True.
+*= False.
+
+$(1,1)$ is a minimal element of $S$.
+*= True.
+* False.
+
+[]
+$\{Ax + b \mid Fx = g \}$ is affine.
+
+*= True.
+* False.
+
+[]
+$S = \{ \alpha \in \mathbf{R}^3 \mid \alpha_1 + \alpha_2e^{-t} +
+\alpha_3 e^{-2t} \leq 1.1 \mbox{ for } t\geq 1\}$.
+
+$S$ is affine.
+* True.
+*= False.
+
+$S$ is a polyhedron.
+* True.
+*= False.
+
+$S$ is convex.
+*= True.
+* False.
+
+[Generalized inequality.]
+$K = \{(x_1,x_2) \mid 0 \leq x_1 \leq x_2 \}$.
+
+$(1,3) \preceq_K (3,4)$.
+* True.
+*= False.
+
+$(-1,2) \in K^*$.
+*= True.
+* False.

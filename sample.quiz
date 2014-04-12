@@ -19,7 +19,7 @@ This is the first question in the problem group with some latex: $a_3$ ?
 * This is another option. Observe that explanations are optional.
 *= This option is the correct option since it has an equal to sign.
 
-Again, a blank line marks the end of the options. Here's another question in this problem group with more latex $c$ and $d$?
+Again, a blank line marks the end of the options. Here's another question in this problem group with more latex $c$ and $d$ and \[ x=Zy \]?
 * Yes
 *= No
 

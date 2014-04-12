@@ -1,0 +1,70 @@
+== Numerical linear algebra
+
+[]
+About how long does a 1 Gflop computer take to solve a system of 100 
+linear equations (with 100 variables)?
+
+* one hundred microseconds.
+*= one millisecond.
+* ten milliseconds.
+* one hundred milliseconds.
+* one second.
+
+About how long does a 1 Gflop computer take to solve 10 systems of 100 
+linear equations, with the same coefficient matrix but 10 different
+righthand sides?
+
+* one hundred microseconds.
+*= one millisecond.
+* ten milliseconds.
+* one hundred milliseconds.
+* one second.
+
+[]
+Algorithm flop counts allow for very accurate 
+prediction of running time on a given computer.
+
+* True.
+*= False.
+
+[]
+Since matrix multiplication is associative, the flop count
+for multiplying three or more matrices doesn't depend on the order 
+in which you multiply them.
+
+* True.
+*= False.
+
+[] 
+Suppose $A\in \mathbf{R}^{n \times n}$ is lower triangular.
+
+The flop count for computing $Ab$ is
+the same (order) as the flop count for computing $A^{-1}b$.
+
+*= True.
+* False.
+
+[] 
+Suppose $A\in \mathbf{R}^{m \times n}$, and we need to compute $x$ that
+minimizes $\|Ax-b\|^2_2 + (\rho/2)\|x\|_2^2$, where $\rho >0$.
+
+For $m \geq n$, the flop count (order) is
+* $m^3$.
+* $m^2n$.
+*= $mn^2$.
+* $n^3$.
+
+For $m \leq n$, the flop count (order) is
+* $m^3$.
+*= $m^2n$.
+* $mn^2$.
+* $n^3$.
+
+Suppose $m\geq n$, we have already solved the problem for one value of $\rho$,
+and now we want to compute the solution for $k$ other values of $\rho$
+(this gives the so-called regularization path).
+The flop count (order) for doing this is 
+*= $n^2k$.
+* $m^2nk$.
+* $mn^2k$.
+* $mnk^2$.

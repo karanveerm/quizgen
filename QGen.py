@@ -2,6 +2,7 @@ from xml.dom import minidom
 import quiz_parser
 import sys
 import re
+import glob
 
 
 def create_dom_from_option(option):
@@ -131,12 +132,14 @@ def add_dom_to_template(dom, html_file_name, quiz):
 if __name__ == '__main__':
   if len(sys.argv) < 2:
     raise Exception('Usage: python generate_quiz.py quiz_name.quiz generated_html_name.html')
-  quiz = quiz_parser.parse(sys.argv[1])
 
-  dom = create_dom_from_quiz(quiz)
+  for filename in sys.argv[1:]:
+    quiz = quiz_parser.parse(filename)
 
-  if len(sys.argv) > 2:
-    html_file_name = sys.argv[2]
-  else:
-    html_file_name = sys.argv[1].replace('.quiz', '.html')
-  add_dom_to_template(dom, html_file_name, quiz)
+    dom = create_dom_from_quiz(quiz)
+
+    if len(sys.argv) > 2 and '.html' in sys.argv[2]:
+      html_file_name = sys.argv[2]
+    else:
+      html_file_name = filename.replace('.quiz', '.html')
+    add_dom_to_template(dom, html_file_name, quiz)

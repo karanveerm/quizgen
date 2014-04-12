@@ -1,0 +1,29 @@
+== Geometrical problems
+
+[]
+Let $\mathcal P \subset \mathbf{R}^n$ be a polyhedron described by a set of
+linear inequalities, and $a$ a point in $\mathbf{R}^n$.
+Are the following problems easy or hard?  (Easy means the solution can 
+be found by solving one or a modest number of convex optimization problems.)
+
+Find a point in $\mathcal P$ that is closest to $a$ 
+in Euclidean norm.
+*= Easy. :: This can be done by solving a QP.
+* Hard.
+
+Find a point in $\mathcal P$ that is closest to $a$ 
+in $\ell_\infty$ norm.
+*= Easy. :: This can be done by solving an LP.
+* Hard.
+
+Find a point in $\mathcal P$ that is farthest from $a$ 
+in Euclidean norm.
+* Easy.
+*= Hard. :: This problem is NP-hard. In fact, it's hard to just check whether
+or not $\mathcal P$ lies inside a given Euclidean ball.
+
+Find a point in $\mathcal P$ that is farthest from $a$ 
+in $\ell_\infty$ norm.
+*= Easy. :: This can be done by maximizing and minimizing each component 
+of $x$, subject to $x \in \mathcal P$.  This requires solving $2n$ LPs.
+* Hard.

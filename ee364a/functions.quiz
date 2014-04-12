@@ -1,0 +1,94 @@
+== Convex functions
+[]
+The function $f(x) = \mathbf{max}( 1/2, x, x^2 )$ is convex.
+
+*= True.
+* False.
+
+The function $f(x) = \mathbf{min}( 1/2, x, x^2)$ is concave.
+
+* True.
+*= False.
+
+The function $f(x) = \mathbf{min}( 1/2, x, x^2)$ is quasilinear.
+
+*= True.
+* False.
+
+[]
+The square of a convex nonnegative function is convex.
+
+*= True.
+* False.
+
+The reciprocal of a positive concave function is convex.
+*= True.
+* False.
+
+[]
+$f(x) = (x^2 + 2)/(x+2)$, with $\mathbf{dom}f = (-\infty, -2)$.
+
+$f$ is convex.
+* True.
+*= False.
+
+$f$ is concave.
+*= True.
+* False.
+
+[]
+$f(x) = 1/(1-x^2)$, with $\mathbf{dom} f = (-1, 1)$.
+
+$f$ is convex.
+*= True.
+* False.
+
+$f$ is log-convex.
+*= True.
+* False.
+
+[]
+$f(x) = \max_i x_i - \min_i x_i$ is convex.
+
+*= True.
+* False.
+
+[]
+$f(x) = \cosh x = (e^x+e^{-x})/2$.
+
+$f$ is convex.
+*= True. :: $f''(x) = \cosh x >0$.
+* False.
+
+$f$ is log-concave.
+* True.
+*= False. :: In fact, $f$ is log-convex.
+
+[]
+For $x \in \mathbb{R}^n$, we define
+$f(x) = \min\{ k \mid \sum_{i=1}^k |x_i| > 1 \}$,
+with $f(x) = \infty$ if $\sum_{i=1}^n |x_i| \leq 1$.
+
+* $f$ is quasiconvex.
+*= $f$ is quasiconcave. :: $\{x \mid f(x)\geq a \} = \{ x \mid \sum_{i=1}^k |x_i| \leq 1 \}$, where $k = \lceil a-1 \rceil$.
+* $f$ is quasilinear.
+* $f$ is neither quasiconvex nor quasiconcave.
+
+[Conjugate function.]
+$f(x) = \mathbf{1}^T(x)_+$ where $(x)_+ = \max\{0,x\}$.
+What is $f^*$?
+
+* $f^*(y) = \mathbf{1}^T(y)_+$.
+*= $f^*(y) = 0$, $\mathbf{dom}\; f^* = \{x \mid 0 \preceq x \preceq 1\}$.
+* $f^*(y) = 0$, $\mathbf{dom}\; f^* = \{x \mid -\infty \preceq x \preceq 1\}$.
+
+[]
+We define $(x)_-$ to be $\max\{0,-x\}$,
+such that $x = (x)_+ - (x)_-$.
+
+The constraint $\mathbf{1}^T(x)_- \leq (1/2) \mathbf{1}^T(x)_+$
+defines a convex set.
+*= True. :: To see this, we re-write it as
+$(1/2) \mathbf{1}^T(x)_- - (1/2) \mathbf{1}^Tx \leq 0$; here the lefthand side is a 
+convex function.
+* False.

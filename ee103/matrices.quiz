@@ -15,11 +15,11 @@ $s_i$, is equal to
 * the sum of the $i^{\text{th}}$ row of $A$
 *= the sum of the $i^{\text{th}}$ column of $A$
 
-Let $P \in \mathbf{R}^{m \times n}$ and $q \in \mathbf{R}^n$, where 
+Let $P \in \mathbf{R}^{m \times n}$ and $q \in \mathbf{R}^n$, where
 $P_{ij}$ is the price of good $j$ in country $i$, and $q_j$ is
 the quantity of good $j$ needed to produce some product. Then $(Pq)_i$ is
 * the amount of the product you can afford in country $i$.
-* the total cost of the goods needed to produce the product in country $i$.
+*= the total cost of the goods needed to produce the product in country $i$.
 
 [Linear Functions]
 Let $x,y \in \textbf{R}^3$. For $i=1,2,3$, $y_i$ is the average

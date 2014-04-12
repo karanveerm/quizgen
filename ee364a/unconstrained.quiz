@@ -1,0 +1,89 @@
+== Algorithms for unconstrained optimization
+
+[]
+In descent methods, the particular 
+choice of search direction does not matter so much.
+
+* True.
+*= False.
+
+In descent methods, the particular 
+choice of line search does not matter so much.
+
+*= True.
+* False.
+
+When the gradient descent method is started from a point near the
+solution, it will converge very quickly.
+
+* True.
+*= False.
+
+[]
+Newton's method with step size $h=1$ always works.
+
+* True.
+*= False.
+
+When Newton's method is started from a point near the
+solution, it will converge very quickly.
+
+*= True.
+* False.
+
+Using Newton's method to minimize $f(Ty)$, where $Ty=x$ and $T$ is nonsingular,
+can greatly improve the convergence speed when $T$ is chosen appropriately.
+
+* True.
+*= False.
+
+[]
+If $f$ is self-concordant, its Hessian is Lipschitz continuous.
+
+* True.
+*= False.
+
+If the Hessian of $f$ is Lipschitz continuous, then $f$ is self-concordant.
+
+* True.
+*= False.
+
+Newton's method should only be used to minimize self-concordant functions.
+
+* True.
+*= False.
+
+$f(x) = \exp x$ is self-concordant.
+
+* True.
+*= False.
+
+$f(x) = -\log x$ is self-concordant.
+
+*= True.
+* False.
+
+[]
+Consider the problem of minimizing
+\[
+f(x) = (c^Tx)^4 + \sum_{i=1}^n w_i \exp x_i,
+\]
+over $x \in \mathbf{R}^n$, where $w \succ 0$.
+
+Newton's method would probably require fewer iterations than the gradient
+method, but each iteration would be much more costly.
+
+* True.
+*= False.
+
+[]
+Newton's method is seldom used in machine learning because
+
+* common loss functions are not self-concordant :: While this is true, it is 
+not the reason Newton's method isn't used.
+* Newton's method does not work well on noisy data :: This statement doesn't 
+even make sense.
+* machine learning researchers don't really understand linear algebra ::
+It is known that at least some machine learning researchers do know linear
+algebra.
+*= it is generally not practical to form or store the Hessian in such problems, due to large problem size

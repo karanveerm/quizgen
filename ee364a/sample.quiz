@@ -1,0 +1,25 @@
+== Sample
+
+[Addition]
+Suppose $f(x,y) = x+y$, what is $f(1,1)$?
+* $1$
+*= $2$
+* None of the above
+
+[Subtraction]
+Suppose $g(x,y) = x-y$. Then, $g(x,y) = g(y,x)$.
+* True
+*= False
+
+\[
+g(x,y) = -g(y,x)
+\]
+*= True
+* False
+
+[Multiplication]
+Suppose $h(x,y) = \sqrt{xy}$. What is $h(2,8)$?
+* $16$
+* $8$
+* $3$
+*= $4$ :: The square root of $16$ is $4$.

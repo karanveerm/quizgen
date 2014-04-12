@@ -1,0 +1,69 @@
+== Convex problems
+
+[]
+Consider the optimization problem
+\[
+\begin{array}{ll} 
+\mbox{minimize} & x_1^2 \\
+\mbox{subject to} & x_1 \leq -1, \quad x_1^2 + x_2^2 \leq 2,
+\end{array}
+\]
+with variable $x=(x_1,x_2)$.
+
+The point $(-1,1)$ is a solution.
+*= True.
+* False.
+
+The optimal value is
+* $0$.
+*= $1$.
+* $-1$.
+
+The problem is convex.
+*= True.
+* False.
+
+[]
+If an optimization problem is feasible, its optimal value $p^\star$
+satisfies $p^\star > -\infty$.
+
+* True.
+*= False. :: The correct conclusion is $p^\star < \infty$.
+
+If the optimal value $p^\star$ of an optimization problem
+satisfies $p^\star < \infty$, then the problem is feasible.
+
+*= True.
+* False.
+
+[Geometric programming] 
+
+$f(x,y) = x/y + y/x$ is a posynomial function
+($x$ and $y$ are positive variables).
+
+*= True.
+* False.
+
+The squareroot of a monomial function is a monomial function.
+
+*= True.
+* False.
+
+Suppose $f$, $g$, and $h$ are posynomial functions of a positive 
+variable $z$.  The constraint $f(z) + g(z) \leq h(z)$ can be handled
+by Geometric Programming.
+
+* True.
+*= False.
+
+[Multi-objective optimization]
+Suppose $\tilde x$ uniquely minimizes $\max\{f(x),g(x)\}$.  Then $\tilde x$
+is Pareto optimal for the bi-criterion optimization problem
+\[
+\begin{array}{ll}
+\mbox{minimize} & (f(x),g(x)).
+\end{array}
+\]
+
+*= True.
+* False.

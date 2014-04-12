@@ -1,0 +1,21 @@
+== Statistical estimation
+
+[]
+Let $x^{(1)}, \ldots, x^{(N)}$ be independent samples from an
+$\mathcal N(\mu,\Sigma)$ distribution, where it is known that
+$\Sigma^\mathrm{min} \preceq \Sigma \preceq \Sigma^\mathrm{max}$,
+where $\Sigma^\mathrm{min},~ \Sigma^\mathrm{max}$
+are given positive definite matrices.
+
+The associated log-likelihood function $\ell(\mu,\Sigma)$ (including
+the constraint on $\Sigma$) is concave.
+* True.
+*= False. :: The log-likelihood function is not concave as a function of
+$\mu$ and $\Sigma$. However, it is concave with the change of variables $S =
+\Sigma^{-1}$ and $r = \Sigma^{-1}\mu$.
+
+We can find the maximum-likelihood estimates of $\mu$ and $\Sigma$ by
+solving a convex optimization problem.
+*= True. :: The trick is to use the variables $S=\Sigma^{-1}$ and 
+$r = \Sigma^{-1}\mu$.
+* False.

@@ -1,0 +1,70 @@
+== Introduction to convex optimization
+[]
+Least squares is a special case of convex optimization.
+
+*= True.
+* False.
+
+By and large, convex optimization problems can be solved efficiently.
+
+*= True.
+* False.
+
+Almost any problem you'd like to solve in practice is convex.
+
+* True. :: Most convex optimization problems are not convex. Nevertheless, 
+many problems of interest can be solved via convex optimization.
+*= False.
+
+Convex optimization problems are attractive because they always have a unique 
+solution.
+
+* True. :: They do not always have a unique solution, and even when they do, 
+this is not of primary importance.
+*= False.
+
+[]
+In a device sizing problem the goal is to minimize power consumption subject 
+to the total area not exceeding 50, as well as some timing and manufacturing 
+constraints. Four candidate designs meet the timing and manufacturing 
+constraints, and have power and area listed in the table below.
+\[
+\begin{array}{lll}
+{\rm Design} & {\rm Power} & {\rm Area} \\ \hline
+{\rm A} & 10 & 50 \\ \hline
+{\rm B} & 8  & 55 \\ \hline
+{\rm C} & 10 & 45 \\ \hline
+{\rm D} & 11 & 50 \\ \hline
+\end{array}
+\]
+
+Design B is better than design A.
+* True. :: Device B is infeasible and device A is feasible.
+*= False.
+
+Design C is better than design A.
+* True. :: Both are feasible and achieve the same objective value, so they are 
+equally good.
+*= False.
+
+Design D cannot be optimal.
+*= True.
+* False. :: Design A is also feasible and achieves a better objective value 
+(lower power consumption).
+
+[]
+Very roughly, how long would it take to solve a linear program with 100 
+variables and 1000 constraints on a computer capable of carrying out a billion 
+floating point operations per second (1 gigaflop)?
+* Microseconds.
+*= Milliseconds.
+* Seconds.
+* Minutes.
+
+[]
+Local optimization
+*= can be quite useful in some contexts, and therefore is widely used.
+* is currently illegal in 17 states.
+* can't guarantee finding a (global) solution, and so is not widely used. :: 
+Though they can't guarantee finding a global solution, they are nevertheless 
+useful and widely used.
