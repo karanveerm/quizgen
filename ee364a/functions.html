@@ -26,6 +26,10 @@
         // by calling sibling, we can use same div for all demos
         $(this).siblings('.response').slideToggle('fast');
       });
+
+      $('button').click(function(event){
+        $(event.target).parent('.mcq').find('.response').slideToggle('fast');
+      });
     });
     </script>
   </head>
