@@ -19,9 +19,15 @@ This is the first question in the problem group with some latex: $a_3$ ?
 * This is another option. Observe that explanations are optional.
 *= This option is the correct option since it has an equal to sign.
 
-Again, a blank line marks the end of the options. Here's another question in this problem group with more latex $c$ and $d$ and \[ x=Zy \]?
+Again, a blank line marks the end of the options. Here's another question in this problem group with more inline latex $c$ and $d$ and \[ x=Zy \] equation format latex like above?
 * Yes
 *= No
+
+You can also have questions with multiple correct responses. Students will be asked to select all that apply:
+*= Option 1 :: Here is an explanation
+*= Option 2
+* Option 3
+*= Option 4
 
 []
 This problem group has no title and has no introduction. When the text following the start of a new problem group is immediately followed by the options, it is inferred to be a question?

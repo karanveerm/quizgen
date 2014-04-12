@@ -51,6 +51,8 @@ fieldset {
   border-bottom: 1px solid #ccc;
   padding: 10px 20px;
   padding-left: 0px;
+  margin-bottom: 0px;
+  margin-top: 0px;
 }
 
 table, td, th, tr {
@@ -84,9 +86,15 @@ ol ul {
   margin-top: 5px;
 }
 
+.multiple-selection {
+  cursor: pointer;
+  margin-top: 5px;
+}
+
 legend {
   font-family: Alike, 'Josefin Sans';
   font-size: 20px;
+  padding-left: 0px;
 }
 
 
@@ -108,5 +116,27 @@ footer {
   position: absolute;
   bottom: 0;
   width: 100%;
-  min-width: 1400px;
+}
+
+label {
+  display: block;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+button {
+  background: #aaa;
+  border: 0px;
+  color: #ffffff;
+  font-size: 16px;
+  padding: 10px 20px 10px 20px;
+  text-decoration: none;
+}
+
+button:hover{
+  background: #bbb;
+}
+
+button:focus {
+    outline: none;
 }

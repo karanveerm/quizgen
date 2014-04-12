@@ -26,6 +26,11 @@
         // by calling sibling, we can use same div for all demos
         $(this).siblings('.response').slideToggle('fast');
       });
+
+      $('button').click(function(event){
+        $(event.target).parent('.mcq').find(':checked').next().next().show();
+        $(event.target).parent('.mcq').find('.right').show();
+      });
     });
     </script>
   </head>
@@ -78,7 +83,7 @@ This is the first question in the problem group with some latex: $a_3$ ?</div>
 		</div>
 		<div>
 			<div class="description">
-Again, a blank line marks the end of the options. Here's another question in this problem group with more latex $c$ and $d$ and \[ x=Zy \]?</div>
+Again, a blank line marks the end of the options. Here's another question in this problem group with more inline latex $c$ and $d$ and \[ x=Zy \] equation format latex like above?</div>
 			<ol type="a">
 				<li class="choice">
 					<div class="selection">Yes</div>
@@ -95,6 +100,33 @@ Again, a blank line marks the end of the options. Here's another question in thi
 					</div>
 				</li>
 			</ol>
+		</div>
+		<div>
+			<div class="description">
+You can also have questions with multiple correct responses. Students will be asked to select all that apply:</div>
+			<div class="mcq">
+				<label>
+					<input type="checkbox"/>
+					<span class="multiple-selection">Option 1 </span>
+					<div class="response right">This option is correct.  Here is an explanation</div>
+				</label>
+				<label>
+					<input type="checkbox"/>
+					<span class="multiple-selection">Option 2</span>
+					<div class="response right">This option is correct. </div>
+				</label>
+				<label>
+					<input type="checkbox"/>
+					<span class="multiple-selection">Option 3</span>
+					<div class="response wrong">This option is incorrect. </div>
+				</label>
+				<label>
+					<input type="checkbox"/>
+					<span class="multiple-selection">Option 4</span>
+					<div class="response right">This option is correct. </div>
+				</label>
+				<button>Check Answer</button>
+			</div>
 		</div>
 	</fieldset>
 	<br/>

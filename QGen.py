@@ -5,11 +5,12 @@ import re
 import glob
 
 
-def create_dom_from_option(option):
+def create_single_choice_dom_from_option(option):
   """
   Creates dom look for a specific option of a question
   """
   doc = minidom.Document()
+
   li = doc.createElement('li')
   li.attributes['class'] = 'choice'
 
@@ -40,6 +41,78 @@ def create_dom_from_option(option):
   return li
 
 
+def create_single_choice_dom_from_question(question):
+  """
+  If a question only has one option correct, creates the dom look for that question
+  """
+  doc = minidom.Document()
+
+  ol = doc.createElement('ol')
+  ol.attributes['type'] = 'a'
+
+  for option in question['options']:
+    elem = create_single_choice_dom_from_option(option)
+    ol.appendChild(elem)
+  return ol
+
+
+def create_multiple_choice_dom_from_option(option):
+  """
+  Creates options with checkboxes for multiple choice responses
+  """
+  doc = minidom.Document()
+
+  label = doc.createElement('label')
+  checkbox = doc.createElement('input')
+  checkbox.attributes['type'] = 'checkbox'
+
+  # Each list element has a 'selector', i.e the option that can be selected
+  # and a 'response', i.e the response to be shown when that option is selected
+  selector_span = doc.createElement('span')
+  selector_span.attributes['class'] = 'multiple-selection'
+  selector_span.appendChild(doc.createTextNode(option['description']))
+
+  response_div = doc.createElement('div')
+
+  explanation = ''
+  if option['correct']:
+    response_div.attributes['class'] = 'response right'
+    explanation = 'This option is correct. '
+  else:
+    response_div.attributes['class'] = 'response wrong'
+    explanation = 'This option is incorrect. '
+
+
+  response_div.appendChild(doc.createTextNode(explanation + option['explanation']))
+
+  label.appendChild(checkbox)
+  label.appendChild(selector_span)
+  label.appendChild(response_div)
+
+  return label
+
+
+def create_multiple_choice_dom_from_question(question):
+  """
+  If a question only has multiple options correct, creates the dom look for that question.
+  Puts a checkbox next to each option and adds a button allowing you to see the answer
+  """
+  doc = minidom.Document()
+
+  div = doc.createElement('div')
+  div.attributes['class'] = 'mcq'
+
+  for option in question['options']:
+    elem = create_multiple_choice_dom_from_option(option)
+    div.appendChild(elem)
+
+  button = doc.createElement('button')
+  button.appendChild(doc.createTextNode('Check Answer'))
+  div.appendChild(button)
+
+  return div
+
+
 def create_dom_from_question(question):
   """
   Creates dom look for question
@@ -52,13 +125,13 @@ def create_dom_from_question(question):
   div.appendChild(doc.createTextNode(question['description']))
   wrapper.appendChild(div)
 
-  ol = doc.createElement('ol')
-  ol.attributes['type'] = 'a'
-  for option in question['options']:
-    elem = create_dom_from_option(option)
-    ol.appendChild(elem)
+  num_correct = sum(1 for option in question['options'] if option['correct'])
+  if num_correct == 1:
+    el = create_single_choice_dom_from_question(question)
+  else:
+    el = create_multiple_choice_dom_from_question(question)
 
-  wrapper.appendChild(ol)
+  wrapper.appendChild(el)
   return wrapper
 
 
