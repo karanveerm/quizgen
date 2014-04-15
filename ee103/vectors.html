@@ -29,6 +29,11 @@
 
       $('button').click(function(event){
         $(event.target).parent('.mcq').find('.response').slideToggle('fast');
+        if ($('button').text() == 'Submit') {
+          $('button').text('Hide');
+        } else {
+          $('button').text('Submit');
+        }
       });
     });
     </script>
@@ -47,6 +52,7 @@ d = \begin{pmatrix} 2 \\ 6 \end{pmatrix} \text{ , }
 \text{and }
 e = \begin{pmatrix} 0 \\ 0 \\ 4 \end{pmatrix}
 $</div>
+		<hr/>
 		<div>
 			<div class="description">
 What is $a_3$?</div>
@@ -74,6 +80,7 @@ What is $a_3$?</div>
 				</li>
 			</ol>
 		</div>
+		<hr/>
 		<div>
 			<div class="description">
 Can we add the vectors $c$ and $d$?</div>
@@ -94,6 +101,7 @@ Can we add the vectors $c$ and $d$?</div>
 				</li>
 			</ol>
 		</div>
+		<hr/>
 		<div>
 			<div class="description">
 Are $a$ and $b$ linearly independent?</div>
@@ -114,6 +122,7 @@ Are $a$ and $b$ linearly independent?</div>
 				</li>
 			</ol>
 		</div>
+		<hr/>
 		<div>
 			<div class="description">
 Can $a$ be written as a linear combination of $c$ and $e$?</div>
@@ -134,6 +143,7 @@ Can $a$ be written as a linear combination of $c$ and $e$?</div>
 				</li>
 			</ol>
 		</div>
+		<hr/>
 		<div>
 			<div class="description">
 Are $b$, $c$, and $e$ linearly independent?</div>
@@ -154,6 +164,7 @@ Are $b$, $c$, and $e$ linearly independent?</div>
 				</li>
 			</ol>
 		</div>
+		<hr/>
 		<div>
 			<div class="description">
 What is the angle between $c$ and $e$?</div>
@@ -181,6 +192,7 @@ What is the angle between $c$ and $e$?</div>
 				</li>
 			</ol>
 		</div>
+		<hr/>
 		<div>
 			<div class="description">
 Suppose we have a linear function $f(x) : \textbf{R}^3 \rightarrow \textbf{R}$.
@@ -233,6 +245,7 @@ Do we have $\|a + b + c\| \leq \|a\| + \|b\| + \|c\|$ for $a, b, c \in \textbf{R
 				</li>
 			</ol>
 		</div>
+		<hr/>
 		<div>
 			<div class="description">
 Suppose the vector $c \in \textbf{R}^n$ represents the daily earnings of a company
@@ -275,7 +288,7 @@ company lost $|c_i|$ dollars that day. What does $\textbf{1}^T c$ represent?</di
 </div>
 
   <footer>
-  Page generated using <a href="https://github.com/karanveerm/QGen">QGen: An Open Source HTML Quiz Generator</a>
+  Page generated using <a href="https://github.com/karanveerm/QGen">QGen</a>
   </footer>
 </body>
 </html>

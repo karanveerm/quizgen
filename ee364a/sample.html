@@ -29,6 +29,11 @@
 
       $('button').click(function(event){
         $(event.target).parent('.mcq').find('.response').slideToggle('fast');
+        if ($('button').text() == 'Submit') {
+          $('button').text('Hide');
+        } else {
+          $('button').text('Submit');
+        }
       });
     });
     </script>
@@ -91,6 +96,7 @@ Suppose $g(x,y) = x-y$. Then, $g(x,y) = g(y,x)$.</div>
 				</li>
 			</ol>
 		</div>
+		<hr/>
 		<div>
 			<div class="description">
 \[
@@ -156,7 +162,7 @@ Suppose $h(x,y) = \sqrt{xy}$. What is $h(2,8)$?</div>
 </div>
 
   <footer>
-  Page generated using <a href="https://github.com/karanveerm/QGen">QGen: An Open Source HTML Quiz Generator</a>
+  Page generated using <a href="https://github.com/karanveerm/QGen">QGen</a>
   </footer>
 </body>
 </html>

@@ -29,6 +29,11 @@
 
       $('button').click(function(event){
         $(event.target).parent('.mcq').find('.response').slideToggle('fast');
+        if ($('button').text() == 'Submit') {
+          $('button').text('Hide');
+        } else {
+          $('button').text('Submit');
+        }
       });
     });
     </script>
@@ -55,6 +60,7 @@ Below we consider scenarios in which we change the value of $s$,
 and then solve the modified problem.
 We are interested in the optimal objective value of this modified problem,
 compared to the original one above.</div>
+		<hr/>
 		<div>
 			<div class="description">
 If $\lambda^\star$ is large, then decreasing $s$</div>
@@ -82,6 +88,7 @@ If $\lambda^\star$ is large, then decreasing $s$</div>
 				</li>
 			</ol>
 		</div>
+		<hr/>
 		<div>
 			<div class="description">
 If $\lambda^\star$ is large, then increasing $s$</div>
@@ -109,6 +116,7 @@ If $\lambda^\star$ is large, then increasing $s$</div>
 				</li>
 			</ol>
 		</div>
+		<hr/>
 		<div>
 			<div class="description">
 If $\lambda^\star=0$, then increasing $s$</div>
@@ -147,6 +155,7 @@ If $\lambda^\star=0$, then increasing $s$</div>
 \end{array}
 \]
 that satisfies Slater's constraint qualification.</div>
+		<hr/>
 		<div>
 			<div class="description">
 The primal and dual problems have the same objective value.</div>
@@ -167,6 +176,7 @@ The primal and dual problems have the same objective value.</div>
 				</li>
 			</ol>
 		</div>
+		<hr/>
 		<div>
 			<div class="description">
 The primal problem has a unique solution.</div>
@@ -187,6 +197,7 @@ The primal problem has a unique solution.</div>
 				</li>
 			</ol>
 		</div>
+		<hr/>
 		<div>
 			<div class="description">
 The dual problem is not unbounded.</div>
@@ -207,6 +218,7 @@ The dual problem is not unbounded.</div>
 				</li>
 			</ol>
 		</div>
+		<hr/>
 		<div>
 			<div class="description">
 Suppose $x^\star$ is optimal, with $f_1(x^\star) = -0.2$.
@@ -234,7 +246,7 @@ we have $\lambda^\star_1=0$.</div>
 </div>
 
   <footer>
-  Page generated using <a href="https://github.com/karanveerm/QGen">QGen: An Open Source HTML Quiz Generator</a>
+  Page generated using <a href="https://github.com/karanveerm/QGen">QGen</a>
   </footer>
 </body>
 </html>

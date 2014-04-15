@@ -1,7 +1,7 @@
 == Sample Quiz Title
 [Problem Group 1 Title]
 This is the statement for problem group one.
-I can add a link to ||LINK: www.google.com||.
+I can add a link to ||LINK: http://www.google.com||.
 Here's an image of a famous mathematician ||IMG:http://upload.wikimedia.org/wikipedia/commons/9/9b/Carl_Friedrich_Gauss.jpg||
 Of course, we support LaTeX:
 $$

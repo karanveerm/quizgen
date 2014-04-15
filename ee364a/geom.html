@@ -29,6 +29,11 @@
 
       $('button').click(function(event){
         $(event.target).parent('.mcq').find('.response').slideToggle('fast');
+        if ($('button').text() == 'Submit') {
+          $('button').text('Hide');
+        } else {
+          $('button').text('Submit');
+        }
       });
     });
     </script>
@@ -43,6 +48,7 @@
 linear inequalities, and $a$ a point in $\mathbf{R}^n$.
 Are the following problems easy or hard?  (Easy means the solution can
 be found by solving one or a modest number of convex optimization problems.)</div>
+		<hr/>
 		<div>
 			<div class="description">
 Find a point in $\mathcal P$ that is closest to $a$
@@ -64,6 +70,7 @@ in Euclidean norm.</div>
 				</li>
 			</ol>
 		</div>
+		<hr/>
 		<div>
 			<div class="description">
 Find a point in $\mathcal P$ that is closest to $a$
@@ -85,6 +92,7 @@ in $\ell_\infty$ norm.</div>
 				</li>
 			</ol>
 		</div>
+		<hr/>
 		<div>
 			<div class="description">
 Find a point in $\mathcal P$ that is farthest from $a$
@@ -107,6 +115,7 @@ or not $\mathcal P$ lies inside a given Euclidean ball.
 				</li>
 			</ol>
 		</div>
+		<hr/>
 		<div>
 			<div class="description">
 Find a point in $\mathcal P$ that is farthest from $a$
@@ -134,7 +143,7 @@ of $x$, subject to $x \in \mathcal P$.  This requires solving $2n$ LPs.
 </div>
 
   <footer>
-  Page generated using <a href="https://github.com/karanveerm/QGen">QGen: An Open Source HTML Quiz Generator</a>
+  Page generated using <a href="https://github.com/karanveerm/QGen">QGen</a>
   </footer>
 </body>
 </html>

@@ -29,6 +29,11 @@
 
       $('button').click(function(event){
         $(event.target).parent('.mcq').find('.response').slideToggle('fast');
+        if ($('button').text() == 'Submit') {
+          $('button').text('Hide');
+        } else {
+          $('button').text('Submit');
+        }
       });
     });
     </script>
@@ -59,6 +64,7 @@ The function $f(x) = \mathbf{max}( 1/2, x, x^2 )$ is convex.</div>
 				</li>
 			</ol>
 		</div>
+		<hr/>
 		<div>
 			<div class="description">
 The function $f(x) = \mathbf{min}( 1/2, x, x^2)$ is concave.</div>
@@ -79,6 +85,7 @@ The function $f(x) = \mathbf{min}( 1/2, x, x^2)$ is concave.</div>
 				</li>
 			</ol>
 		</div>
+		<hr/>
 		<div>
 			<div class="description">
 The function $f(x) = \mathbf{min}( 1/2, x, x^2)$ is quasilinear.</div>
@@ -122,6 +129,7 @@ The square of a convex nonnegative function is convex.</div>
 				</li>
 			</ol>
 		</div>
+		<hr/>
 		<div>
 			<div class="description">
 The reciprocal of a positive concave function is convex.</div>
@@ -146,6 +154,7 @@ The reciprocal of a positive concave function is convex.</div>
 	<br/>
 	<fieldset>
 		<div class="intro">$f(x) = (x^2 + 2)/(x+2)$, with $\mathbf{dom}f = (-\infty, -2)$.</div>
+		<hr/>
 		<div>
 			<div class="description">
 $f$ is convex.</div>
@@ -166,6 +175,7 @@ $f$ is convex.</div>
 				</li>
 			</ol>
 		</div>
+		<hr/>
 		<div>
 			<div class="description">
 $f$ is concave.</div>
@@ -190,6 +200,7 @@ $f$ is concave.</div>
 	<br/>
 	<fieldset>
 		<div class="intro">$f(x) = 1/(1-x^2)$, with $\mathbf{dom} f = (-1, 1)$.</div>
+		<hr/>
 		<div>
 			<div class="description">
 $f$ is convex.</div>
@@ -210,6 +221,7 @@ $f$ is convex.</div>
 				</li>
 			</ol>
 		</div>
+		<hr/>
 		<div>
 			<div class="description">
 $f$ is log-convex.</div>
@@ -257,6 +269,7 @@ $f(x) = \max_i x_i - \min_i x_i$ is convex.</div>
 	<br/>
 	<fieldset>
 		<div class="intro">$f(x) = \cosh x = (e^x+e^{-x})/2$.</div>
+		<hr/>
 		<div>
 			<div class="description">
 $f$ is convex.</div>
@@ -277,6 +290,7 @@ $f$ is convex.</div>
 				</li>
 			</ol>
 		</div>
+		<hr/>
 		<div>
 			<div class="description">
 $f$ is log-concave.</div>
@@ -373,6 +387,7 @@ What is $f^*$?</div>
 	<fieldset>
 		<div class="intro">We define $(x)_-$ to be $\max\{0,-x\}$,
 such that $x = (x)_+ - (x)_-$.</div>
+		<hr/>
 		<div>
 			<div class="description">
 The constraint $\mathbf{1}^T(x)_- \leq (1/2) \mathbf{1}^T(x)_+$
@@ -401,7 +416,7 @@ convex function.
 </div>
 
   <footer>
-  Page generated using <a href="https://github.com/karanveerm/QGen">QGen: An Open Source HTML Quiz Generator</a>
+  Page generated using <a href="https://github.com/karanveerm/QGen">QGen</a>
   </footer>
 </body>
 </html>

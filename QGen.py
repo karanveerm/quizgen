@@ -107,7 +107,7 @@ def create_multiple_choice_dom_from_question(question):
     div.appendChild(elem)
 
   button = doc.createElement('button')
-  button.appendChild(doc.createTextNode('Check Answer'))
+  button.appendChild(doc.createTextNode('Submit'))
   div.appendChild(button)
 
   return div
@@ -154,7 +154,12 @@ def create_dom_from_problem_group(problem_group):
     div.appendChild(doc.createTextNode(problem_group['problem_intro']))
     fieldset.appendChild(div)
 
+  first_question = True
   for question in problem_group['questions']:
+    hr = doc.createElement('hr')
+    if not first_question or problem_group['problem_intro']:
+      fieldset.appendChild(hr)
+    first_question = False
     elem = create_dom_from_question(question)
     fieldset.appendChild(elem)
 

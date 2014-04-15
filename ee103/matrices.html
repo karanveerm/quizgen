@@ -29,6 +29,11 @@
 
       $('button').click(function(event){
         $(event.target).parent('.mcq').find('.response').slideToggle('fast');
+        if ($('button').text() == 'Submit') {
+          $('button').text('Hide');
+        } else {
+          $('button').text('Submit');
+        }
       });
     });
     </script>
@@ -61,6 +66,7 @@ has a left inverse.</div>
 				</li>
 			</ol>
 		</div>
+		<hr/>
 		<div>
 			<div class="description">
 If $A^TB = 0$ then</div>
@@ -81,6 +87,7 @@ If $A^TB = 0$ then</div>
 				</li>
 			</ol>
 		</div>
+		<hr/>
 		<div>
 			<div class="description">
 Let $s = A^T \textbf{1}$. Then the $i^{\text{th}}$ element of $s$,
@@ -102,6 +109,7 @@ $s_i$, is equal to</div>
 				</li>
 			</ol>
 		</div>
+		<hr/>
 		<div>
 			<div class="description">
 Let $P \in \mathbf{R}^{m \times n}$ and $q \in \mathbf{R}^n$, where
@@ -156,6 +164,7 @@ of $x_1, \ldots, x_i$. Then we have $y=Ax$, with</div>
 				</li>
 			</ol>
 		</div>
+		<hr/>
 		<div>
 			<div class="description">
 If $f:\mathbf{R}^n \to \mathbf{R}^m$, with $f(x)=Ax$, then</div>
@@ -181,7 +190,7 @@ If $f:\mathbf{R}^n \to \mathbf{R}^m$, with $f(x)=Ax$, then</div>
 </div>
 
   <footer>
-  Page generated using <a href="https://github.com/karanveerm/QGen">QGen: An Open Source HTML Quiz Generator</a>
+  Page generated using <a href="https://github.com/karanveerm/QGen">QGen</a>
   </footer>
 </body>
 </html>

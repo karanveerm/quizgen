@@ -29,6 +29,11 @@
 
       $('button').click(function(event){
         $(event.target).parent('.mcq').find('.response').slideToggle('fast');
+        if ($('button').text() == 'Submit') {
+          $('button').text('Hide');
+        } else {
+          $('button').text('Submit');
+        }
       });
     });
     </script>
@@ -48,6 +53,7 @@
 \]
 with variable $x \in \mathrm{R}^n$, where $A\in \mathrm{R}^{m \times n}$,
 with $m \ll n$.</div>
+		<hr/>
 		<div>
 			<div class="description">
 For $p=2$, we would expect to see many components of $x^\star$ equal to zero.</div>
@@ -68,6 +74,7 @@ For $p=2$, we would expect to see many components of $x^\star$ equal to zero.</d
 				</li>
 			</ol>
 		</div>
+		<hr/>
 		<div>
 			<div class="description">
 For $p=1$, we would expect to see many components of $x^\star$ equal to zero.</div>
@@ -88,6 +95,7 @@ For $p=1$, we would expect to see many components of $x^\star$ equal to zero.</d
 				</li>
 			</ol>
 		</div>
+		<hr/>
 		<div>
 			<div class="description">
 For $p=\infty$, we would expect many components of $x^\star$
@@ -114,7 +122,7 @@ to take on the values $\pm \|x^\star \|_\infty$.</div>
 </div>
 
   <footer>
-  Page generated using <a href="https://github.com/karanveerm/QGen">QGen: An Open Source HTML Quiz Generator</a>
+  Page generated using <a href="https://github.com/karanveerm/QGen">QGen</a>
   </footer>
 </body>
 </html>

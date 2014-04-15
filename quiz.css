@@ -5,7 +5,7 @@ html {
 body {
   margin-left: auto;
   margin-right: auto;
-  padding: 0 0 50px 0;
+  padding: 0;
   font-family: 'PT Sans', 'Helvetica Neue', Helvetica, Arial, Sans-serif;
   font-size: 16px;
   position: relative;
@@ -25,7 +25,6 @@ img {
 
 div .description {
   margin-top: 30px;
-  font-style: italic;
 }
 
 a {
@@ -46,6 +45,13 @@ span.right {
   color:#008800;
 }
 
+hr {
+  width: 70%;
+  margin-left: 0px;
+  border: 0px;
+  border-bottom: 1px solid #ccc;
+}
+
 fieldset {
   border: 0px;
   border-bottom: 1px solid #ccc;
@@ -53,27 +59,6 @@ fieldset {
   padding-left: 0px;
   margin-bottom: 0px;
   margin-top: 0px;
-}
-
-table, td, th, tr {
-  border-collapse: collapse;
-}
-
-table {
-  margin-top: 5px;
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: 20px;
-}
-
-tr {
-  border-bottom: 1px solid #333;
-  margin-right: 10px;
-}
-
-td, th {
-  padding: 5px;
-  padding-right: 50px;
 }
 
 ol ul {
@@ -93,7 +78,7 @@ ol ul {
 
 legend {
   font-family: Alike, 'Josefin Sans';
-  font-size: 20px;
+  font-size: 19px;
   padding-left: 0px;
 }
 
@@ -111,9 +96,9 @@ legend {
 }
 
 footer {
-  height: 50px;
-  line-height: 50px;
+  font-size: 12px;
   position: absolute;
+  margin-bottom: 5px;
   bottom: 0;
   width: 100%;
 }
@@ -125,16 +110,16 @@ label {
 }
 
 button {
-  background: #aaa;
+  background: #bbb;
   border: 0px;
   color: #ffffff;
-  font-size: 16px;
-  padding: 10px 20px 10px 20px;
+  font-size: 14px;
+  padding: 6px 12px 6px 12px;
   text-decoration: none;
 }
 
 button:hover{
-  background: #bbb;
+  background: #ccc;
 }
 
 button:focus {
