@@ -1,6 +1,6 @@
 # QGen: Html Quiz Generator
 
-Description: Dead simple way to create HTML quizzes with LaTeX support. Can be used to generate quizzes like: http://stanford.edu/~kvmohan/QGen/sample.html. Tested with Python 2.6/2.7. Shoot me an email if it doesn't work for newer versions.
+Description: Dead simple way to create HTML quizzes with LaTeX support. Can be used to generate quizzes like: http://stanford.edu/~kvmohan/QGen/sample.html. Questions with multiple correct answers are also supported. Tested with Python 2.6/2.7. Shoot me an email if it doesn't work for newer versions.
 
 ## Table of Contents
 [Setup](#setup)   
@@ -47,24 +47,30 @@ This is the statement for problem group one.
 I can add a link to ||LINK: www.google.com||.
 Here's an image of a famous mathematician ||IMG:http://upload.wikimedia.org/wikipedia/commons/9/9b/Carl_Friedrich_Gauss.jpg||
 Of course, we support LaTeX:
-$
+$$
 a = \begin{pmatrix} 1 \\ 3 \\ 2 \end{pmatrix} \text{ , }
 b = \begin{pmatrix} 2 \\ 6 \\ 4 \end{pmatrix} \text{ , }
 c = \begin{pmatrix} 1 \\ 3 \\ 0 \end{pmatrix} \text{ , }
 d = \begin{pmatrix} 2 \\ 6 \end{pmatrix} \text{ , }
 \text{and }
 e = \begin{pmatrix} 0 \\ 0 \\ 4 \end{pmatrix}
-$
+$$
 A blank line marks the end of this problem group intro and beginning of the first question.
 
-This is the first question in the problem group with some latex: $a_3$. ?
+This is the first question in the problem group with some latex: $a_3$ ?
 * This is an option. :: You can add an explanation for an option after the double colon to explain why it is correct/incorrect.
 * This is another option. Observe that explanations are optional.
 *= This option is the correct option since it has an equal to sign.
 
-Again, a blank line marks the end of the options. Here's another question in this problem group with more latex $c$ and $d$?
+Again, a blank line marks the end of the options. Here's another question in this problem group with more inline latex $c$ and $d$ and \[ x=Zy \] equation format latex like above?
 * Yes
 *= No
+
+You can also have questions with multiple correct responses. Students will be asked to select all that apply:
+*= Option 1 :: Here is an explanation
+*= Option 2
+* Option 3
+*= Option 4
 
 []
 This problem group has no title and has no introduction. When the text following the start of a new problem group is immediately followed by the options, it is inferred to be a question?
@@ -79,12 +85,12 @@ This is another question in this problem group?
 <a name="samples"/>
 ## Samples
 
-sample.quiz is a great place to get started. A list of samples can also be found in the ee103/ directory.
+sample.quiz is a great place to get started. A list of samples can also be found in the ee103/ and ee364a/ directory.
 
 <a name="start"/>
 ## Getting started
 
-1. Run `python generate_quiz.py filename.quiz`
+1. Run `python QGen.py filename.quiz`
 2. This will generate a file called filename.html
 3. Open filename.html to see what your quiz looks like. It only depends on quiz.css which you can edit as felt necessary for a prettier quiz.
 
@@ -94,7 +100,7 @@ sample.quiz is a great place to get started. A list of samples can also be found
 - quiz.css: This containts the css for the html files you create.
 - template.html: This is the template used to generate the HTML pages.
 - quiz_parser.py: This parses the .quiz file and stores it in a python dictionary.
-- generate_quiz.py: Calls quiz_parser.py to get the dictionary data of the quiz and then creates DOM elements for it so that it can be shown as an HTML page.
+- QGen.py: Calls quiz_parser.py to get the dictionary data of the quiz and then creates DOM elements for it so that it can be shown as an HTML page.
 
 <a name="issues"/>
 ## Feature Requests / Contributing changes / Issues
@@ -112,7 +118,7 @@ sample.quiz is a great place to get started. A list of samples can also be found
 
 2. Are there any classes using this?
 
-   Stanford's EE263 and EE364A use something similar to generate quizzes like this: http://www.stanford.edu/class/ee364a/quizzes/unconstrained.html. QGen is fully compatible with the .quiz files used to create the 263 and 364A quizzes.
+   Stanford's EE263 and EE364A use something similar to generate quizzes like this: http://www.stanford.edu/class/ee364a/quizzes/unconstrained.html. QGen is fully compatible with the .quiz files used to create the 263 and 364A quizzes. This is what the EE364a quizzes look like with QGen: http://stanford.edu/~kvmohan/QGen/ee364a/
    Hopefully, they/other classes will be using QGen soon.
 
 
