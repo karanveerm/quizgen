@@ -90,7 +90,7 @@ sample.quiz is a great place to get started. A list of samples can also be found
 <a name="start"/>
 ## Getting started
 
-1. Run `python QGen.py filename.quiz`
+1. Run `python qgen.py filename.quiz`
 2. This will generate a file called filename.html
 3. Open filename.html to see what your quiz looks like. It only depends on quiz.css which you can edit as felt necessary for a prettier quiz.
 
