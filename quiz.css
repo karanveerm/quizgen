@@ -46,7 +46,7 @@ span.right {
 }
 
 hr {
-  width: 70%;
+  width: 65%;
   margin-left: 0px;
   border: 0px;
   border-bottom: 1px solid #ccc;
@@ -54,7 +54,7 @@ hr {
 
 fieldset {
   border: 0px;
-  border-bottom: 1px solid #ccc;
+  border-bottom: 2.5px solid #ccc;
   padding: 10px 20px;
   padding-left: 0px;
   margin-bottom: 0px;
@@ -97,7 +97,7 @@ legend {
 
 footer {
   font-size: 12px;
-  position: absolute;
+  margin-top: 0px;
   margin-bottom: 5px;
   bottom: 0;
   width: 100%;
