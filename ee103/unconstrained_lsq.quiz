@@ -5,7 +5,7 @@ In practical applications of least-squares polynomial fitting, it is always best
 *= False
 
 Least-squares approximate solution of overdetermined equations
-* is a method to find a solution of $Ax=y$ when $A$ is not full rank.
+* is a method to find an exact solution of $Ax=y$ :: Ax=y may not have an exact solution
 * is most useful when $A$ is square.
 * is a method for computing $A^{−1}$ that avoids numerical instability.
 *= is a method for finding a value of $x$ that minimizes $\|Ax−y\|$.
@@ -13,7 +13,7 @@ Least-squares approximate solution of overdetermined equations
 Suppose $y=Ax+v$, where $x \in \mathbb{R}^n$ is some set of parameters
 you wish to estimate, $y \in \mathbb{R}^m$ is a set of measurements,
 and $v$ represents a noise.
-We assume $m>n$, and $A$ is full rank.
+We assume $m>n$.
 Consider an estimator of the form $\hat{x} = By$.
 *= Choosing $B$ to be any left inverse of $A$ yields $\hat{x} = x$,
 no matter what x is, provided $v=0$.
@@ -35,10 +35,10 @@ the outliers noticeably influence the slope of the fit.
 the outliers noticeably influence the slope of the fit.
 
 [Regularization]
-Regularized least-squares, i.e., choosing $x$ to minimize 
+Regularized least-squares, i.e., choosing $x$ to minimize
 $\|Ax−y\|^2 + \mu\|x\|^2, \text{with } \mu > 0$
-*= can always be done, even when A is not full rank or wide.
-* fails when A is not full rank and skinny.
+*= can always be done, even when A is not wide.
+* fails when A is not skinny.
 * requires only that A is nonzero.
 
 Suppose that $x$ minimizes $J_1(x) + \mu J_2(x)$,

@@ -71,10 +71,10 @@ In practical applications of least-squares polynomial fitting, it is always best
 Least-squares approximate solution of overdetermined equations</div>
 			<ol type="a">
 				<li class="choice">
-					<div class="selection">is a method to find a solution of $Ax=y$ when $A$ is not full rank.</div>
+					<div class="selection">is a method to find an exact solution of $Ax=y$ </div>
 					<div class="response wrong">
 						<span class="wrong">Incorrect. </span>
-						
+						 Ax=y may not have an exact solution
 					</div>
 				</li>
 				<li class="choice">
@@ -106,7 +106,7 @@ Least-squares approximate solution of overdetermined equations</div>
 Suppose $y=Ax+v$, where $x \in \mathbb{R}^n$ is some set of parameters
 you wish to estimate, $y \in \mathbb{R}^m$ is a set of measurements,
 and $v$ represents a noise.
-We assume $m&gt;n$, and $A$ is full rank.
+We assume $m&gt;n$.
 Consider an estimator of the form $\hat{x} = By$.</div>
 			<div class="mcq">
 				<label>
@@ -194,14 +194,14 @@ Regularized least-squares, i.e., choosing $x$ to minimize
 $\|Ax−y\|^2 + \mu\|x\|^2, \text{with } \mu &gt; 0$</div>
 			<ol type="a">
 				<li class="choice">
-					<div class="selection">can always be done, even when A is not full rank or wide.</div>
+					<div class="selection">can always be done, even when A is not wide.</div>
 					<div class="response right">
 						<span class="right">Correct! </span>
 						
 					</div>
 				</li>
 				<li class="choice">
-					<div class="selection">fails when A is not full rank and skinny.</div>
+					<div class="selection">fails when A is not skinny.</div>
 					<div class="response wrong">
 						<span class="wrong">Incorrect. </span>
 						

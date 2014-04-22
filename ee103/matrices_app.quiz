@@ -17,7 +17,7 @@ all columns?
 * On day $k$, asset prices varied the most.
 
 Suppose we have calculated the angles between various assets. Which pairs
-of assets do you expect to have high angles?
+of assets do you expect to have small angles (high cosine value)?
 *= Coca-Cola and Pepsi
 * Coca-Cola and Hewlett-Packard
 *= Dell and Hewlett-Packard
