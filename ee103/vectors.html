@@ -28,11 +28,12 @@
       });
 
       $('button').click(function(event){
-        $(event.target).parent('.mcq').find('.response').slideToggle('fast');
-        if ($('button').text() == 'Submit') {
-          $('button').text('Hide');
+        var $target = $(event.target);
+        $target.parent('.mcq').find('.response').slideToggle('fast');
+        if ($target.text() == 'Submit') {
+          $target.text('Hide');
         } else {
-          $('button').text('Submit');
+          $target.text('Submit');
         }
       });
     });
@@ -45,12 +46,10 @@
 	<h1>Vectors</h1>
 	<fieldset>
 		<div class="intro">Suppose we have vectors $
-a = \begin{pmatrix} 1 \\ 3 \\ 2 \end{pmatrix} \text{ , }
-b = \begin{pmatrix} 2 \\ 6 \\ 4 \end{pmatrix} \text{ , }
-c = \begin{pmatrix} 1 \\ 3 \\ 0 \end{pmatrix} \text{ , }
-d = \begin{pmatrix} 2 \\ 6 \end{pmatrix} \text{ , }
-\text{and }
-e = \begin{pmatrix} 0 \\ 0 \\ 4 \end{pmatrix}
+a = \begin{bmatrix} 1 \\ 3 \\ 2 \end{bmatrix}\,,\quad
+b = \begin{bmatrix} 2 \\ 6 \\ 4 \end{bmatrix}\,,\quad
+c = \begin{bmatrix} 1 \\ 3 \\ 0 \end{bmatrix}\,,\quad
+d = \begin{bmatrix} 0 \\ 0 \\ 4 \end{bmatrix}
 $</div>
 		<hr/>
 		<div>
@@ -83,7 +82,7 @@ What is $a_3$?</div>
 		<hr/>
 		<div>
 			<div class="description">
-Can we add the vectors $c$ and $d$?</div>
+Can we evaluate $c$ + $\begin{bmatrix} 2 \\ 6 \end{bmatrix}$?</div>
 			<ol type="a">
 				<li class="choice">
 					<div class="selection">Yes </div>
@@ -125,7 +124,7 @@ Are $a$ and $b$ linearly independent?</div>
 		<hr/>
 		<div>
 			<div class="description">
-Can $a$ be written as a linear combination of $c$ and $e$?</div>
+Can $a$ be written as a linear combination of $c$ and $d$?</div>
 			<ol type="a">
 				<li class="choice">
 					<div class="selection">Yes</div>
@@ -138,7 +137,7 @@ Can $a$ be written as a linear combination of $c$ and $e$?</div>
 					<div class="selection">No </div>
 					<div class="response wrong">
 						<span class="wrong">Incorrect. </span>
-						 $a$ can be written as a linear combination of $c$ and $e$: $a = c + \frac{1}{2}e$
+						 $a$ can be written as a linear combination of $c$ and $d$: $a = c + \frac{1}{2}e$
 					</div>
 				</li>
 			</ol>
@@ -146,7 +145,7 @@ Can $a$ be written as a linear combination of $c$ and $e$?</div>
 		<hr/>
 		<div>
 			<div class="description">
-Are $b$, $c$, and $e$ linearly independent?</div>
+Are $b$, $c$, and $d$ linearly independent?</div>
 			<ol type="a">
 				<li class="choice">
 					<div class="selection">Yes</div>
@@ -167,7 +166,7 @@ Are $b$, $c$, and $e$ linearly independent?</div>
 		<hr/>
 		<div>
 			<div class="description">
-What is the angle between $c$ and $e$?</div>
+What is the angle between $c$ and $d$?</div>
 			<ol type="a">
 				<li class="choice">
 					<div class="selection">Acute</div>

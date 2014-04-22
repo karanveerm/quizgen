@@ -1,12 +1,10 @@
 == Vectors
 []
 Suppose we have vectors $
-a = \begin{pmatrix} 1 \\ 3 \\ 2 \end{pmatrix} \text{ , }
-b = \begin{pmatrix} 2 \\ 6 \\ 4 \end{pmatrix} \text{ , }
-c = \begin{pmatrix} 1 \\ 3 \\ 0 \end{pmatrix} \text{ , }
-d = \begin{pmatrix} 2 \\ 6 \end{pmatrix} \text{ , }
-\text{and }
-e = \begin{pmatrix} 0 \\ 0 \\ 4 \end{pmatrix}
+a = \begin{bmatrix} 1 \\ 3 \\ 2 \end{bmatrix}\,,\quad
+b = \begin{bmatrix} 2 \\ 6 \\ 4 \end{bmatrix}\,,\quad
+c = \begin{bmatrix} 1 \\ 3 \\ 0 \end{bmatrix}\,,\quad
+d = \begin{bmatrix} 0 \\ 0 \\ 4 \end{bmatrix}
 $
 
 What is $a_3$?
@@ -14,7 +12,7 @@ What is $a_3$?
 * 3
 *= 2
 
-Can we add the vectors $c$ and $d$?
+Can we evaluate $c$ + $\begin{bmatrix} 2 \\ 6 \end{bmatrix}$?
 * Yes :: $c$ is a 3-vector while $d$ is a 2-vector.
 *= No
 
@@ -22,15 +20,15 @@ Are $a$ and $b$ linearly independent?
 * Yes :: $a = \frac{1}{2} b$, so $a$ and $b$ are not linearly independent.
 *= No
 
-Can $a$ be written as a linear combination of $c$ and $e$?
+Can $a$ be written as a linear combination of $c$ and $d$?
 *= Yes
-* No :: $a$ can be written as a linear combination of $c$ and $e$: $a = c + \frac{1}{2}e$
+* No :: $a$ can be written as a linear combination of $c$ and $d$: $a = c + \frac{1}{2}e$
 
-Are $b$, $c$, and $e$ linearly independent?
+Are $b$, $c$, and $d$ linearly independent?
 * Yes
 *= No
 
-What is the angle between $c$ and $e$?
+What is the angle between $c$ and $d$?
 * Acute
 *= $90^{\circ}$
 * Obtuse

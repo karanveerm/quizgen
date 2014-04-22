@@ -1,0 +1,349 @@
+<!DOCTYPE html">
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Matrices Applications</title>
+    <link href='http://fonts.googleapis.com/css?family=Josefin+Sans|Alike' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="quiz.css" type="text/css" />
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+          processEscapes: true
+        }
+      });
+    </script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML.js"></script>
+
+    <script type="text/javascript">
+    $(document).ready(function(){
+      //close all the content divs on page load
+      $('.response').hide();
+
+      // toggle slide
+      $('.selection').click(function(){
+        // by calling sibling, we can use same div for all demos
+        $(this).siblings('.response').slideToggle('fast');
+      });
+
+      $('button').click(function(event){
+        var $target = $(event.target);
+        $target.parent('.mcq').find('.response').slideToggle('fast');
+        if ($target.text() == 'Submit') {
+          $target.text('Hide');
+        } else {
+          $target.text('Submit');
+        }
+      });
+    });
+    </script>
+  </head>
+
+<body>
+  $\newcommand{\ones}{\mathbf 1}$
+  <div>
+	<h1>Matrices Applications</h1>
+	<fieldset>
+		<legend>Portfolio Analysis</legend>
+		<div class="intro">Suppose we have a matrix $A$ that records the prices of $m$ assets
+over $n$ days. Let a single asset's prices over time are represented
+by a row of $A$ (and conversely, a single day's prices over all
+assets are represented a column of $A$).</div>
+		<hr/>
+		<div>
+			<div class="description">
+What does $A_{ij}$ represent?</div>
+			<ol type="a">
+				<li class="choice">
+					<div class="selection">The price of asset $j$ on day $i$</div>
+					<div class="response wrong">
+						<span class="wrong">Incorrect. </span>
+						
+					</div>
+				</li>
+				<li class="choice">
+					<div class="selection">The price of asset $i$ on day $j$</div>
+					<div class="response right">
+						<span class="right">Correct! </span>
+						
+					</div>
+				</li>
+			</ol>
+		</div>
+		<hr/>
+		<div>
+			<div class="description">
+What does it mean if column $k$ has the highest RMS value among
+all columns?</div>
+			<ol type="a">
+				<li class="choice">
+					<div class="selection">Asset $k$ has the best return over the time period</div>
+					<div class="response wrong">
+						<span class="wrong">Incorrect. </span>
+						
+					</div>
+				</li>
+				<li class="choice">
+					<div class="selection">Asset $k$ has the best overall performance over the time period</div>
+					<div class="response wrong">
+						<span class="wrong">Incorrect. </span>
+						
+					</div>
+				</li>
+				<li class="choice">
+					<div class="selection">Day $k$ was the best overall day for all assets</div>
+					<div class="response right">
+						<span class="right">Correct! </span>
+						
+					</div>
+				</li>
+				<li class="choice">
+					<div class="selection">On day $k$, asset prices varied the most.</div>
+					<div class="response wrong">
+						<span class="wrong">Incorrect. </span>
+						
+					</div>
+				</li>
+			</ol>
+		</div>
+		<hr/>
+		<div>
+			<div class="description">
+Suppose we have calculated the angles between various assets. Which pairs
+of assets do you expect to have high angles?</div>
+			<div class="mcq">
+				<label>
+					<input type="checkbox"/>
+					<span class="multiple-selection">Coca-Cola and Pepsi</span>
+					<div class="response right">This option is correct. </div>
+				</label>
+				<label>
+					<input type="checkbox"/>
+					<span class="multiple-selection">Coca-Cola and Hewlett-Packard</span>
+					<div class="response wrong">This option is incorrect. </div>
+				</label>
+				<label>
+					<input type="checkbox"/>
+					<span class="multiple-selection">Dell and Hewlett-Packard</span>
+					<div class="response right">This option is correct. </div>
+				</label>
+				<label>
+					<input type="checkbox"/>
+					<span class="multiple-selection">Coca-Cola and Chevron</span>
+					<div class="response wrong">This option is incorrect. </div>
+				</label>
+				<button>Submit</button>
+			</div>
+		</div>
+	</fieldset>
+	<br/>
+	<fieldset>
+		<legend>Population Dynamics</legend>
+		<div class="intro">Suppose we have a vector $x^{(t)} \in \mathbb{R}^{100}$
+where $x^{(i)}_i$ represents
+the number of people in the United States at year $t$
+who are $i$ years old. Suppose
+we have a matrix $A$ that roughly approximates $x^{(t+1)} = Ax^{(t)}$.
+That is $A$ represents how the population distribution
+at year $t$ depends on the
+population distribution at year $t+1$.</div>
+		<hr/>
+		<div>
+			<div class="description">
+What do we expect the population distribution to look like
+100 years after year $t$?</div>
+			<ol type="a">
+				<li class="choice">
+					<div class="selection">$(Ax^{(t)})$</div>
+					<div class="response wrong">
+						<span class="wrong">Incorrect. </span>
+						
+					</div>
+				</li>
+				<li class="choice">
+					<div class="selection">$(Ax^{(t)})^{100}$</div>
+					<div class="response wrong">
+						<span class="wrong">Incorrect. </span>
+						
+					</div>
+				</li>
+				<li class="choice">
+					<div class="selection">$(Ax^{(t)})^{-100}$</div>
+					<div class="response wrong">
+						<span class="wrong">Incorrect. </span>
+						
+					</div>
+				</li>
+				<li class="choice">
+					<div class="selection">$(A^{100}x^{(t)})$</div>
+					<div class="response right">
+						<span class="right">Correct! </span>
+						
+					</div>
+				</li>
+				<li class="choice">
+					<div class="selection">$(A^{-100}x^{(t)})$</div>
+					<div class="response wrong">
+						<span class="wrong">Incorrect. </span>
+						
+					</div>
+				</li>
+			</ol>
+		</div>
+		<hr/>
+		<div>
+			<div class="description">
+What does $A_{ij}$ roughly mean or measure?</div>
+			<ol type="a">
+				<li class="choice">
+					<div class="selection">The number of people aged $i$ or $j$.</div>
+					<div class="response wrong">
+						<span class="wrong">Incorrect. </span>
+						
+					</div>
+				</li>
+				<li class="choice">
+					<div class="selection">The number of people aged $j-i$.</div>
+					<div class="response wrong">
+						<span class="wrong">Incorrect. </span>
+						
+					</div>
+				</li>
+				<li class="choice">
+					<div class="selection">How much the population of people aged $i$ at year $t$ affects
+population of people aged $j$ at year $t+1$.</div>
+					<div class="response wrong">
+						<span class="wrong">Incorrect. </span>
+						
+
+					</div>
+				</li>
+				<li class="choice">
+					<div class="selection">How much the population of people aged $j$ at year $t$ affects
+population of people aged $i$ at year $t+1$.</div>
+					<div class="response right">
+						<span class="right">Correct! </span>
+						
+
+					</div>
+				</li>
+			</ol>
+		</div>
+		<hr/>
+		<div>
+			<div class="description">
+Which do we expect to be negative?</div>
+			<div class="mcq">
+				<label>
+					<input type="checkbox"/>
+					<span class="multiple-selection">$A_{99,98}$</span>
+					<div class="response wrong">This option is incorrect. </div>
+				</label>
+				<label>
+					<input type="checkbox"/>
+					<span class="multiple-selection">$A_{24,25}$</span>
+					<div class="response wrong">This option is incorrect. </div>
+				</label>
+				<label>
+					<input type="checkbox"/>
+					<span class="multiple-selection">$A_{25,24}$</span>
+					<div class="response wrong">This option is incorrect. </div>
+				</label>
+				<label>
+					<input type="checkbox"/>
+					<span class="multiple-selection">$A_{1,25}$</span>
+					<div class="response wrong">This option is incorrect. </div>
+				</label>
+				<label>
+					<input type="checkbox"/>
+					<span class="multiple-selection">$A_{25,30}$</span>
+					<div class="response wrong">This option is incorrect. </div>
+				</label>
+				<button>Submit</button>
+			</div>
+		</div>
+		<hr/>
+		<div>
+			<div class="description">
+Which do we expect to be positive?</div>
+			<div class="mcq">
+				<label>
+					<input type="checkbox"/>
+					<span class="multiple-selection">$A_{99,98}$</span>
+					<div class="response right">This option is correct. </div>
+				</label>
+				<label>
+					<input type="checkbox"/>
+					<span class="multiple-selection">$A_{24,25}$</span>
+					<div class="response wrong">This option is incorrect. </div>
+				</label>
+				<label>
+					<input type="checkbox"/>
+					<span class="multiple-selection">$A_{25,24}$</span>
+					<div class="response right">This option is correct. </div>
+				</label>
+				<label>
+					<input type="checkbox"/>
+					<span class="multiple-selection">$A_{1,25}$</span>
+					<div class="response right">This option is correct. </div>
+				</label>
+				<label>
+					<input type="checkbox"/>
+					<span class="multiple-selection">$A_{25,30}$</span>
+					<div class="response wrong">This option is incorrect. </div>
+				</label>
+				<button>Submit</button>
+			</div>
+		</div>
+		<hr/>
+		<div>
+			<div class="description">
+Among positive values, which value do we expect to be the greatest?</div>
+			<ol type="a">
+				<li class="choice">
+					<div class="selection">$A_{99,98}$</div>
+					<div class="response wrong">
+						<span class="wrong">Incorrect. </span>
+						
+					</div>
+				</li>
+				<li class="choice">
+					<div class="selection">$A_{24,25}$</div>
+					<div class="response wrong">
+						<span class="wrong">Incorrect. </span>
+						
+					</div>
+				</li>
+				<li class="choice">
+					<div class="selection">$A_{25,24}$</div>
+					<div class="response right">
+						<span class="right">Correct! </span>
+						
+					</div>
+				</li>
+				<li class="choice">
+					<div class="selection">$A_{1,25}$</div>
+					<div class="response wrong">
+						<span class="wrong">Incorrect. </span>
+						
+					</div>
+				</li>
+				<li class="choice">
+					<div class="selection">$A_{25,30}$</div>
+					<div class="response wrong">
+						<span class="wrong">Incorrect. </span>
+						
+					</div>
+				</li>
+			</ol>
+		</div>
+	</fieldset>
+	<br/>
+</div>
+
+  <footer>
+  Page generated using <a href="https://github.com/karanveerm/QGen">QGen</a>
+  </footer>
+</body>
+</html>

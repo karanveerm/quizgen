@@ -1,0 +1,72 @@
+== Matrices Applications
+[Portfolio Analysis]
+Suppose we have a matrix $A$ that records the prices of $m$ assets
+over $n$ days. Let a single asset's prices over time are represented
+by a row of $A$ (and conversely, a single day's prices over all
+assets are represented a column of $A$).
+
+What does $A_{ij}$ represent?
+* The price of asset $j$ on day $i$
+*= The price of asset $i$ on day $j$
+
+What does it mean if column $k$ has the highest RMS value among
+all columns?
+* Asset $k$ has the best return over the time period
+* Asset $k$ has the best overall performance over the time period
+*= Day $k$ was the best overall day for all assets
+* On day $k$, asset prices varied the most.
+
+Suppose we have calculated the angles between various assets. Which pairs
+of assets do you expect to have high angles?
+*= Coca-Cola and Pepsi
+* Coca-Cola and Hewlett-Packard
+*= Dell and Hewlett-Packard
+* Coca-Cola and Chevron
+
+
+[Population Dynamics]
+Suppose we have a vector $x^{(t)} \in \mathbb{R}^{100}$
+where $x^{(i)}_i$ represents
+the number of people in the United States at year $t$
+who are $i$ years old. Suppose
+we have a matrix $A$ that roughly approximates $x^{(t+1)} = Ax^{(t)}$.
+That is $A$ represents how the population distribution
+at year $t$ depends on the
+population distribution at year $t+1$.
+
+What do we expect the population distribution to look like
+100 years after year $t$?
+* $(Ax^{(t)})$
+* $(Ax^{(t)})^{100}$
+* $(Ax^{(t)})^{-100}$
+*= $(A^{100}x^{(t)})$
+* $(A^{-100}x^{(t)})$
+
+What does $A_{ij}$ roughly mean or measure?
+* The number of people aged $i$ or $j$.
+* The number of people aged $j-i$.
+* How much the population of people aged $i$ at year $t$ affects
+the population of people aged $j$ at year $t+1$.
+*= How much the population of people aged $j$ at year $t$ affects
+the population of people aged $i$ at year $t+1$.
+
+Which do we expect to be negative?
+* $A_{99,98}$
+* $A_{24,25}$
+* $A_{25,24}$
+* $A_{1,25}$
+* $A_{25,30}$
+
+Which do we expect to be positive?
+*= $A_{99,98}$
+* $A_{24,25}$
+*= $A_{25,24}$
+*= $A_{1,25}$
+* $A_{25,30}$
+
+Among positive values, which value do we expect to be the greatest?
+* $A_{99,98}$
+* $A_{24,25}$
+*= $A_{25,24}$
+* $A_{1,25}$
+* $A_{25,30}$

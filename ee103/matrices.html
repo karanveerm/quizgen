@@ -28,11 +28,12 @@
       });
 
       $('button').click(function(event){
-        $(event.target).parent('.mcq').find('.response').slideToggle('fast');
-        if ($('button').text() == 'Submit') {
-          $('button').text('Hide');
+        var $target = $(event.target);
+        $target.parent('.mcq').find('.response').slideToggle('fast');
+        if ($target.text() == 'Submit') {
+          $target.text('Hide');
         } else {
-          $('button').text('Submit');
+          $target.text('Submit');
         }
       });
     });
@@ -178,6 +179,36 @@ If $f:\mathbf{R}^n \to \mathbf{R}^m$, with $f(x)=Ax$, then</div>
 				</li>
 				<li class="choice">
 					<div class="selection">$A \in \mathbf{R}^{n \times m}$</div>
+					<div class="response wrong">
+						<span class="wrong">Incorrect. </span>
+						
+					</div>
+				</li>
+			</ol>
+		</div>
+		<hr/>
+		<div>
+			<div class="description">
+Suppose we have a square matrix $A$ such that each row and each column
+has exactly one $1$, and the rest of the entries are $0$.
+What is $A^{100} x$?</div>
+			<ol type="a">
+				<li class="choice">
+					<div class="selection">A vector whose norm is $100\|x\|$</div>
+					<div class="response wrong">
+						<span class="wrong">Incorrect. </span>
+						
+					</div>
+				</li>
+				<li class="choice">
+					<div class="selection">A permutation of $x$</div>
+					<div class="response right">
+						<span class="right">Correct! </span>
+						
+					</div>
+				</li>
+				<li class="choice">
+					<div class="selection">A normalized $x$: $\frac{x}{\|x\|}$</div>
 					<div class="response wrong">
 						<span class="wrong">Incorrect. </span>
 						

@@ -1,0 +1,50 @@
+== Unconstrained Least-Squares
+[]
+In practical applications of least-squares polynomial fitting, it is always best to use the highest-order polynomial that is computationally feasible.
+* True
+*= False
+
+Least-squares approximate solution of overdetermined equations
+* is a method to find a solution of $Ax=y$ when $A$ is not full rank.
+* is most useful when $A$ is square.
+* is a method for computing $A^{−1}$ that avoids numerical instability.
+*= is a method for finding a value of $x$ that minimizes $\|Ax−y\|$.
+
+Suppose $y=Ax+v$, where $x \in \mathbb{R}^n$ is some set of parameters
+you wish to estimate, $y \in \mathbb{R}^m$ is a set of measurements,
+and $v$ represents a noise.
+We assume $m>n$, and $A$ is full rank.
+Consider an estimator of the form $\hat{x} = By$.
+*= Choosing $B$ to be any left inverse of $A$ yields $\hat{x} = x$,
+no matter what x is, provided $v=0$.
+* The choice $B=(A^TA)^{−1}A^T$ yields $\hat{x}=x$, provided $v$ is small.
+* The choice $B=(A^TA)^{−1}A^T$ yields $\hat{x}$ that is closest to $x$
+*= The choice $B=(A^TA)^{−1}A^T$ yields $\hat{x}$ that minimizes
+the norm of $Ax - y$.
+
+[Least-Squares Data Fitting]
+Least-squares function fitting works well for interpolation, but should never be used for extrapolation.
+* True
+*= False
+
+Consider the image ||IMG:lsq_outlier.jpg||. If we do a least-squares
+fit of a straight line to these points, will it be a good fit?
+* Yes :: The fit looks like ||IMG:lsq_outlier_ans.jpg|| As we can see,
+the outliers noticeably influence the slope of the fit.
+*= No :: The fit looks like ||IMG:lsq_outlier_ans.jpg|| As we can see,
+the outliers noticeably influence the slope of the fit.
+
+[Regularization]
+Regularized least-squares, i.e., choosing $x$ to minimize 
+$\|Ax−y\|^2 + \mu\|x\|^2, \text{with } \mu > 0$
+*= can always be done, even when A is not full rank or wide.
+* fails when A is not full rank and skinny.
+* requires only that A is nonzero.
+
+Suppose that $x$ minimizes $J_1(x) + \mu J_2(x)$,
+for some value of $\mu > 0$, but you'd like to find a point with
+a smaller value of $J_2$, if possible. You should
+* decrease the parameter $\mu$ and minimize $J_1+\mu J_2$.
+*= increase the parameter $\mu$ and minimize $J_1+\mu J_2$.
+* minimize $J_1 + (1/\mu)J_2$.
+* minimize $J_1 − \mu J_2$.

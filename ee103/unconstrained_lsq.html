@@ -1,0 +1,264 @@
+<!DOCTYPE html">
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Unconstrained Least-Squares</title>
+    <link href='http://fonts.googleapis.com/css?family=Josefin+Sans|Alike' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="quiz.css" type="text/css" />
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+          processEscapes: true
+        }
+      });
+    </script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML.js"></script>
+
+    <script type="text/javascript">
+    $(document).ready(function(){
+      //close all the content divs on page load
+      $('.response').hide();
+
+      // toggle slide
+      $('.selection').click(function(){
+        // by calling sibling, we can use same div for all demos
+        $(this).siblings('.response').slideToggle('fast');
+      });
+
+      $('button').click(function(event){
+        var $target = $(event.target);
+        $target.parent('.mcq').find('.response').slideToggle('fast');
+        if ($target.text() == 'Submit') {
+          $target.text('Hide');
+        } else {
+          $target.text('Submit');
+        }
+      });
+    });
+    </script>
+  </head>
+
+<body>
+  $\newcommand{\ones}{\mathbf 1}$
+  <div>
+	<h1>Unconstrained Least-Squares</h1>
+	<fieldset>
+		<div>
+			<div class="description">
+In practical applications of least-squares polynomial fitting, it is always best to use the highest-order polynomial that is computationally feasible.</div>
+			<ol type="a">
+				<li class="choice">
+					<div class="selection">True</div>
+					<div class="response wrong">
+						<span class="wrong">Incorrect. </span>
+						
+					</div>
+				</li>
+				<li class="choice">
+					<div class="selection">False</div>
+					<div class="response right">
+						<span class="right">Correct! </span>
+						
+					</div>
+				</li>
+			</ol>
+		</div>
+		<hr/>
+		<div>
+			<div class="description">
+Least-squares approximate solution of overdetermined equations</div>
+			<ol type="a">
+				<li class="choice">
+					<div class="selection">is a method to find a solution of $Ax=y$ when $A$ is not full rank.</div>
+					<div class="response wrong">
+						<span class="wrong">Incorrect. </span>
+						
+					</div>
+				</li>
+				<li class="choice">
+					<div class="selection">is most useful when $A$ is square.</div>
+					<div class="response wrong">
+						<span class="wrong">Incorrect. </span>
+						
+					</div>
+				</li>
+				<li class="choice">
+					<div class="selection">is a method for computing $A^{−1}$ that avoids numerical instability.</div>
+					<div class="response wrong">
+						<span class="wrong">Incorrect. </span>
+						
+					</div>
+				</li>
+				<li class="choice">
+					<div class="selection">is a method for finding a value of $x$ that minimizes $\|Ax−y\|$.</div>
+					<div class="response right">
+						<span class="right">Correct! </span>
+						
+					</div>
+				</li>
+			</ol>
+		</div>
+		<hr/>
+		<div>
+			<div class="description">
+Suppose $y=Ax+v$, where $x \in \mathbb{R}^n$ is some set of parameters
+you wish to estimate, $y \in \mathbb{R}^m$ is a set of measurements,
+and $v$ represents a noise.
+We assume $m&gt;n$, and $A$ is full rank.
+Consider an estimator of the form $\hat{x} = By$.</div>
+			<div class="mcq">
+				<label>
+					<input type="checkbox"/>
+					<span class="multiple-selection">Choosing $B$ to be any left inverse of $A$ yields $\hat{x} = x$,
+matter what x is, provided $v=0$.</span>
+					<div class="response right">This option is correct. 
+</div>
+				</label>
+				<label>
+					<input type="checkbox"/>
+					<span class="multiple-selection">The choice $B=(A^TA)^{−1}A^T$ yields $\hat{x}=x$, provided $v$ is small.</span>
+					<div class="response wrong">This option is incorrect. </div>
+				</label>
+				<label>
+					<input type="checkbox"/>
+					<span class="multiple-selection">The choice $B=(A^TA)^{−1}A^T$ yields $\hat{x}$ that is closest to $x$</span>
+					<div class="response wrong">This option is incorrect. </div>
+				</label>
+				<label>
+					<input type="checkbox"/>
+					<span class="multiple-selection">The choice $B=(A^TA)^{−1}A^T$ yields $\hat{x}$ that minimizes
+norm of $Ax - y$.</span>
+					<div class="response right">This option is correct. 
+</div>
+				</label>
+				<button>Submit</button>
+			</div>
+		</div>
+	</fieldset>
+	<br/>
+	<fieldset>
+		<legend>Least-Squares Data Fitting</legend>
+		<div>
+			<div class="description">
+Least-squares function fitting works well for interpolation, but should never be used for extrapolation.</div>
+			<ol type="a">
+				<li class="choice">
+					<div class="selection">True</div>
+					<div class="response wrong">
+						<span class="wrong">Incorrect. </span>
+						
+					</div>
+				</li>
+				<li class="choice">
+					<div class="selection">False</div>
+					<div class="response right">
+						<span class="right">Correct! </span>
+						
+					</div>
+				</li>
+			</ol>
+		</div>
+		<hr/>
+		<div>
+			<div class="description">
+Consider the image <div><img src="lsq_outlier.jpg"></div>. If we do a least-squares
+fit of a straight line to these points, will it be a good fit?</div>
+			<ol type="a">
+				<li class="choice">
+					<div class="selection">Yes </div>
+					<div class="response wrong">
+						<span class="wrong">Incorrect. </span>
+						 The fit looks like <div><img src="lsq_outlier_ans.jpg"></div> As we can see,
+the outliers noticeably influence the slope of the fit.
+					</div>
+				</li>
+				<li class="choice">
+					<div class="selection">No </div>
+					<div class="response right">
+						<span class="right">Correct! </span>
+						 The fit looks like <div><img src="lsq_outlier_ans.jpg"></div> As we can see,
+the outliers noticeably influence the slope of the fit.
+					</div>
+				</li>
+			</ol>
+		</div>
+	</fieldset>
+	<br/>
+	<fieldset>
+		<legend>Regularization</legend>
+		<div>
+			<div class="description">
+Regularized least-squares, i.e., choosing $x$ to minimize
+$\|Ax−y\|^2 + \mu\|x\|^2, \text{with } \mu &gt; 0$</div>
+			<ol type="a">
+				<li class="choice">
+					<div class="selection">can always be done, even when A is not full rank or wide.</div>
+					<div class="response right">
+						<span class="right">Correct! </span>
+						
+					</div>
+				</li>
+				<li class="choice">
+					<div class="selection">fails when A is not full rank and skinny.</div>
+					<div class="response wrong">
+						<span class="wrong">Incorrect. </span>
+						
+					</div>
+				</li>
+				<li class="choice">
+					<div class="selection">requires only that A is nonzero.</div>
+					<div class="response wrong">
+						<span class="wrong">Incorrect. </span>
+						
+					</div>
+				</li>
+			</ol>
+		</div>
+		<hr/>
+		<div>
+			<div class="description">
+Suppose that $x$ minimizes $J_1(x) + \mu J_2(x)$,
+for some value of $\mu &gt; 0$, but you'd like to find a point with
+a smaller value of $J_2$, if possible. You should</div>
+			<ol type="a">
+				<li class="choice">
+					<div class="selection">decrease the parameter $\mu$ and minimize $J_1+\mu J_2$.</div>
+					<div class="response wrong">
+						<span class="wrong">Incorrect. </span>
+						
+					</div>
+				</li>
+				<li class="choice">
+					<div class="selection">increase the parameter $\mu$ and minimize $J_1+\mu J_2$.</div>
+					<div class="response right">
+						<span class="right">Correct! </span>
+						
+					</div>
+				</li>
+				<li class="choice">
+					<div class="selection">minimize $J_1 + (1/\mu)J_2$.</div>
+					<div class="response wrong">
+						<span class="wrong">Incorrect. </span>
+						
+					</div>
+				</li>
+				<li class="choice">
+					<div class="selection">minimize $J_1 − \mu J_2$.</div>
+					<div class="response wrong">
+						<span class="wrong">Incorrect. </span>
+						
+					</div>
+				</li>
+			</ol>
+		</div>
+	</fieldset>
+	<br/>
+</div>
+
+  <footer>
+  Page generated using <a href="https://github.com/karanveerm/QGen">QGen</a>
+  </footer>
+</body>
+</html>

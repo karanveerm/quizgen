@@ -31,3 +31,10 @@ of $x_1, \ldots, x_i$. Then we have $y=Ax$, with
 If $f:\mathbf{R}^n \to \mathbf{R}^m$, with $f(x)=Ax$, then
 *= $A \in \mathbf{R}^{m \times n}$
 * $A \in \mathbf{R}^{n \times m}$
+
+Suppose we have a square matrix $A$ such that each row and each column
+has exactly one $1$, and the rest of the entries are $0$.
+What is $A^{100} x$?
+* A vector whose norm is $100\|x\|$
+*= A permutation of $x$
+* A normalized $x$: $\frac{x}{\|x\|}$
