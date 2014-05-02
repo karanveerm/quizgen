@@ -1,3 +1,4 @@
+
 <!DOCTYPE html">
 <html>
   <head>
@@ -28,11 +29,12 @@
       });
 
       $('button').click(function(event){
-        $(event.target).parent('.mcq').find('.response').slideToggle('fast');
-        if ($('button').text() == 'Submit') {
-          $('button').text('Hide');
+        var $target = $(event.target);
+        $target.parent('.mcq').find('.response').slideToggle('fast');
+        if ($target.text() == 'Submit') {
+          $target.text('Hide');
         } else {
-          $('button').text('Submit');
+          $target.text('Submit');
         }
       });
     });
