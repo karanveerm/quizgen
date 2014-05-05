@@ -99,7 +99,7 @@ sample.quiz is a great place to get started. A list of samples can also be found
 ## Getting started
 
 1. Run `python quizgen.py filename.quiz` or `python quizgen.py filename`.
-2. This will generate a file called filename.html
+2. This will generate a file called filename.html and a CSS file called quiz.css (if it did not already exist).
 3. Open filename.html to see what your quiz looks like. You can edit quiz.css as felt necessary for a prettier quiz.
 
 <a name="issues"/>
