@@ -16,7 +16,8 @@ A blank line marks the end of this problem group introduction text and the
 beginning of the first problem.
 
 This is the first problem in the problem group with some LaTeX: $a_3$.
-* This is an option. :: You can add an explanation for an option after the double colon to explain why it is correct/incorrect.
+* This is an option. :: You can add an explanation for an option after the double
+colon to explain why it is correct/incorrect.
 * This is another option. Observe that explanations are optional.
 *= This option is the correct option since it is marked with an equal to sign.
 
@@ -38,7 +39,9 @@ responses.
 *= Option 4. :: This is another correct option.
 
 []
-This problem group has no title and has no introduction. When the text following the start of a new problem group is immediately followed by the options, it is inferred to be a problem.
+This problem group has no title and has no introduction.
+When the text following the start of a new problem group is immediately followed by the options,
+it is inferred to be a problem.
 *= Yes I understand. :: Great! Here's some latex $\|a + b + c\| $
 * No. :: Please email me and I'll try to help!
 

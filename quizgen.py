@@ -536,7 +536,7 @@ This is another problem in this problem group.
 # HTML template
 # TODO: Don't judge, I didn't want to do this
 HTML = r"""
-<!DOCTYPE html">
+<!DOCTYPE html>
 <html>
   <head>
     <meta charset="UTF-8" />
