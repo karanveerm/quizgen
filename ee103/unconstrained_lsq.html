@@ -3,7 +3,7 @@
 <html>
   <head>
     <meta charset="UTF-8" />
-    <title>Unconstrained Least-Squares</title>
+    <title>Sample Quiz Title</title>
     <link href='http://fonts.googleapis.com/css?family=Josefin+Sans|Alike' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="quiz.css" type="text/css" />
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
@@ -30,10 +30,26 @@
 
       $('button').click(function(event){
         var $target = $(event.target);
+        var $checkboxes = $target.parent('.mcq').find('input');
+        for (var i = 0; i < $checkboxes.length; i++) {
+          var $checkbox = $checkboxes.eq(i);
+          a = $checkbox;
+          if ($checkbox[0].checked && $checkbox.nextAll('.response').hasClass('right')) {
+            $checkbox.nextAll('.correct-checkbox').show();
+          } else if ($checkbox[0].checked &&
+              $checkbox.nextAll('.response').hasClass('wrong')) {
+            $checkbox.nextAll('.incorrect-checkbox').show();
+          } else if (!$checkbox[0].checked &&
+              $checkbox.nextAll('.response').hasClass('right')) {
+            $checkbox.nextAll('.incorrect-checkbox').show();
+          }
+        }
         $target.parent('.mcq').find('.response').slideToggle('fast');
         if ($target.text() == 'Submit') {
           $target.text('Hide');
         } else {
+          $checkboxes.nextAll('.incorrect-checkbox').hide();
+          $checkboxes.nextAll('.correct-checkbox').hide();
           $target.text('Submit');
         }
       });
@@ -114,23 +130,31 @@ Consider an estimator of the form $\hat{x} = By$.</div>
 					<input type="checkbox"/>
 					<span class="multiple-selection">Choosing $B$ to be any left inverse of $A$ yields $\hat{x} = x$,
 matter what x is, provided $v=0$.</span>
+					<span class="correct-checkbox">✓</span>
+					<span class="incorrect-checkbox">✗</span>
 					<div class="response right">This option is correct. 
 </div>
 				</label>
 				<label>
 					<input type="checkbox"/>
 					<span class="multiple-selection">The choice $B=(A^TA)^{−1}A^T$ yields $\hat{x}=x$, provided $v$ is small.</span>
+					<span class="correct-checkbox">✓</span>
+					<span class="incorrect-checkbox">✗</span>
 					<div class="response wrong">This option is incorrect. </div>
 				</label>
 				<label>
 					<input type="checkbox"/>
 					<span class="multiple-selection">The choice $B=(A^TA)^{−1}A^T$ yields $\hat{x}$ that is closest to $x$</span>
+					<span class="correct-checkbox">✓</span>
+					<span class="incorrect-checkbox">✗</span>
 					<div class="response wrong">This option is incorrect. </div>
 				</label>
 				<label>
 					<input type="checkbox"/>
 					<span class="multiple-selection">The choice $B=(A^TA)^{−1}A^T$ yields $\hat{x}$ that minimizes
 norm of $Ax - y$.</span>
+					<span class="correct-checkbox">✓</span>
+					<span class="incorrect-checkbox">✗</span>
 					<div class="response right">This option is correct. 
 </div>
 				</label>
@@ -259,7 +283,7 @@ a smaller value of $J_2$, if possible. You should</div>
 </div>
 
   <footer>
-  Page generated using <a href="https://github.com/karanveerm/QGen">QGen</a>
+  Page generated using <a href="https://github.com/karanveerm/quizgen">quizgen</a>
   </footer>
 </body>
 </html>

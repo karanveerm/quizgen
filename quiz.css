@@ -96,6 +96,16 @@ legend {
   background-color: #DFF2BF;
 }
 
+.correct-checkbox {
+  color: #4F8A10;
+  display: none;
+}
+
+.incorrect-checkbox {
+  color: #D8000C;
+  display: none;
+}
+
 footer {
   font-size: 12px;
   margin-top: 0px;

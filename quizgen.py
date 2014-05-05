@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+# -*- coding: utf-8 -*-
 
 # The MIT License (MIT)
 
@@ -127,10 +128,13 @@ class QuizParser():
       'options': []
     }
 
-    while not line_group[0].startswith('*'):
-      question['description'] += '\n' + line_group[0]
-      line_group = line_group[1:]
-
+    try:
+      while not line_group[0].startswith('*'):
+        question['description'] += '\n' + line_group[0]
+        line_group = line_group[1:]
+    except:
+      raise Exception('ERROR: Options for question not found. \n \
+          Perhaps you put a blank line in your problem group?')
     for line in line_group:
       if line[0] == '*':
         # New option
@@ -266,6 +270,16 @@ def create_multiple_choice_dom_from_option(option):
   selector_span.attributes['class'] = 'multiple-selection'
   selector_span.appendChild(doc.createTextNode(option['description']))
 
+  # Create nodes to show the checkmark and cross mark when students get options
+  # in an MCQ right/wrong.
+  correct_span = doc.createElement('span')
+  correct_span.attributes['class'] = 'correct-checkbox'
+  correct_span.appendChild(doc.createTextNode('✓'))
+
+  incorrect_span = doc.createElement('span')
+  incorrect_span.attributes['class'] = 'incorrect-checkbox'
+  incorrect_span.appendChild(doc.createTextNode('✗'))
+
   response_div = doc.createElement('div')
 
   explanation = ''
@@ -281,6 +295,9 @@ def create_multiple_choice_dom_from_option(option):
 
   label.appendChild(checkbox)
   label.appendChild(selector_span)
+  label.appendChild(correct_span)
+  label.appendChild(incorrect_span)
+
   label.appendChild(response_div)
 
   return label
@@ -407,7 +424,7 @@ def add_dom_to_template(dom, html_file_name, quiz):
   try:
     css_file = open('quiz.css')
   except IOError:
-    print 'No CSS file called quiz.css found in directory. Using default CSS'
+    print 'No CSS file called quiz.css found in directory. Using default CSS.'
     generated_css_file = open('quiz.css', 'w+')
     generated_css_file.write(CSS)
     generated_css_file.close()
@@ -415,19 +432,106 @@ def add_dom_to_template(dom, html_file_name, quiz):
 
 def usage():
   print """
-  Usage: python qgen.py SOURCE_QUIZ_FILE
-  You may like to sudo cp qgen.py /usr/bin/qgen
-  Remember to sudo chmod +x /usr/bin/qgen to make the file executable
+  Usage: python quizgen.py SOURCE_QUIZ_FILE.
+  You may like to:
+  sudo cp quizgen.py /usr/bin/quizgen
+  so that you can simply type quizgen.
+  Remember to sudo chmod +x /usr/bin/quizgen to make the file executable.
 
-  You can use qgen simply by typing
-  qgen index
+  You can use quizgen simply by typing:
+  quizgen index
   which will product an index.html from index.quiz file.
   In case no CSS styling is provided, it will also create a quiz.css file.
 
-  More information and a sample quiz file can be found on
-  https://github.com/karanveerm/QGen
+  If you want to create sample.quiz to get started, just type:
+  python quizgen.py -c and a file called sample.quiz will be created.
+  This file shows all the features of quizgen along with the format.
+
+  More information and a lot of sample quizzes file can be found on:
+  https://github.com/karanveerm/quizgen
   """
 
+
+def create_sample():
+  try:
+    sample_quiz_file = open('sample.quiz')
+  except IOError:
+    sample_quiz_file = open('sample.quiz', 'w+')
+    sample_quiz_file.write(SAMPLE)
+    sample_quiz_file.close()
+    print 'A file called sample.quiz has been added to your directory.'
+    print 'Please take a look at it to see how to create a quiz.'
+  else:
+    print 'A file called sample.quiz already exists in your current directory!'
+
+
+def main():
+  # TODO: Stop being lazy and use optparse.
+  if len(sys.argv) < 2 or '-h' in sys.argv[1]:
+    usage()
+  elif '-c' in sys.argv[1]:
+    create_sample()
+  else:
+    for filename in sys.argv[1:]:
+      quiz_parser = QuizParser(filename)
+
+      quiz = quiz_parser.parse()
+
+      dom = create_dom_from_quiz(quiz)
+      html_file_name = quiz_parser.get_filename().replace('.quiz', '.html')
+
+      add_dom_to_template(dom, html_file_name, quiz)
+
+
+
+SAMPLE = """== Sample Quiz Title
+[Problem Group 1 Title]
+This is the statement for problem group one.
+You can add a link to websites like this: ||LINK: http://www.google.com||.
+You can add images like this:
+||IMG:http://upload.wikimedia.org/wikipedia/commons/9/9b/Carl_Friedrich_Gauss.jpg||
+The image source can either be a local path, or some web URL. Images can be embedded
+anywhere: within problem groups, problems or options.
+Quizgen supports LaTeX:
+\[
+a = \begin{pmatrix} 1 \\ 3 \\ 2 \end{pmatrix} , \quad
+b = \begin{pmatrix} 2 \\ 6 \\ 4 \end{pmatrix} , \quad
+c = \begin{pmatrix} 1 \\ 3 \\ 0 \end{pmatrix} .
+\]
+A blank line marks the end of this problem group introduction text and the
+beginning of the first problem.
+
+This is the first problem in the problem group with some LaTeX: $a_3$.
+* This is an option. :: You can add an explanation for an option after the double colon to explain why it is correct/incorrect.
+* This is another option. Observe that explanations are optional.
+*= This option is the correct option since it is marked with an equal to sign.
+
+Again, a blank line marks the end of the options. Here's another problem in
+this problem group with more inline latex $c$ and $d$.
+Quizgen supports displayed equations as well:
+\[
+x=Zy + a - c.
+\]
+* Yes.
+*= No.
+
+You can also have problems with multiple correct responses.
+Students will be asked to select all that apply, and then submit their
+responses.
+*= Option 1. :: This option is correct.
+* Option 2. :: This option is not correct.
+* Option 3.
+*= Option 4. :: This is another correct option.
+
+[]
+This problem group has no title and has no introduction. When the text following the start of a new problem group is immediately followed by the options, it is inferred to be a problem.
+*= Yes I understand. :: Great! Here's some latex $\|a + b + c\| $
+* No. :: Please email me and I'll try to help!
+
+This is another problem in this problem group.
+* This is a great tutorial!
+*= This tutorial can be improved. I'm going to email you with suggestions so you can do a better job.
+"""
 
 # HTML template
 # TODO: Don't judge, I didn't want to do this
@@ -436,7 +540,7 @@ HTML = r"""
 <html>
   <head>
     <meta charset="UTF-8" />
-    <title>[TITLE]</title>
+    <title>Sample Quiz Title</title>
     <link href='http://fonts.googleapis.com/css?family=Josefin+Sans|Alike' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="quiz.css" type="text/css" />
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
@@ -463,10 +567,26 @@ HTML = r"""
 
       $('button').click(function(event){
         var $target = $(event.target);
+        var $checkboxes = $target.parent('.mcq').find('input');
+        for (var i = 0; i < $checkboxes.length; i++) {
+          var $checkbox = $checkboxes.eq(i);
+          a = $checkbox;
+          if ($checkbox[0].checked && $checkbox.nextAll('.response').hasClass('right')) {
+            $checkbox.nextAll('.correct-checkbox').show();
+          } else if ($checkbox[0].checked &&
+              $checkbox.nextAll('.response').hasClass('wrong')) {
+            $checkbox.nextAll('.incorrect-checkbox').show();
+          } else if (!$checkbox[0].checked &&
+              $checkbox.nextAll('.response').hasClass('right')) {
+            $checkbox.nextAll('.incorrect-checkbox').show();
+          }
+        }
         $target.parent('.mcq').find('.response').slideToggle('fast');
         if ($target.text() == 'Submit') {
           $target.text('Hide');
         } else {
+          $checkboxes.nextAll('.incorrect-checkbox').hide();
+          $checkboxes.nextAll('.correct-checkbox').hide();
           $target.text('Submit');
         }
       });
@@ -478,7 +598,7 @@ HTML = r"""
   $\newcommand{\ones}{\mathbf 1}$
   [BODY]
   <footer>
-  Page generated using <a href="https://github.com/karanveerm/QGen">QGen</a>
+  Page generated using <a href="https://github.com/karanveerm/quizgen">quizgen</a>
   </footer>
 </body>
 </html>
@@ -618,15 +738,5 @@ button:focus {
 
 
 if __name__ == '__main__':
-  if len(sys.argv) < 2:
-    usage()
-  else:
-    for filename in sys.argv[1:]:
-      quiz_parser = QuizParser(filename)
+  main()
 
-      quiz = quiz_parser.parse()
-
-      dom = create_dom_from_quiz(quiz)
-      html_file_name = quiz_parser.get_filename().replace('.quiz', '.html')
-
-      add_dom_to_template(dom, html_file_name, quiz)
