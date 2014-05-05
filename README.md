@@ -9,7 +9,8 @@ Description: Dead simple way to create HTML quizzes with LaTeX support. Can be u
 [Samples](#samples)   
 [Getting Started](#start)   
 [Feature Requests / Contributing changes / Issues](#issues)   
-[FAQ](#faq)   
+[FAQ](#faq)
+[Credits](#credits)
 [MIT License](#license)   
 
 <a name="setup"/>
@@ -20,15 +21,17 @@ How do I start using Quizgen?
 1. Copy over the file [quizgen.py](https://raw.githubusercontent.com/karanveerm/quizgen/master/quizgen.py).
 2. Everything you need is in the file!
 3. Run `python quizgen.py` to get help on usage. 
-4. You might want to alias it or `sudo cp quizgen.py /usr/bin/quizgen` so you can simply type in quizgen. Remember to sudo chmod +x /usr/bin/quizgen to make the file executable.
+4. You might want to alias it or `sudo cp quizgen.py /usr/bin/quizgen` so you can simply type in quizgen. 
+5. Remember to `sudo chmod +x /usr/bin/quizgen` to make the file executable.
 
 <a name="structure"/>
 ## Quiz Structure
 
+The source for a quiz is a text file (saved with a .quiz extension) with the following quiz components:
 - A quiz consists of a quiz title and one or more problem groups.
 - A problem group contains an optional title, an optional introduction text that will be common to all the problems in the problem group, and a set of problems.
 - Each problem consists of the text that poses the problem and two or more options. The students will click on one or more of these options.
-- An option consists of a flag (an equal to sign) marking it as correct/incorrect and an optional explanation as to why the option is correct/incorrect.
+- An option consists of text that is displayed, an optional '=' sign that indicates that the option is correct, and an optional explanation that is displayed when the option is selected.
 
 <a name="create"/>
 ## Creating Quizzes
@@ -43,7 +46,7 @@ This is the statement for problem group one.
 You can add a link to websites like this: ||LINK: http://www.google.com||.
 You can add images like this:
 ||IMG:http://upload.wikimedia.org/wikipedia/commons/9/9b/Carl_Friedrich_Gauss.jpg||
-The image source can either be a local path, or some web URL. Images can be embedded
+The image source can either be a local path, or some URL. Images can be embedded
 anywhere: within problem groups, problems or options.
 Quizgen supports LaTeX:
 \[
@@ -81,7 +84,7 @@ responses.
 This problem group has no title and has no introduction.
 When the text following the start of a new problem group is immediately followed by the options,
 it is inferred to be a problem.
-*= Yes I understand. :: Great! Here's some latex $\|a + b + c\| $
+*= Yes I understand. :: Great! Here's some latex $\|a + b + c\|.$
 * No. :: Please email me and I'll try to help!
 
 This is another problem in this problem group.
@@ -100,12 +103,13 @@ sample.quiz is a great place to get started. A list of samples can also be found
 
 1. Run `python quizgen.py filename.quiz` or `python quizgen.py filename`.
 2. This will generate a file called filename.html and a CSS file called quiz.css (if it did not already exist).
-3. Open filename.html to see what your quiz looks like. You can edit quiz.css as felt necessary for a prettier quiz.
+3. Open filename.html to see what your quiz looks like. You can edit quiz.css if you’d like to modify the appearance of the quiz.
+
 
 <a name="issues"/>
 ## Feature Requests / Contributing changes / Issues
 
-- Feel free to make a pull request, I'll review the code and merge.
+- Feel free to make a pull request; I'll review the code and merge.
 - Or just file an issue.
 - Alternatively, email kvmohan [at] stanford [dot] edu and I'll try to help you ASAP!
 
@@ -114,11 +118,15 @@ sample.quiz is a great place to get started. A list of samples can also be found
 
 1. Can we keep track of how students perform on the quizzes?
 
-   No. Quizgen can only be used for self-assessment. This was done in order to keep it as simple as possible.
+   No. Quizgen generates quizzes that are only for self-assessment; it does not support logging of responses.
    
 2. Why did you work on this?
 
-   Often professors want short, ungraded quizzes at the end of lectures where students can quickly decide how well they understood the material in the class. For example, I have heard several students really like Coursera's in-video quizzes. I could not find any light-weight way of doing this anywhere, so I hacked one up myself in a few hours.
+   I was hoping to create simple, lightweight method for instructors to generate quizzes that can be easily incorporated into a course website, allowing students to quickly get some feedback on how well they understand the basic material in a class.
+   
+<a name="credits"/>
+## Credits
+Designed and implemented by Karanveer Mohan, with design input from [Stephen Boyd](www.stanford.edu/~boyd/). Partly based on a simple quiz generator developed by Eric Chu, that was used in Stanford’s EE263 and EE364a classes since 2012, but was never made public.
 
 <a name="license"/>
 ## The MIT License
