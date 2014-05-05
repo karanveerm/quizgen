@@ -525,7 +525,7 @@ responses.
 
 []
 This problem group has no title and has no introduction. When the text following the start of a new problem group is immediately followed by the options, it is inferred to be a problem.
-*= Yes I understand. :: Great! Here's some latex $\|a + b + c\| $
+*= Yes I understand. :: Great! Here's some latex $\|a + b + c\|.$
 * No. :: Please email me and I'll try to help!
 
 This is another problem in this problem group.
@@ -579,6 +579,8 @@ HTML = r"""
           } else if (!$checkbox[0].checked &&
               $checkbox.nextAll('.response').hasClass('right')) {
             $checkbox.nextAll('.incorrect-checkbox').show();
+          } else {
+            $checkbox.nextAll('.correct-checkbox').show();
           }
         }
         $target.parent('.mcq').find('.response').slideToggle('fast');
@@ -598,7 +600,7 @@ HTML = r"""
   $\newcommand{\ones}{\mathbf 1}$
   [BODY]
   <footer>
-  Page generated using <a href="https://github.com/karanveerm/quizgen">quizgen</a>
+  Page generated using <a href="https://github.com/karanveerm/quizgen">Quizgen</a>
   </footer>
 </body>
 </html>
