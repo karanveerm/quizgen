@@ -126,7 +126,7 @@ sample.quiz is a great place to get started. A list of samples can also be found
    
 <a name="credits"/>
 ## Credits
-Designed and implemented by Karanveer Mohan, with design input from [Stephen Boyd](www.stanford.edu/~boyd/). Partly based on a simple quiz generator developed by Eric Chu, that was used in Stanford’s EE263 and EE364a classes since 2012, but was never made public.
+Designed and implemented by Karanveer Mohan, with design input from [Stephen Boyd](http://www.stanford.edu/~boyd/). Partly based on a simple quiz generator developed by Eric Chu, that was used in Stanford’s EE263 and EE364a classes since 2012, but was never made public.
 
 <a name="license"/>
 ## The MIT License
