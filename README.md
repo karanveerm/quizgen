@@ -9,8 +9,8 @@ Description: Dead simple way to create HTML quizzes with LaTeX support. Can be u
 [Samples](#samples)   
 [Getting Started](#start)   
 [Feature Requests / Contributing changes / Issues](#issues)   
-[FAQ](#faq)
-[Credits](#credits)
+[FAQ](#faq)   
+[Credits](#credits)   
 [MIT License](#license)   
 
 <a name="setup"/>
