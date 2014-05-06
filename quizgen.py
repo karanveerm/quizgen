@@ -77,9 +77,9 @@ class QuizParser():
     If the title exists, it returns th title, empty string otherwise
     """
     first_line = lines[0]
-    if first_line.startswith('== '):
-      return first_line[3:]
-    raise Exception('Invalid format. Quiz must start with "== " followed by an optional title.')
+    if first_line.startswith('=='):
+      return first_line[2:].lstrip()
+    raise Exception('Invalid format. Quiz must start with "==" followed by an optional title.')
 
 
   def _parse_new_problem_group(self, line_group):
@@ -142,7 +142,7 @@ class QuizParser():
         option = {
           'explanation': explanation,
           'description': description,
-          'correct': True if line.startswith('*= ') else False
+          'correct': True if line.startswith('*=') else False
         }
         question['options'].append(option)
       else:
@@ -368,7 +368,7 @@ def create_dom_from_problem_group(problem_group):
   first_question = True
   for question in problem_group['questions']:
     hr = doc.createElement('hr')
-    if not first_question or problem_group['problem_intro']:
+    if not first_question:
       fieldset.appendChild(hr)
     first_question = False
     elem = create_dom_from_question(question)
@@ -685,6 +685,16 @@ ol ul {
 .multiple-selection {
   cursor: pointer;
   margin-top: 5px;
+}
+
+.correct-checkbox {
+  color: #4F8A10;
+  display: none;
+}
+
+.incorrect-checkbox {
+  color: #D8000C;
+  display: none;
 }
 
 legend {
