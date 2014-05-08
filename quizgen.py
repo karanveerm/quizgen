@@ -494,9 +494,9 @@ The image source can either be a local path, or some web URL. Images can be embe
 anywhere: within problem groups, problems or options.
 Quizgen supports LaTeX:
 \[
-a = \begin{pmatrix} 1 \\ 3 \\ 2 \end{pmatrix} , \quad
-b = \begin{pmatrix} 2 \\ 6 \\ 4 \end{pmatrix} , \quad
-c = \begin{pmatrix} 1 \\ 3 \\ 0 \end{pmatrix} .
+a = \\begin{pmatrix} 1 \\\\ 3 \\\\ 2 \end{pmatrix} , \quad
+b = \\begin{pmatrix} 2 \\\\ 6 \\\\ 4 \end{pmatrix} , \quad
+c = \\begin{pmatrix} 1 \\\\ 3 \\\\ 0 \end{pmatrix} .
 \]
 A blank line marks the end of this problem group introduction text and the
 beginning of the first problem.
@@ -608,8 +608,7 @@ HTML = r"""
 
 # CSS template
 # TODO: This is not something I'm proud of
-CSS = """
-html {
+CSS = """html {
   min-height: 100%;
 }
 
@@ -657,7 +656,7 @@ span.right {
 }
 
 hr {
-  width: 65%;
+  width: 60%;
   margin-left: 0px;
   border: 0px;
   border-bottom: 1px solid #ccc;
@@ -665,7 +664,7 @@ hr {
 
 fieldset {
   border: 0px;
-  border-bottom: 2.5px solid #ccc;
+  border-bottom: 2.5px solid #aaa;
   padding: 10px 20px;
   padding-left: 0px;
   margin-bottom: 0px;

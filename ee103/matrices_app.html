@@ -1,5 +1,5 @@
 
-<!DOCTYPE html">
+<!DOCTYPE html>
 <html>
   <head>
     <meta charset="UTF-8" />
@@ -42,6 +42,8 @@
           } else if (!$checkbox[0].checked &&
               $checkbox.nextAll('.response').hasClass('right')) {
             $checkbox.nextAll('.incorrect-checkbox').show();
+          } else {
+            $checkbox.nextAll('.correct-checkbox').show();
           }
         }
         $target.parent('.mcq').find('.response').slideToggle('fast');
@@ -67,7 +69,6 @@
 over $n$ days. Let a single asset's prices over time are represented
 by a row of $A$ (and conversely, a single day's prices over all
 assets are represented a column of $A$).</div>
-		<hr/>
 		<div>
 			<div class="description">
 What does $A_{ij}$ represent?</div>
@@ -173,7 +174,6 @@ we have a matrix $A$ that roughly approximates $x^{(t+1)} = Ax^{(t)}$.
 That is $A$ represents how the population distribution
 at year $t$ depends on the
 population distribution at year $t+1$.</div>
-		<hr/>
 		<div>
 			<div class="description">
 What do we expect the population distribution to look like
@@ -388,7 +388,7 @@ Among positive values, which value do we expect to be the greatest?</div>
 </div>
 
   <footer>
-  Page generated using <a href="https://github.com/karanveerm/quizgen">quizgen</a>
+  Page generated using <a href="https://github.com/karanveerm/quizgen">Quizgen</a>
   </footer>
 </body>
 </html>

@@ -1,5 +1,5 @@
 
-<!DOCTYPE html">
+<!DOCTYPE html>
 <html>
   <head>
     <meta charset="UTF-8" />
@@ -42,6 +42,8 @@
           } else if (!$checkbox[0].checked &&
               $checkbox.nextAll('.response').hasClass('right')) {
             $checkbox.nextAll('.incorrect-checkbox').show();
+          } else {
+            $checkbox.nextAll('.correct-checkbox').show();
           }
         }
         $target.parent('.mcq').find('.response').slideToggle('fast');
@@ -68,7 +70,6 @@ b = \begin{bmatrix} 2 \\ 6 \\ 4 \end{bmatrix}\,,\quad
 c = \begin{bmatrix} 1 \\ 3 \\ 0 \end{bmatrix}\,,\quad
 d = \begin{bmatrix} 0 \\ 0 \\ 4 \end{bmatrix}
 $</div>
-		<hr/>
 		<div>
 			<div class="description">
 What is $a_3$?</div>
@@ -304,7 +305,7 @@ company lost $|c_i|$ dollars that day. What does $\textbf{1}^T c$ represent?</di
 </div>
 
   <footer>
-  Page generated using <a href="https://github.com/karanveerm/quizgen">quizgen</a>
+  Page generated using <a href="https://github.com/karanveerm/quizgen">Quizgen</a>
   </footer>
 </body>
 </html>

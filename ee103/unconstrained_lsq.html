@@ -1,5 +1,5 @@
 
-<!DOCTYPE html">
+<!DOCTYPE html>
 <html>
   <head>
     <meta charset="UTF-8" />
@@ -42,6 +42,8 @@
           } else if (!$checkbox[0].checked &&
               $checkbox.nextAll('.response').hasClass('right')) {
             $checkbox.nextAll('.incorrect-checkbox').show();
+          } else {
+            $checkbox.nextAll('.correct-checkbox').show();
           }
         }
         $target.parent('.mcq').find('.response').slideToggle('fast');
@@ -283,7 +285,7 @@ a smaller value of $J_2$, if possible. You should</div>
 </div>
 
   <footer>
-  Page generated using <a href="https://github.com/karanveerm/quizgen">quizgen</a>
+  Page generated using <a href="https://github.com/karanveerm/quizgen">Quizgen</a>
   </footer>
 </body>
 </html>
