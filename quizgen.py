@@ -368,7 +368,7 @@ def create_dom_from_problem_group(problem_group):
   first_question = True
   for question in problem_group['questions']:
     hr = doc.createElement('hr')
-    if not first_question:
+    if not first_question or problem_group['problem_intro']:
       fieldset.appendChild(hr)
     first_question = False
     elem = create_dom_from_question(question)
