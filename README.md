@@ -3,15 +3,15 @@
 Description: Dead simple way to create HTML quizzes with LaTeX support and code highlighting. Can be used to generate quizzes like: http://stanford.edu/~kvmohan/quizgen/sample.html. Problems with multiple correct answers are supported and images can also be embedded. Tested with Python 2.6/2.7. Shoot me an email at karanveer.1992 [at] gmail [dot] com if it doesn't work for newer versions.
 
 ## Table of Contents
-[Setup](#setup)
-[Quiz Structure](#structure)
-[Creating Quizzes](#create)
-[Samples](#samples)
-[Getting Started](#start)
-[Feature Requests / Contributing changes / Issues](#issues)
-[FAQ](#faq)
-[Credits](#credits)
-[MIT License](#license)
+[Setup](#setup)  
+[Quiz Structure](#structure)  
+[Creating Quizzes](#create)  
+[Samples](#samples)  
+[Getting Started](#start)  
+[Feature Requests / Contributing changes / Issues](#issues)  
+[FAQ](#faq)  
+[Credits](#credits)  
+[MIT License](#license)  
 
 <a name="setup"/>
 ## Project Setup
