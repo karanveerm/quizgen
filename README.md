@@ -1,17 +1,17 @@
 # Quizgen: Html Quiz Generator
 
-Description: Dead simple way to create HTML quizzes with LaTeX support. Can be used to generate quizzes like: http://stanford.edu/~kvmohan/quizgen/sample.html. Problems with multiple correct answers are supported and images can also be embedded. Tested with Python 2.6/2.7. Shoot me an email at kvmohan [at] stanford [dot] edu if it doesn't work for newer versions.
+Description: Dead simple way to create HTML quizzes with LaTeX support and code highlighting. Can be used to generate quizzes like: http://stanford.edu/~kvmohan/quizgen/sample.html. Problems with multiple correct answers are supported and images can also be embedded. Tested with Python 2.6/2.7. Shoot me an email at karanveer.1992 [at] gmail [dot] com if it doesn't work for newer versions.
 
 ## Table of Contents
-[Setup](#setup)   
-[Quiz Structure](#structure)   
-[Creating Quizzes](#create)   
-[Samples](#samples)   
-[Getting Started](#start)   
-[Feature Requests / Contributing changes / Issues](#issues)   
-[FAQ](#faq)   
-[Credits](#credits)   
-[MIT License](#license)   
+[Setup](#setup)
+[Quiz Structure](#structure)
+[Creating Quizzes](#create)
+[Samples](#samples)
+[Getting Started](#start)
+[Feature Requests / Contributing changes / Issues](#issues)
+[FAQ](#faq)
+[Credits](#credits)
+[MIT License](#license)
 
 <a name="setup"/>
 ## Project Setup
@@ -20,8 +20,8 @@ How do I start using Quizgen?
 
 1. Copy over the file [quizgen.py](https://raw.githubusercontent.com/karanveerm/quizgen/master/quizgen.py).
 2. Everything you need is in the file!
-3. Run `python quizgen.py` to get help on usage. 
-4. You might want to alias it or `sudo cp quizgen.py /usr/bin/quizgen` so you can simply type in quizgen. 
+3. Run `python quizgen.py` to get help on usage.
+4. You might want to alias it or `sudo cp quizgen.py /usr/bin/quizgen` so you can simply type in quizgen.
 5. Remember to `sudo chmod +x /usr/bin/quizgen` to make the file executable.
 
 <a name="structure"/>
@@ -46,8 +46,14 @@ This is the statement for problem group one.
 You can add a link to websites like this: ||LINK: http://www.google.com||.
 You can add images like this:
 ||IMG:http://upload.wikimedia.org/wikipedia/commons/9/9b/Carl_Friedrich_Gauss.jpg||
-The image source can either be a local path, or some URL. Images can be embedded
+The image source can either be a local path, or some web URL. Images can be embedded
 anywhere: within problem groups, problems or options.
+It also supports syntax highlighting like this:
+||CODE:java:
+int a = 2;
+int b = 3;
+System.out.println(a + b);
+||
 Quizgen supports LaTeX:
 \[
 a = \begin{pmatrix} 1 \\ 3 \\ 2 \end{pmatrix} , \quad
@@ -58,8 +64,8 @@ A blank line marks the end of this problem group introduction text and the
 beginning of the first problem.
 
 This is the first problem in the problem group with some LaTeX: $a_3$.
-* This is an option. :: You can add an explanation for an option after the double
-colon to explain why it is correct/incorrect.
+* This is an option. :: You can add an explanation for an option after the double colon to explain
+why it is correct/incorrect.
 * This is another option. Observe that explanations are optional.
 *= This option is the correct option since it is marked with an equal to sign.
 
@@ -75,10 +81,10 @@ x=Zy + a - c.
 You can also have problems with multiple correct responses.
 Students will be asked to select all that apply, and then submit their
 responses.
-*= Option 1.
+*= Option 1. :: This is an explanation.
 * Option 2.
 * Option 3.
-*= Option 4. :: This is another correct option.
+*= Option 4.
 
 []
 This problem group has no title and has no introduction.
@@ -111,7 +117,7 @@ sample.quiz is a great place to get started. A list of samples can also be found
 
 - Feel free to make a pull request; I'll review the code and merge.
 - Or just file an issue.
-- Alternatively, email kvmohan [at] stanford [dot] edu and I'll try to help you ASAP!
+- Alternatively, email karanveer.1992 [at] gmail [dot] com and I'll try to help you ASAP!
 
 <a name="faq"/>
 ## FAQ
@@ -119,11 +125,11 @@ sample.quiz is a great place to get started. A list of samples can also be found
 1. Can we keep track of how students perform on the quizzes?
 
    No. Quizgen generates quizzes that are only for self-assessment; it does not support logging of responses.
-   
+
 2. Why did you work on this?
 
    I was hoping to create simple, lightweight method for instructors to generate quizzes that can be easily incorporated into a course website, allowing students to quickly get some feedback on how well they understand the basic material in a class.
-   
+
 <a name="credits"/>
 ## Credits
 Designed and implemented by Karanveer Mohan, with design input from [Stephen Boyd](http://www.stanford.edu/~boyd/) and [Karthik Viswanathan](http://www.karthikv.net/). Partly based on a simple quiz generator developed by Eric Chu, that was used in Stanford’s EE263 and EE364a classes since 2012, but was never made public.

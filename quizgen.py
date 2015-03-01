@@ -417,6 +417,11 @@ def add_dom_to_template(dom, html_file_name, quiz):
   # For the links
   content = re.sub('\|\|LINK:\s?(\S+)\|\|', r'<a href="\1">\1</a>', content)
 
+  # For code blocks
+  content = re.sub('\|\|CODE:(\S+):\s?(.*?)\|\|', r'<pre><code class="\1">\2</pre></code>', content,
+                   flags=re.DOTALL)
+
+
   generated_file.write(content)
   generated_file.close()
 
@@ -553,6 +558,9 @@ HTML = r"""
       });
     </script>
     <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML.js"></script>
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.2/styles/default.min.css">
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.2/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
 
     <script type="text/javascript">
     $(document).ready(function(){

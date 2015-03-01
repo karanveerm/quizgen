@@ -6,6 +6,12 @@ You can add images like this:
 ||IMG:http://upload.wikimedia.org/wikipedia/commons/9/9b/Carl_Friedrich_Gauss.jpg||
 The image source can either be a local path, or some web URL. Images can be embedded
 anywhere: within problem groups, problems or options.
+It also supports syntax highlighting like this:
+||CODE:java:
+int a = 2;
+int b = 3;
+System.out.println(a + b);
+||
 Quizgen supports LaTeX:
 \[
 a = \begin{pmatrix} 1 \\ 3 \\ 2 \end{pmatrix} , \quad
@@ -32,10 +38,10 @@ x=Zy + a - c.
 You can also have problems with multiple correct responses.
 Students will be asked to select all that apply, and then submit their
 responses.
-*= Option 1. :: This option is correct.
-* Option 2. :: This option is not correct.
+*= Option 1. :: This is an explanation.
+* Option 2.
 * Option 3.
-*= Option 4. :: This is another correct option.
+*= Option 4.
 
 []
 This problem group has no title and has no introduction. When the text following the start of a new problem group is immediately followed by the options, it is inferred to be a problem.
