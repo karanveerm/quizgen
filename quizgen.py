@@ -429,14 +429,14 @@ def add_dom_to_template(dom, html_file_name, quiz):
   try:
     css_file = open('quiz.css')
   except IOError:
-    print 'No CSS file called quiz.css found in directory. Using default CSS.'
+    print ('No CSS file called quiz.css found in directory. Using default CSS.')
     generated_css_file = open('quiz.css', 'w+')
     generated_css_file.write(CSS)
     generated_css_file.close()
 
 
 def usage():
-  print """
+  print ("""
   Usage: python quizgen.py SOURCE_QUIZ_FILE.
   You may like to:
   sudo cp quizgen.py /usr/bin/quizgen
@@ -454,7 +454,7 @@ def usage():
 
   More information and a lot of sample quizzes file can be found on:
   https://github.com/karanveerm/quizgen
-  """
+  """)
 
 
 def create_sample():
@@ -464,10 +464,10 @@ def create_sample():
     sample_quiz_file = open('sample.quiz', 'w+')
     sample_quiz_file.write(SAMPLE)
     sample_quiz_file.close()
-    print 'A file called sample.quiz has been added to your directory.'
-    print 'Please take a look at it to see how to create a quiz.'
+    print ('A file called sample.quiz has been added to your directory.')
+    print ('Please take a look at it to see how to create a quiz.')
   else:
-    print 'A file called sample.quiz already exists in your current directory!'
+    print ('A file called sample.quiz already exists in your current directory!')
 
 
 def main():
