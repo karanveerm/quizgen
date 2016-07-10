@@ -109,7 +109,8 @@ sample.quiz is a great place to get started. A list of samples can also be found
 
 1. Run `python quizgen.py filename.quiz` or `python quizgen.py filename`.
 2. This will generate a file called filename.html and a CSS file called quiz.css (if it did not already exist).
-3. Open filename.html to see what your quiz looks like. You can edit quiz.css if you’d like to modify the appearance of the quiz.
+3. Open filename.html to see what your quiz looks like. You can edit quiz.css if you’d like to modify the appearance of the quiz.    
+4. Optionally, you may provide a header.html file and/or a footer.html file to appear at the top and/or bottom of your quiz
 
 
 <a name="issues"/>
