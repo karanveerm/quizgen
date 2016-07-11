@@ -74,7 +74,7 @@ class QuizParser():
   def _parse_title(self, lines):
     """
     The quiz must begin with a "== " followed by an optional title.
-    If the title exists, it returns th title, empty string otherwise
+    If the title exists, it returns the title, empty string otherwise
     """
     first_line = lines[0]
     if first_line.startswith('=='):
@@ -407,10 +407,18 @@ def add_dom_to_template(dom, html_file_name, quiz):
     content = template_file.read()
   except IOError:
     content = HTML
-
+  # Add the header.  By replacing this early, we allow the header to
+  # contain IMG and LINK tags (or even CODE), though it would typically
+  # be pure HTML
+  content = content.replace('[HEADER]', get_header())
   content = content.replace('[TITLE]', quiz['title'])
   content = content.replace('[BODY]', dom.toprettyxml())
-
+  
+  # Add the footer.  By replacing this early, we allow the footer to
+  # contain IMG and LINK tags (or even CODE), though it would typically
+  # be pure HTML
+  content = content.replace('[FOOTER]', get_footer())
+  
   # For the images
   content = re.sub('\|\|IMG:\s?(\S+)\|\|', r'<div><img src="\1"></div>', content)
 
@@ -451,6 +459,9 @@ def usage():
   If you want to create sample.quiz to get started, just type:
   python quizgen.py -c and a file called sample.quiz will be created.
   This file shows all the features of quizgen along with the format.
+  
+  You may provide a footer and/or header to appear on your quizzes by creating
+  a file named footer.html and/or header.html that contains an html fragment.  
 
   More information and a lot of sample quizzes file can be found on:
   https://github.com/karanveerm/quizgen
@@ -469,7 +480,28 @@ def create_sample():
   else:
     print ('A file called sample.quiz already exists in your current directory!')
 
-
+# Should a header file exist return the content of that file
+# otherwise return an empty string
+def get_header():
+  try: 
+     header_file = open('header.html')
+  except IOError:
+     header = ''
+  else:
+     header = header_file.read()
+  return header
+  
+# Should a footer file exist return the content of that file
+# otherwise return the standard footer
+def get_footer():
+  try: 
+     footer_file = open('footer.html')
+  except IOError:
+     footer = 'Page generated using <a href=\"https://github.com/karanveerm/quizgen\">Quizgen</a>'
+  else:
+     footer = footer_file.read()
+  return footer
+  
 def main():
   # TODO: Stop being lazy and use optparse.
   if len(sys.argv) < 2 or '-h' in sys.argv[1]:
@@ -606,9 +638,10 @@ HTML = r"""
 
 <body>
   $\newcommand{\ones}{\mathbf 1}$
+  [HEADER]
   [BODY]
   <footer>
-  Page generated using <a href="https://github.com/karanveerm/quizgen">Quizgen</a>
+  [FOOTER]
   </footer>
 </body>
 </html>
