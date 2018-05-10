@@ -14,6 +14,7 @@ Description: Dead simple way to create HTML quizzes with LaTeX support and code 
 [MIT License](#license)  
 
 <a name="setup"/>
+
 ## Project Setup
 
 How do I start using Quizgen?
@@ -25,6 +26,7 @@ How do I start using Quizgen?
 5. Remember to `sudo chmod +x /usr/bin/quizgen` to make the file executable.
 
 <a name="structure"/>
+
 ## Quiz Structure
 
 The source for a quiz is a text file (saved with a .quiz extension) with the following quiz components:
@@ -34,6 +36,7 @@ The source for a quiz is a text file (saved with a .quiz extension) with the fol
 - An option consists of text that is displayed, an optional '=' sign that indicates that the option is correct, and an optional explanation that is displayed when the option is selected.
 
 <a name="create"/>
+
 ## Creating Quizzes
 
 - Run `python quizgen.py -c` to get a starter quiz template saved as 'sample.quiz'.
@@ -100,11 +103,13 @@ This is another problem in this problem group.
 ```
 
 <a name="samples"/>
+
 ## Samples
 
 sample.quiz is a great place to get started. A list of samples can also be found in the ee103/ and ee364a/ directory.
 
 <a name="start"/>
+
 ## Getting started
 
 1. Run `python quizgen.py filename.quiz` or `python quizgen.py filename`.
@@ -112,8 +117,8 @@ sample.quiz is a great place to get started. A list of samples can also be found
 3. Open filename.html to see what your quiz looks like. You can edit quiz.css if you’d like to modify the appearance of the quiz.    
 4. Optionally, you may provide a header.html file and/or a footer.html file to appear at the top and/or bottom of your quiz
 
-
 <a name="issues"/>
+
 ## Feature Requests / Contributing changes / Issues
 
 - Feel free to make a pull request; I'll review the code and merge.
@@ -121,6 +126,7 @@ sample.quiz is a great place to get started. A list of samples can also be found
 - Alternatively, email karanveer.1992 [at] gmail [dot] com and I'll try to help you ASAP!
 
 <a name="faq"/>
+
 ## FAQ
 
 1. Can we keep track of how students perform on the quizzes?
@@ -132,10 +138,13 @@ sample.quiz is a great place to get started. A list of samples can also be found
    I was hoping to create simple, lightweight method for instructors to generate quizzes that can be easily incorporated into a course website, allowing students to quickly get some feedback on how well they understand the basic material in a class.
 
 <a name="credits"/>
+
 ## Credits
+
 Designed and implemented by Karanveer Mohan, with design input from [Stephen Boyd](http://www.stanford.edu/~boyd/) and [Karthik Viswanathan](http://www.karthikv.net/). Partly based on a simple quiz generator developed by Eric Chu, that was used in Stanford’s EE263 and EE364a classes since 2012, but was never made public.
 
 <a name="license"/>
+
 ## The MIT License
 
 Copyright (c) 2014 Karanveer Mohan
