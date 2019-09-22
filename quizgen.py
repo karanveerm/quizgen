@@ -22,7 +22,8 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
-
+import random
+from random import shuffle
 from xml.dom import minidom
 import sys
 import re
@@ -199,7 +200,10 @@ class QuizParser():
           quiz['problem_groups'][-1]['questions'].append(question)
         except:
           raise Exception('ERROR. Are you sure you started every problem group with "[]"?')
-
+    for pg in quiz["problem_groups"]:
+        random.shuffle(pg["questions"])
+        for ql in pg["questions"]:
+            random.shuffle(ql["options"])
     return quiz
 
 
