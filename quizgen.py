@@ -130,7 +130,11 @@ class QuizParser():
     }
 
     try:
-      while not line_group[0].startswith('*'):
+      while not line_group[0].startswith('*') or line_group[0].startswith('\\*'):
+        if line_group[0].startswith('\\*'):
+          tmp = line_group[0]
+          tmp = tmp[1:]
+          line_group[0] = tmp
         question['description'] += '\n' + line_group[0]
         line_group = line_group[1:]
     except:
