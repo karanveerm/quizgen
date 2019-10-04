@@ -161,7 +161,7 @@ class QuizParser():
   def parse(self):
     # Open the file and read in the lines
     try:
-      quizfile = open(self.filename, 'r')
+      quizfile = open(self.filename, 'r',encoding="utf8")
     except IOError:
       raise Exception('No file named %s found' % self.filename)
 
