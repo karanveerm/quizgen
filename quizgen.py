@@ -435,6 +435,7 @@ def add_dom_to_template(dom, html_file_name, quiz):
   content = re.sub('\|\|IMG:\s?(\S+)\|\|', r'<div><img src="\1"></div>', content)
 
   # For the links
+  content = re.sub('\|\|LINK:\s?(\S+)\s+(\S.*)\|\|', r'<a href="\1">\2</a>', content)
   content = re.sub('\|\|LINK:\s?(\S+)\|\|', r'<a href="\1">\1</a>', content)
 
   # For code blocks
