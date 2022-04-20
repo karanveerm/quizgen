@@ -441,6 +441,36 @@ def add_dom_to_template(dom, html_file_name, quiz):
   content = re.sub('\|\|CODE:(\S+):\s?(.*?)\|\|', r'<pre><code class="\1">\2</pre></code>', content,
                    flags=re.DOTALL)
 
+  content = re.sub('&lt;br\s*/&gt;', r'<br/>', content);
+  content = re.sub('&lt;hr\s*/&gt;', r'<hr/>', content);
+  content = re.sub('&lt;center&gt;', r'<span style="text-align: center;">', content);
+  content = re.sub('&lt;/center&gt;', r'</span>', content);
+  content = re.sub('&lt;blockquote&gt;', r'<blockquote>', content);
+  content = re.sub('&lt;/blockquote&gt;', r'</blockquote>', content);
+  content = re.sub('&lt;p&gt;', r'<p>', content);
+  content = re.sub('&lt;/p&gt;', r'</p>', content);
+  content = re.sub('&lt;em&gt;', r'<em>', content);
+  content = re.sub('&lt;/em&gt;', r'</em>', content);
+  content = re.sub('&lt;strong&gt;', r'<strong>', content);
+  content = re.sub('&lt;/strong&gt;', r'</strong>', content);
+  content = re.sub('&lt;code&gt;', r'<code>', content);
+  content = re.sub('&lt;/code&gt;', r'</code>', content);
+  content = re.sub('&lt;span(\s+[^&]*)&gt;', r'<span\1>', content);
+  content = re.sub('&lt;/span&gt;', r'</span>', content);
+  content = re.sub('&lt;div(\s+[^&]*)&gt;', r'<div\1>', content);
+  content = re.sub('&lt;/div&gt;', r'</div>', content);
+  content = re.sub('&lt;ul&gt;', r'<ul>', content);
+  content = re.sub('&lt;/ul&gt;', r'</ul>', content);
+  content = re.sub('&lt;ol&gt;', r'<ol>', content);
+  content = re.sub('&lt;/ol&gt;', r'</ol>', content);
+  content = re.sub('&lt;li&gt;', r'<li>', content);
+  content = re.sub('&lt;/li&gt;', r'</li>', content);
+  content = re.sub('&lt;sub&gt;', r'<sub>', content);
+  content = re.sub('&lt;/sub&gt;', r'</sub>', content);
+  content = re.sub('&lt;sup&gt;', r'<sup>', content);
+  content = re.sub('&lt;/sup&gt;', r'</sup>', content);
+  content = re.sub('&lt;u(nderline)?&gt;', r'<span style="text-decoration: underline;">', content);
+  content = re.sub('&lt;/u(nderline)?&gt;', r'</span>', content);
 
   generated_file.write(content)
   generated_file.close()
