@@ -49,6 +49,8 @@ class QuizParser():
     else:
       self.filename = '%s.quiz' % filename
 
+    self.randomize = False;
+
 
   def get_filename(self):
     return self.filename
@@ -206,10 +208,13 @@ class QuizParser():
           quiz['problem_groups'][-1]['questions'].append(question)
         except:
           raise Exception('ERROR. Are you sure you started every problem group with "[]"?')
-    for pg in quiz["problem_groups"]:
+
+    if self.randomize:
+      for pg in quiz["problem_groups"]:
         random.shuffle(pg["questions"])
         for ql in pg["questions"]:
-            random.shuffle(ql["options"])
+          random.shuffle(ql["options"])
+
     return quiz
 
 
@@ -488,7 +493,7 @@ def add_dom_to_template(dom, html_file_name, quiz):
 
 def usage():
   print ("""
-  Usage: python quizgen.py SOURCE_QUIZ_FILE.
+  Usage: python quizgen.py [options] SOURCE_QUIZ_FILE.
   You may like to:
   sudo cp quizgen.py /usr/bin/quizgen
   so that you can simply type quizgen.
@@ -504,7 +509,9 @@ def usage():
   This file shows all the features of quizgen along with the format.
   
   You may provide a footer and/or header to appear on your quizzes by creating
-  a file named footer.html and/or header.html that contains an html fragment.  
+  a file named footer.html and/or header.html that contains an html fragment.
+
+  In order to shuffle questions and options use the -r option.
 
   More information and a lot of sample quizzes file can be found on:
   https://github.com/karanveerm/quizgen
@@ -552,8 +559,13 @@ def main():
   elif '-c' in sys.argv[1]:
     create_sample()
   else:
+    randomize = False
+    if '-r' in sys.argv[1]:
+      sys.argv.pop(1)
+      randomize = True
     for filename in sys.argv[1:]:
       quiz_parser = QuizParser(filename)
+      quiz_parser.randomize = randomize
 
       quiz = quiz_parser.parse()
 
