@@ -30,6 +30,12 @@ import re
 import glob
 import itertools
 
+import gettext
+import os.path
+if os.path.isdir('./mo'):
+  gettext.install('quizgen', './mo')
+else:
+  gettext.install('quizgen')
 
 """
 Parse the Quiz to create a python dict
@@ -229,11 +235,11 @@ def create_single_choice_dom_from_option(option):
   if option['correct']:
     span.attributes['class'] = 'right'
     response_div.attributes['class'] = 'response right'
-    span.appendChild(doc.createTextNode('Correct! '))
+    span.appendChild(doc.createTextNode(_('Correct! ')))
   else:
     span.attributes['class'] = 'wrong'
     response_div.attributes['class'] = 'response wrong'
-    span.appendChild(doc.createTextNode('Incorrect. '))
+    span.appendChild(doc.createTextNode(_('Incorrect. ')))
   response_div.appendChild(span)
   response_div.appendChild(doc.createTextNode(option['explanation']))
 
@@ -289,10 +295,10 @@ def create_multiple_choice_dom_from_option(option):
   explanation = ''
   if option['correct']:
     response_div.attributes['class'] = 'response right'
-    explanation = 'This option is correct. '
+    explanation = _('This option is correct. ')
   else:
     response_div.attributes['class'] = 'response wrong'
-    explanation = 'This option is incorrect. '
+    explanation = _('This option is incorrect. ')
 
 
   response_div.appendChild(doc.createTextNode(explanation + option['explanation']))
@@ -322,7 +328,7 @@ def create_multiple_choice_dom_from_question(question):
     div.appendChild(elem)
 
   button = doc.createElement('button')
-  button.appendChild(doc.createTextNode('Submit'))
+  button.appendChild(doc.createTextNode(_('Submit')))
   div.appendChild(button)
 
   return div
@@ -414,6 +420,8 @@ def add_dom_to_template(dom, html_file_name, quiz):
   # Add the header.  By replacing this early, we allow the header to
   # contain IMG and LINK tags (or even CODE), though it would typically
   # be pure HTML
+  content = content.replace('[SUBMIT_LABEL]', _('Submit'))
+  content = content.replace('[HIDE_LABEL]', _('Hide'))
   content = content.replace('[HEADER]', get_header())
   content = content.replace('[TITLE]', quiz['title'])
   content = content.replace('[BODY]', dom.toprettyxml())
@@ -501,7 +509,7 @@ def get_footer():
   try: 
      footer_file = open('footer.html')
   except IOError:
-     footer = 'Page generated using <a href=\"https://github.com/karanveerm/quizgen\">Quizgen</a>'
+     footer = _('Page generated using %s') % '<a href=\"https://github.com/karanveerm/quizgen\">Quizgen</a>'
   else:
      footer = footer_file.read()
   return footer
@@ -599,6 +607,11 @@ HTML = r"""
     <script>hljs.initHighlightingOnLoad();</script>
 
     <script type="text/javascript">
+      const SUBMIT_LABEL = '[SUBMIT_LABEL]';
+      const HIDE_LABEL = '[HIDE_LABEL]';
+    </script>
+
+    <script type="text/javascript">
     $(document).ready(function(){
       //close all the content divs on page load
       $('.response').hide();
@@ -628,12 +641,12 @@ HTML = r"""
           }
         }
         $target.parent('.mcq').find('.response').slideToggle('fast');
-        if ($target.text() == 'Submit') {
-          $target.text('Hide');
+        if ($target.text() == SUBMIT_LABEL) {
+          $target.text(HIDE_LABEL);
         } else {
           $checkboxes.nextAll('.incorrect-checkbox').hide();
           $checkboxes.nextAll('.correct-checkbox').hide();
-          $target.text('Submit');
+          $target.text(SUBMIT_LABEL);
         }
       });
     });
