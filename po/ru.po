@@ -1,0 +1,47 @@
+# Translations for Quizgen by Karanveer Mohan.
+# Copyright (C) 2022
+# This file is distributed under the same license as the Quizgen package.
+# Paul Wolneykien <manowar@altlinux.org>, 2022.
+#
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Quizgen 0.1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-04-20 17:57+0300\n"
+"PO-Revision-Date: 2022-04-20 18:11+0300\n"
+"Last-Translator: Paul Wolneykien <manowar@altlinux.org>\n"
+"Language-Team: Russian <RU@li.org>\n"
+"Language: ru\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: quizgen.py:234
+msgid "Correct! "
+msgstr "Верно! "
+
+#: quizgen.py:238
+msgid "Incorrect. "
+msgstr "Неверно! "
+
+#: quizgen.py:294
+msgid "This option is correct. "
+msgstr "Это правильный ответ. "
+
+#: quizgen.py:297
+msgid "This option is incorrect. "
+msgstr "Это неверный ответ. "
+
+#: quizgen.py:327 quizgen.py:419
+msgid "Submit"
+msgstr "Проверить"
+
+#: quizgen.py:420
+msgid "Hide"
+msgstr "Скрыть"
+
+#: quizgen.py:508
+#, python-format
+msgid "Page generated using %s"
+msgstr "Страница создана с использованием %s"
