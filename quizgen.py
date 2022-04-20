@@ -589,7 +589,7 @@ HTML = r"""
 <html>
   <head>
     <meta charset="UTF-8" />
-    <title>Quiz</title>
+    <title>[TITLE]</title>
     <link href='http://fonts.googleapis.com/css?family=Josefin+Sans|Alike' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="quiz.css" type="text/css" />
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
