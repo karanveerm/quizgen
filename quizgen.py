@@ -231,6 +231,7 @@ def create_single_choice_dom_from_option(option):
   # and a 'response', i.e the response to be shown when that option is selected
   selector_div = doc.createElement('div')
   selector_div.attributes['class'] = 'selection'
+  selector_div.attributes['name'] = 'pg%04d_q%04d' % (option['pg_num'], option['q_num'])
   selector_div.appendChild(doc.createTextNode(option['description']))
 
   response_div = doc.createElement('div')
@@ -264,6 +265,8 @@ def create_single_choice_dom_from_question(question):
   ol.attributes['type'] = 'a'
 
   for option in question['options']:
+    option['pg_num'] = question['pg_num']
+    option['q_num'] = question['num']
     elem = create_single_choice_dom_from_option(option)
     ol.appendChild(elem)
   return ol
@@ -333,6 +336,7 @@ def create_multiple_choice_dom_from_question(question):
     div.appendChild(elem)
 
   button = doc.createElement('button')
+  button.attributes['name'] = 'pg%04d_q%04d' % (question['pg_num'], question['num'])
   button.appendChild(doc.createTextNode(_('Submit')))
   div.appendChild(button)
 
@@ -380,14 +384,16 @@ def create_dom_from_problem_group(problem_group):
     div.appendChild(doc.createTextNode(problem_group['problem_intro']))
     fieldset.appendChild(div)
 
-  first_question = True
+  q_num = 0
   for question in problem_group['questions']:
+    question['pg_num'] = problem_group['num']
+    question['num'] = q_num
     hr = doc.createElement('hr')
-    if not first_question or problem_group['problem_intro']:
+    if q_num > 0 or problem_group['problem_intro']:
       fieldset.appendChild(hr)
-    first_question = False
     elem = create_dom_from_question(question)
     fieldset.appendChild(elem)
+    q_num = q_num + 1
 
   return fieldset
 
@@ -403,10 +409,13 @@ def create_dom_from_quiz(quiz):
   header.appendChild(doc.createTextNode(quiz['title']))
   wrapper.appendChild(header)
 
+  pg_num = 0
   for problem_group in quiz['problem_groups']:
+    problem_group['num'] = pg_num
     elem = create_dom_from_problem_group(problem_group)
     wrapper.appendChild(elem)
     wrapper.appendChild(doc.createElement('br'))
+    pg_num = pg_num + 1
 
   return wrapper
 
@@ -548,6 +557,16 @@ def get_footer():
      footer_file = open('footer.html')
   except IOError:
      footer = _('Page generated using %s') % '<a href=\"https://github.com/karanveerm/quizgen\">Quizgen</a>'
+     footer = footer + """
+  <div id="results">
+    <div id="right_counter">
+      <span class="value">0</span>
+    </div>
+    <span class="delimiter">/</span>
+    <div id="wrong_counter">
+      <span class="value">0</span>
+    </div>
+  </div>"""
   else:
      footer = footer_file.read()
   return footer
@@ -655,6 +674,43 @@ HTML = r"""
     </script>
 
     <script type="text/javascript">
+      var results = {};
+      function updateResults (name, value) {
+        if (!results[name]) {
+          results[name] = value;
+        }
+
+        var right = 0;
+        var wrong = 0;
+        for (const key in results) {
+          if (results[key] > 0) {
+            right = right + 1;
+          } else if (results[key] < 0) {
+            wrong = wrong + 1;
+          }
+        };
+
+        $('#right_counter').children('.value').each(function () {
+          this.innerText = right;
+        });
+        $('#wrong_counter').children('.value').each(function () {
+          this.innerText = wrong;
+        });
+
+        if (right > wrong) {
+          $('#wrong_counter').toggleClass('rise', false);
+          $('#right_counter').toggleClass('rise', true);
+        } else if (wrong > right) {
+          $('#right_counter').toggleClass('rise', false);
+          $('#wrong_counter').toggleClass('rise', true);
+        } else {
+          $('#right_counter').toggleClass('rise', false);
+          $('#wrong_counter').toggleClass('rise', false);
+        }
+      }
+    </script>
+
+    <script type="text/javascript">
     $(document).ready(function(){
       //close all the content divs on page load
       $('.response').hide();
@@ -662,12 +718,18 @@ HTML = r"""
       // toggle slide
       $('.selection').click(function(){
         // by calling sibling, we can use same div for all demos
-        $(this).siblings('.response').slideToggle('fast');
+        var name = $(this).attr('name');
+        $(this).siblings('.response').each(function () {
+          $(this).slideToggle('fast');
+          updateResults(name, $(this).hasClass('right') ? 1 : -1);
+        });
       });
 
       $('button').click(function(event){
         var $target = $(event.target);
         var $checkboxes = $target.parent('.mcq').find('input');
+        var name = $(this).attr('name');
+        var mistakes = 0;
         for (var i = 0; i < $checkboxes.length; i++) {
           var $checkbox = $checkboxes.eq(i);
           a = $checkbox;
@@ -676,13 +738,18 @@ HTML = r"""
           } else if ($checkbox[0].checked &&
               $checkbox.nextAll('.response').hasClass('wrong')) {
             $checkbox.nextAll('.incorrect-checkbox').show();
+            mistakes = mistakes + 1;
           } else if (!$checkbox[0].checked &&
               $checkbox.nextAll('.response').hasClass('right')) {
             $checkbox.nextAll('.incorrect-checkbox').show();
+            mistakes = mistakes + 1;
           } else {
             $checkbox.nextAll('.correct-checkbox').show();
           }
         }
+
+        updateResults(name, mistakes == 0 ? 1 : -1);
+
         $target.parent('.mcq').find('.response').slideToggle('fast');
         if ($target.text() == SUBMIT_LABEL) {
           $target.text(HIDE_LABEL);
@@ -845,6 +912,48 @@ button:hover{
 
 button:focus {
     outline: none;
+}
+
+#results {
+  position: fixed;
+  bottom: 0px;
+  right: 0px;
+  margin: 1em;
+}
+
+#right_counter, #wrong_counter, #results > .delimiter {
+  display: inline-block;
+  font-size: 150%;
+  font-weight: bold;
+  margin: 0px 0px;
+  text-align: center;
+  vertical-align: middle;
+}
+
+#right_counter, #wrong_counter {
+  border-radius: 50%;
+  color: white;
+  padding: 0.3em 0.6em;
+  transition: padding 0.5s;
+}
+
+#right_counter {
+  background-color: green;
+}
+
+#results > .delimiter {
+  background-color: transparent;
+  padding: 0px 0px;
+  margin: 0px 0px;
+}
+
+#wrong_counter {
+  background-color: red;
+}
+
+#right_counter.rise, #wrong_counter.rise {
+  padding: 0.5em 0.9em;
+  transition: padding 0.5s;
 }
 """
 

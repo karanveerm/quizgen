@@ -3,7 +3,7 @@
 <html>
   <head>
     <meta charset="UTF-8" />
-    <title>Quiz</title>
+    <title>Sample Quiz Title</title>
     <link href='http://fonts.googleapis.com/css?family=Josefin+Sans|Alike' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="quiz.css" type="text/css" />
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
@@ -21,6 +21,48 @@
     <script>hljs.initHighlightingOnLoad();</script>
 
     <script type="text/javascript">
+      const SUBMIT_LABEL = 'Проверить';
+      const HIDE_LABEL = 'Скрыть';
+    </script>
+
+    <script type="text/javascript">
+      var results = {};
+      function updateResults (name, value) {
+        if (!results[name]) {
+          results[name] = value;
+        }
+
+        var right = 0;
+        var wrong = 0;
+        for (const key in results) {
+          if (results[key] > 0) {
+            right = right + 1;
+          } else if (results[key] < 0) {
+            wrong = wrong + 1;
+          }
+        };
+
+        $('#right_counter').children('.value').each(function () {
+          this.innerText = right;
+        });
+        $('#wrong_counter').children('.value').each(function () {
+          this.innerText = wrong;
+        });
+
+        if (right > wrong) {
+          $('#wrong_counter').toggleClass('rise', false);
+          $('#right_counter').toggleClass('rise', true);
+        } else if (wrong > right) {
+          $('#right_counter').toggleClass('rise', false);
+          $('#wrong_counter').toggleClass('rise', true);
+        } else {
+          $('#right_counter').toggleClass('rise', false);
+          $('#wrong_counter').toggleClass('rise', false);
+        }
+      }
+    </script>
+
+    <script type="text/javascript">
     $(document).ready(function(){
       //close all the content divs on page load
       $('.response').hide();
@@ -28,12 +70,18 @@
       // toggle slide
       $('.selection').click(function(){
         // by calling sibling, we can use same div for all demos
-        $(this).siblings('.response').slideToggle('fast');
+        var name = $(this).attr('name');
+        $(this).siblings('.response').each(function () {
+          $(this).slideToggle('fast');
+          updateResults(name, $(this).hasClass('right') ? 1 : -1);
+        });
       });
 
       $('button').click(function(event){
         var $target = $(event.target);
         var $checkboxes = $target.parent('.mcq').find('input');
+        var name = $(this).attr('name');
+        var mistakes = 0;
         for (var i = 0; i < $checkboxes.length; i++) {
           var $checkbox = $checkboxes.eq(i);
           a = $checkbox;
@@ -42,20 +90,25 @@
           } else if ($checkbox[0].checked &&
               $checkbox.nextAll('.response').hasClass('wrong')) {
             $checkbox.nextAll('.incorrect-checkbox').show();
+            mistakes = mistakes + 1;
           } else if (!$checkbox[0].checked &&
               $checkbox.nextAll('.response').hasClass('right')) {
             $checkbox.nextAll('.incorrect-checkbox').show();
+            mistakes = mistakes + 1;
           } else {
             $checkbox.nextAll('.correct-checkbox').show();
           }
         }
+
+        updateResults(name, mistakes == 0 ? 1 : -1);
+
         $target.parent('.mcq').find('.response').slideToggle('fast');
-        if ($target.text() == 'Submit') {
-          $target.text('Hide');
+        if ($target.text() == SUBMIT_LABEL) {
+          $target.text(HIDE_LABEL);
         } else {
           $checkboxes.nextAll('.incorrect-checkbox').hide();
           $checkboxes.nextAll('.correct-checkbox').hide();
-          $target.text('Submit');
+          $target.text(SUBMIT_LABEL);
         }
       });
     });
@@ -64,6 +117,7 @@
 
 <body>
   $\newcommand{\ones}{\mathbf 1}$
+  
   <div>
 	<h1>Sample Quiz Title</h1>
 	<fieldset>
@@ -93,23 +147,23 @@ beginning of the first problem.</div>
 This is the first problem in the problem group with some LaTeX: $a_3$.</div>
 			<ol type="a">
 				<li class="choice">
-					<div class="selection">This is an option. </div>
+					<div class="selection" name="pg0000_q0000">This is an option. </div>
 					<div class="response wrong">
-						<span class="wrong">Incorrect. </span>
+						<span class="wrong">Неверно! </span>
 						 You can add an explanation for an option after the double colon to explain why it is correct/incorrect.
 					</div>
 				</li>
 				<li class="choice">
-					<div class="selection">This is another option. Observe that explanations are optional.</div>
+					<div class="selection" name="pg0000_q0000">This is another option. Observe that explanations are optional.</div>
 					<div class="response wrong">
-						<span class="wrong">Incorrect. </span>
+						<span class="wrong">Неверно! </span>
 						
 					</div>
 				</li>
 				<li class="choice">
-					<div class="selection">This option is the correct option since it is marked with an equal to sign.</div>
+					<div class="selection" name="pg0000_q0000">This option is the correct option since it is marked with an equal to sign.</div>
 					<div class="response right">
-						<span class="right">Correct! </span>
+						<span class="right">Верно! </span>
 						
 					</div>
 				</li>
@@ -126,16 +180,16 @@ x=Zy + a - c.
 \]</div>
 			<ol type="a">
 				<li class="choice">
-					<div class="selection">Yes.</div>
+					<div class="selection" name="pg0000_q0001">Yes.</div>
 					<div class="response wrong">
-						<span class="wrong">Incorrect. </span>
+						<span class="wrong">Неверно! </span>
 						
 					</div>
 				</li>
 				<li class="choice">
-					<div class="selection">No.</div>
+					<div class="selection" name="pg0000_q0001">No.</div>
 					<div class="response right">
-						<span class="right">Correct! </span>
+						<span class="right">Верно! </span>
 						
 					</div>
 				</li>
@@ -153,30 +207,30 @@ responses.</div>
 					<span class="multiple-selection">Option 1. </span>
 					<span class="correct-checkbox">✓</span>
 					<span class="incorrect-checkbox">✗</span>
-					<div class="response right">This option is correct.  This is an explanation.</div>
+					<div class="response right">Это правильный ответ.  This is an explanation.</div>
 				</label>
 				<label>
 					<input type="checkbox"/>
 					<span class="multiple-selection">Option 2.</span>
 					<span class="correct-checkbox">✓</span>
 					<span class="incorrect-checkbox">✗</span>
-					<div class="response wrong">This option is incorrect. </div>
+					<div class="response wrong">Это неверный ответ. </div>
 				</label>
 				<label>
 					<input type="checkbox"/>
 					<span class="multiple-selection">Option 3.</span>
 					<span class="correct-checkbox">✓</span>
 					<span class="incorrect-checkbox">✗</span>
-					<div class="response wrong">This option is incorrect. </div>
+					<div class="response wrong">Это неверный ответ. </div>
 				</label>
 				<label>
 					<input type="checkbox"/>
 					<span class="multiple-selection">Option 4.</span>
 					<span class="correct-checkbox">✓</span>
 					<span class="incorrect-checkbox">✗</span>
-					<div class="response right">This option is correct. </div>
+					<div class="response right">Это правильный ответ. </div>
 				</label>
-				<button>Submit</button>
+				<button name="pg0000_q0002">Проверить</button>
 			</div>
 		</div>
 	</fieldset>
@@ -187,16 +241,16 @@ responses.</div>
 This problem group has no title and has no introduction. When the text following the start of a new problem group is immediately followed by the options, it is inferred to be a problem.</div>
 			<ol type="a">
 				<li class="choice">
-					<div class="selection">Yes I understand. </div>
+					<div class="selection" name="pg0001_q0000">Yes I understand. </div>
 					<div class="response right">
-						<span class="right">Correct! </span>
+						<span class="right">Верно! </span>
 						 Great! Here's some latex $\|a + b + c\|.$
 					</div>
 				</li>
 				<li class="choice">
-					<div class="selection">No. </div>
+					<div class="selection" name="pg0001_q0000">No. </div>
 					<div class="response wrong">
-						<span class="wrong">Incorrect. </span>
+						<span class="wrong">Неверно! </span>
 						 Please email me and I'll try to help!
 					</div>
 				</li>
@@ -208,16 +262,16 @@ This problem group has no title and has no introduction. When the text following
 This is another problem in this problem group.</div>
 			<ol type="a">
 				<li class="choice">
-					<div class="selection">This is a great tutorial!</div>
+					<div class="selection" name="pg0001_q0001">This is a great tutorial!</div>
 					<div class="response wrong">
-						<span class="wrong">Incorrect. </span>
+						<span class="wrong">Неверно! </span>
 						
 					</div>
 				</li>
 				<li class="choice">
-					<div class="selection">This tutorial can be improved. I'm going to email you with suggestions so you can do a better job.</div>
+					<div class="selection" name="pg0001_q0001">This tutorial can be improved. I'm going to email you with suggestions so you can do a better job.</div>
 					<div class="response right">
-						<span class="right">Correct! </span>
+						<span class="right">Верно! </span>
 						
 					</div>
 				</li>
@@ -228,7 +282,16 @@ This is another problem in this problem group.</div>
 </div>
 
   <footer>
-  Page generated using <a href="https://github.com/karanveerm/quizgen">Quizgen</a>
+  Страница создана с использованием <a href="https://github.com/karanveerm/quizgen">Quizgen</a>
+  <div id="results">
+    <div id="right_counter">
+      <span class="value">0</span>
+    </div>
+    <span class="delimiter">/</span>
+    <div id="wrong_counter">
+      <span class="value">0</span>
+    </div>
+  </div>
   </footer>
 </body>
 </html>

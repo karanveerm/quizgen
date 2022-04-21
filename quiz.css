@@ -135,3 +135,45 @@ button:hover{
 button:focus {
     outline: none;
 }
+
+#results {
+  position: fixed;
+  bottom: 0px;
+  right: 0px;
+  margin: 1em;
+}
+
+#right_counter, #wrong_counter, #results > .delimiter {
+  display: inline-block;
+  font-size: 150%;
+  font-weight: bold;
+  margin: 0px 0px;
+  text-align: center;
+  vertical-align: middle;
+}
+
+#right_counter, #wrong_counter {
+  border-radius: 50%;
+  color: white;
+  padding: 0.3em 0.6em;
+  transition: padding 0.5s;
+}
+
+#right_counter {
+  background-color: green;
+}
+
+#results > .delimiter {
+  background-color: transparent;
+  padding: 0px 0px;
+  margin: 0px 0px;
+}
+
+#wrong_counter {
+  background-color: red;
+}
+
+#right_counter.rise, #wrong_counter.rise {
+  padding: 0.5em 0.9em;
+  transition: padding 0.5s;
+}
