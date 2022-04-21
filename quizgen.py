@@ -49,7 +49,8 @@ class QuizParser():
     else:
       self.filename = '%s.quiz' % filename
 
-    self.randomize = False;
+    self.randomize_questions = False;
+    self.randomize_answers = True;
 
 
   def get_filename(self):
@@ -209,9 +210,12 @@ class QuizParser():
         except:
           raise Exception('ERROR. Are you sure you started every problem group with "[]"?')
 
-    if self.randomize:
+    if self.randomize_questions:
       for pg in quiz["problem_groups"]:
         random.shuffle(pg["questions"])
+
+    if self.randomize_answers:
+      for pg in quiz["problem_groups"]:
         for ql in pg["questions"]:
           random.shuffle(ql["options"])
 
@@ -606,13 +610,18 @@ def main():
   elif '-c' in sys.argv[1]:
     create_sample()
   else:
-    randomize = False
+    randomize_questions = False
+    randomize_answers = True
     if '-r' in sys.argv[1]:
       sys.argv.pop(1)
-      randomize = True
+      randomize_questions = True
+    if '-n' in sys.argv[1]:
+      sys.argv.pop(1)
+      randomize_answers = False
     for filename in sys.argv[1:]:
       quiz_parser = QuizParser(filename)
-      quiz_parser.randomize = randomize
+      quiz_parser.randomize_questions = randomize_questions
+      quiz_parser.randomize_answers = randomize_answers
 
       quiz = quiz_parser.parse()
 
