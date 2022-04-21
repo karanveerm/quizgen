@@ -887,12 +887,14 @@ legend {
   padding: 8px 10px;
   color: #D8000C;
   background-color: #FFBABA;
+  display: none;
 }
 
 .response.right{
   padding: 8px 10px;
   color: #4F8A10;
   background-color: #DFF2BF;
+  display: none;
 }
 
 footer {
