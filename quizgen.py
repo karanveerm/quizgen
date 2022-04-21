@@ -434,8 +434,10 @@ def add_dom_to_template(dom, html_file_name, quiz):
   # Add the header.  By replacing this early, we allow the header to
   # contain IMG and LINK tags (or even CODE), though it would typically
   # be pure HTML
+  content = content.replace('[STYLES_SCRIPTS]', get_head());
   content = content.replace('[SUBMIT_LABEL]', _('Submit'))
   content = content.replace('[HIDE_LABEL]', _('Hide'))
+  content = content.replace('[TEX]', get_tex())
   content = content.replace('[HEADER]', get_header())
   content = content.replace('[TITLE]', quiz['title'])
   content = content.replace('[BODY]', dom.toprettyxml())
@@ -549,6 +551,28 @@ def get_header():
   else:
      header = header_file.read()
   return header
+
+# If the HTML <head> contents file exist return the content of that
+# file, otherwise return the STYLES_SCRIPTS.
+custom_head = False
+def get_head():
+  global custom_head
+  try:
+     header_file = open('head.html')
+  except IOError:
+     header = STYLES_SCRIPTS
+  else:
+     header = header_file.read()
+     custom_head = True
+  return header
+
+# Returns standard TeX header with standard HTML <head> and empty
+# string otherwise.
+def get_tex():
+  if not custom_head:
+    return r"""$\newcommand{\ones}{\mathbf 1}$"""
+  else:
+    return ''
   
 # Should a footer file exist return the content of that file
 # otherwise return the standard footer
@@ -654,24 +678,8 @@ HTML = r"""
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="UTF-8" />
     <title>[TITLE]</title>
-    <link href='http://fonts.googleapis.com/css?family=Josefin+Sans|Alike' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="quiz.css" type="text/css" />
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Config({
-        tex2jax: {
-          inlineMath: [ ['$','$'], ["\\(","\\)"] ],
-          processEscapes: true
-        }
-      });
-    </script>
-    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML.js"></script>
-    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.2/styles/default.min.css">
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.2/highlight.min.js"></script>
-    <script>hljs.initHighlightingOnLoad();</script>
-
+    [STYLES_SCRIPTS]
     <script type="text/javascript">
       const SUBMIT_LABEL = '[SUBMIT_LABEL]';
       const HIDE_LABEL = '[HIDE_LABEL]';
@@ -768,7 +776,7 @@ HTML = r"""
   </head>
 
 <body>
-  $\newcommand{\ones}{\mathbf 1}$
+  [TEX]
   [HEADER]
   [BODY]
   <footer>
@@ -982,6 +990,23 @@ button:focus {
 }
 """
 
+STYLES_SCRIPTS = r"""<meta charset="UTF-8" />
+    <link href='https://fonts.googleapis.com/css?family=Josefin+Sans|Alike' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="quiz.css" type="text/css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+          processEscapes: true
+        }
+      });
+    </script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.2/styles/default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.2/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+"""
 
 if __name__ == '__main__':
   main()
