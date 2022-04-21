@@ -17,31 +17,39 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: quizgen.py:234
+#: quizgen.py:244
 msgid "Correct! "
 msgstr ""
 
-#: quizgen.py:238
+#: quizgen.py:248
 msgid "Incorrect. "
 msgstr ""
 
-#: quizgen.py:294
+#: quizgen.py:306
 msgid "This option is correct. "
 msgstr ""
 
-#: quizgen.py:297
+#: quizgen.py:309
 msgid "This option is incorrect. "
 msgstr ""
 
-#: quizgen.py:327 quizgen.py:419
+#: quizgen.py:340 quizgen.py:437
 msgid "Submit"
 msgstr ""
 
-#: quizgen.py:420
+#: quizgen.py:438
 msgid "Hide"
 msgstr ""
 
-#: quizgen.py:508
+#: quizgen.py:560
+#, python-format
+msgid ""
+"<span class=\"heading\">Your results:</span> <span class=\"right_counter"
+"\"><span class=\"value\">%d</span></span> right answer(s) and <span class="
+"\"wrong_counter\"><span class=\"value\">%d</span></span> mistake(s)!"
+msgstr ""
+
+#: quizgen.py:563
 #, python-format
 msgid "Page generated using %s"
 msgstr ""

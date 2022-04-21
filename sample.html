@@ -42,22 +42,22 @@
           }
         };
 
-        $('#right_counter').children('.value').each(function () {
+        $('.right_counter .value').each(function () {
           this.innerText = right;
         });
-        $('#wrong_counter').children('.value').each(function () {
+        $('.wrong_counter .value').each(function () {
           this.innerText = wrong;
         });
 
         if (right > wrong) {
-          $('#wrong_counter').toggleClass('rise', false);
-          $('#right_counter').toggleClass('rise', true);
+          $('.wrong_counter').toggleClass('rise', false);
+          $('.right_counter').toggleClass('rise', true);
         } else if (wrong > right) {
-          $('#right_counter').toggleClass('rise', false);
-          $('#wrong_counter').toggleClass('rise', true);
+          $('.right_counter').toggleClass('rise', false);
+          $('.wrong_counter').toggleClass('rise', true);
         } else {
-          $('#right_counter').toggleClass('rise', false);
-          $('#wrong_counter').toggleClass('rise', false);
+          $('.right_counter').toggleClass('rise', false);
+          $('.wrong_counter').toggleClass('rise', false);
         }
       }
     </script>
@@ -282,13 +282,14 @@ This is another problem in this problem group.</div>
 </div>
 
   <footer>
-  Страница создана с использованием <a href="https://github.com/karanveerm/quizgen">Quizgen</a>
-  <div id="results">
-    <div id="right_counter">
+  <div id="footer_results"><span class="heading">Ваши результаты:</span> верных ответов — <span class="right_counter"><span class="value">0</span></span>, ошибок — <span class="wrong_counter"><span class="value">0</span></span>.
+  </div>Страница создана с использованием <a href="https://github.com/karanveerm/quizgen">Quizgen</a>
+  <div id="floating_results" class="results">
+    <div class="right_counter">
       <span class="value">0</span>
     </div>
     <span class="delimiter">/</span>
-    <div id="wrong_counter">
+    <div class="wrong_counter">
       <span class="value">0</span>
     </div>
   </div>

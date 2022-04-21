@@ -556,14 +556,18 @@ def get_footer():
   try: 
      footer_file = open('footer.html')
   except IOError:
-     footer = _('Page generated using %s') % '<a href=\"https://github.com/karanveerm/quizgen\">Quizgen</a>'
-     footer = footer + """
-  <div id="results">
-    <div id="right_counter">
+     footer = """<div id="footer_results">"""
+     footer += _('<span class="heading">Your results:</span> <span class="right_counter"><span class="value">%d</span></span> right answer(s) and <span class="wrong_counter"><span class="value">%d</span></span> mistake(s)!') % (0, 0)
+     footer += """
+  </div>"""
+     footer += _('Page generated using %s') % '<a href=\"https://github.com/karanveerm/quizgen\">Quizgen</a>'
+     footer += """
+  <div id="floating_results" class="results">
+    <div class="right_counter">
       <span class="value">0</span>
     </div>
     <span class="delimiter">/</span>
-    <div id="wrong_counter">
+    <div class="wrong_counter">
       <span class="value">0</span>
     </div>
   </div>"""
@@ -690,22 +694,22 @@ HTML = r"""
           }
         };
 
-        $('#right_counter').children('.value').each(function () {
+        $('.right_counter .value').each(function () {
           this.innerText = right;
         });
-        $('#wrong_counter').children('.value').each(function () {
+        $('.wrong_counter .value').each(function () {
           this.innerText = wrong;
         });
 
         if (right > wrong) {
-          $('#wrong_counter').toggleClass('rise', false);
-          $('#right_counter').toggleClass('rise', true);
+          $('.wrong_counter').toggleClass('rise', false);
+          $('.right_counter').toggleClass('rise', true);
         } else if (wrong > right) {
-          $('#right_counter').toggleClass('rise', false);
-          $('#wrong_counter').toggleClass('rise', true);
+          $('.right_counter').toggleClass('rise', false);
+          $('.wrong_counter').toggleClass('rise', true);
         } else {
-          $('#right_counter').toggleClass('rise', false);
-          $('#wrong_counter').toggleClass('rise', false);
+          $('.right_counter').toggleClass('rise', false);
+          $('.wrong_counter').toggleClass('rise', false);
         }
       }
     </script>
@@ -914,14 +918,16 @@ button:focus {
     outline: none;
 }
 
-#results {
+#floating_results {
   position: fixed;
   bottom: 0px;
   right: 0px;
   margin: 1em;
 }
 
-#right_counter, #wrong_counter, #results > .delimiter {
+#floating_results .right_counter,
+#floating_results .wrong_counter,
+#floating_results .delimiter {
   display: inline-block;
   font-size: 150%;
   font-weight: bold;
@@ -930,30 +936,49 @@ button:focus {
   vertical-align: middle;
 }
 
-#right_counter, #wrong_counter {
+#floating_results .right_counter,
+#floating_results .wrong_counter {
   border-radius: 50%;
   color: white;
   padding: 0.3em 0.6em;
   transition: padding 0.5s;
 }
 
-#right_counter {
+#floating_results .right_counter {
   background-color: green;
 }
 
-#results > .delimiter {
+#floating_results .delimiter {
   background-color: transparent;
   padding: 0px 0px;
   margin: 0px 0px;
 }
 
-#wrong_counter {
+#floating_results .wrong_counter {
   background-color: red;
 }
 
-#right_counter.rise, #wrong_counter.rise {
+#floating_results .right_counter.rise,
+#floating_results .wrong_counter.rise {
   padding: 0.5em 0.9em;
   transition: padding 0.5s;
+}
+
+#footer_results {
+  margin: 1em 1em 3em 1em;
+  text-align: center;
+  font-size: 150%;
+}
+
+#footer_results .heading {
+  font-style: italic;
+  text-decoration: underline;
+}
+
+#footer_results .right_counter,
+#footer_results .wrong_counter {
+  font-style: italic;
+  font-weight: bold;
 }
 """
 

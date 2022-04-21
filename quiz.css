@@ -136,14 +136,16 @@ button:focus {
     outline: none;
 }
 
-#results {
+#floating_results {
   position: fixed;
   bottom: 0px;
   right: 0px;
   margin: 1em;
 }
 
-#right_counter, #wrong_counter, #results > .delimiter {
+#floating_results .right_counter,
+#floating_results .wrong_counter,
+#floating_results .delimiter {
   display: inline-block;
   font-size: 150%;
   font-weight: bold;
@@ -152,28 +154,47 @@ button:focus {
   vertical-align: middle;
 }
 
-#right_counter, #wrong_counter {
+#floating_results .right_counter,
+#floating_results .wrong_counter {
   border-radius: 50%;
   color: white;
   padding: 0.3em 0.6em;
   transition: padding 0.5s;
 }
 
-#right_counter {
+#floating_results .right_counter {
   background-color: green;
 }
 
-#results > .delimiter {
+#floating_results .delimiter {
   background-color: transparent;
   padding: 0px 0px;
   margin: 0px 0px;
 }
 
-#wrong_counter {
+#floating_results .wrong_counter {
   background-color: red;
 }
 
-#right_counter.rise, #wrong_counter.rise {
+#floating_results .right_counter.rise,
+#floating_results .wrong_counter.rise {
   padding: 0.5em 0.9em;
   transition: padding 0.5s;
+}
+
+#footer_results {
+  margin: 1em 1em 3em 1em;
+  text-align: center;
+  font-size: 150%;
+}
+
+#footer_results .heading {
+  font-style: italic;
+  text-decoration: underline;
+}
+
+#footer_results .right_counter,
+#footer_results .wrong_counter {
+  font-style: italic;
+  font-weight: bold;
 }
