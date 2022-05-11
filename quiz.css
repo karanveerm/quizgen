@@ -97,12 +97,14 @@ legend {
   padding: 8px 10px;
   color: #D8000C;
   background-color: #FFBABA;
+  display: none;
 }
 
 .response.right{
   padding: 8px 10px;
   color: #4F8A10;
   background-color: #DFF2BF;
+  display: none;
 }
 
 footer {
@@ -134,4 +136,67 @@ button:hover{
 
 button:focus {
     outline: none;
+}
+
+#floating_results {
+  position: fixed;
+  bottom: 0px;
+  right: 0px;
+  margin: 1em;
+}
+
+#floating_results .right_counter,
+#floating_results .wrong_counter,
+#floating_results .delimiter {
+  display: inline-block;
+  font-size: 150%;
+  font-weight: bold;
+  margin: 0px 0px;
+  text-align: center;
+  vertical-align: middle;
+}
+
+#floating_results .right_counter,
+#floating_results .wrong_counter {
+  border-radius: 50%;
+  color: white;
+  padding: 0.3em 0.6em;
+  transition: padding 0.5s;
+}
+
+#floating_results .right_counter {
+  background-color: green;
+}
+
+#floating_results .delimiter {
+  background-color: transparent;
+  padding: 0px 0px;
+  margin: 0px 0px;
+}
+
+#floating_results .wrong_counter {
+  background-color: red;
+}
+
+#floating_results .right_counter.rise,
+#floating_results .wrong_counter.rise {
+  padding: 0.5em 0.9em;
+  transition: padding 0.5s;
+}
+
+#footer_results {
+  margin: 1em 1em 3em 1em;
+  text-align: center;
+  font-size: 150%;
+}
+
+#footer_results .heading {
+  font-style: italic;
+  text-decoration: underline;
+}
+
+#footer_results .right_counter,
+#footer_results .wrong_counter {
+  font-style: italic;
+  font-weight: bold;
 }

@@ -1,0 +1,55 @@
+# Translations for Quizgen by Karanveer Mohan.
+# Copyright (C) 2022
+# This file is distributed under the same license as the Quizgen package.
+# Paul Wolneykien <manowar@altlinux.org>, 2022.
+#
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Quizgen 0.1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-05-11 22:34+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: quizgen.py:244
+msgid "Correct! "
+msgstr ""
+
+#: quizgen.py:248
+msgid "Incorrect. "
+msgstr ""
+
+#: quizgen.py:306
+msgid "This option is correct. "
+msgstr ""
+
+#: quizgen.py:309
+msgid "This option is incorrect. "
+msgstr ""
+
+#: quizgen.py:340 quizgen.py:437
+msgid "Submit"
+msgstr ""
+
+#: quizgen.py:438
+msgid "Hide"
+msgstr ""
+
+#: quizgen.py:560
+#, python-format
+msgid ""
+"<span class=\"heading\">Your results:</span> <span class=\"right_counter"
+"\"><span class=\"value\">%d</span></span> right answer(s) and <span class="
+"\"wrong_counter\"><span class=\"value\">%d</span></span> mistake(s)!"
+msgstr ""
+
+#: quizgen.py:563
+#, python-format
+msgid "Page generated using %s (with last modifications at %s)"
+msgstr ""

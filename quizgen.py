@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/python3
 # -*- coding: utf-8 -*-
 
 # The MIT License (MIT)
@@ -30,6 +30,12 @@ import re
 import glob
 import itertools
 
+import gettext
+import os.path
+if os.path.isdir('./mo'):
+  gettext.install('quizgen', './mo')
+else:
+  gettext.install('quizgen')
 
 """
 Parse the Quiz to create a python dict
@@ -42,6 +48,9 @@ class QuizParser():
       self.filename = filename
     else:
       self.filename = '%s.quiz' % filename
+
+    self.randomize_questions = False;
+    self.randomize_answers = True;
 
 
   def get_filename(self):
@@ -200,10 +209,16 @@ class QuizParser():
           quiz['problem_groups'][-1]['questions'].append(question)
         except:
           raise Exception('ERROR. Are you sure you started every problem group with "[]"?')
-    for pg in quiz["problem_groups"]:
+
+    if self.randomize_questions:
+      for pg in quiz["problem_groups"]:
         random.shuffle(pg["questions"])
+
+    if self.randomize_answers:
+      for pg in quiz["problem_groups"]:
         for ql in pg["questions"]:
-            random.shuffle(ql["options"])
+          random.shuffle(ql["options"])
+
     return quiz
 
 
@@ -220,6 +235,7 @@ def create_single_choice_dom_from_option(option):
   # and a 'response', i.e the response to be shown when that option is selected
   selector_div = doc.createElement('div')
   selector_div.attributes['class'] = 'selection'
+  selector_div.attributes['name'] = 'pg%04d_q%04d' % (option['pg_num'], option['q_num'])
   selector_div.appendChild(doc.createTextNode(option['description']))
 
   response_div = doc.createElement('div')
@@ -229,11 +245,11 @@ def create_single_choice_dom_from_option(option):
   if option['correct']:
     span.attributes['class'] = 'right'
     response_div.attributes['class'] = 'response right'
-    span.appendChild(doc.createTextNode('Correct! '))
+    span.appendChild(doc.createTextNode(_('Correct! ')))
   else:
     span.attributes['class'] = 'wrong'
     response_div.attributes['class'] = 'response wrong'
-    span.appendChild(doc.createTextNode('Incorrect. '))
+    span.appendChild(doc.createTextNode(_('Incorrect. ')))
   response_div.appendChild(span)
   response_div.appendChild(doc.createTextNode(option['explanation']))
 
@@ -253,6 +269,8 @@ def create_single_choice_dom_from_question(question):
   ol.attributes['type'] = 'a'
 
   for option in question['options']:
+    option['pg_num'] = question['pg_num']
+    option['q_num'] = question['num']
     elem = create_single_choice_dom_from_option(option)
     ol.appendChild(elem)
   return ol
@@ -289,10 +307,10 @@ def create_multiple_choice_dom_from_option(option):
   explanation = ''
   if option['correct']:
     response_div.attributes['class'] = 'response right'
-    explanation = 'This option is correct. '
+    explanation = _('This option is correct. ')
   else:
     response_div.attributes['class'] = 'response wrong'
-    explanation = 'This option is incorrect. '
+    explanation = _('This option is incorrect. ')
 
 
   response_div.appendChild(doc.createTextNode(explanation + option['explanation']))
@@ -322,7 +340,8 @@ def create_multiple_choice_dom_from_question(question):
     div.appendChild(elem)
 
   button = doc.createElement('button')
-  button.appendChild(doc.createTextNode('Submit'))
+  button.attributes['name'] = 'pg%04d_q%04d' % (question['pg_num'], question['num'])
+  button.appendChild(doc.createTextNode(_('Submit')))
   div.appendChild(button)
 
   return div
@@ -369,14 +388,16 @@ def create_dom_from_problem_group(problem_group):
     div.appendChild(doc.createTextNode(problem_group['problem_intro']))
     fieldset.appendChild(div)
 
-  first_question = True
+  q_num = 0
   for question in problem_group['questions']:
+    question['pg_num'] = problem_group['num']
+    question['num'] = q_num
     hr = doc.createElement('hr')
-    if not first_question or problem_group['problem_intro']:
+    if q_num > 0 or problem_group['problem_intro']:
       fieldset.appendChild(hr)
-    first_question = False
     elem = create_dom_from_question(question)
     fieldset.appendChild(elem)
+    q_num = q_num + 1
 
   return fieldset
 
@@ -392,10 +413,13 @@ def create_dom_from_quiz(quiz):
   header.appendChild(doc.createTextNode(quiz['title']))
   wrapper.appendChild(header)
 
+  pg_num = 0
   for problem_group in quiz['problem_groups']:
+    problem_group['num'] = pg_num
     elem = create_dom_from_problem_group(problem_group)
     wrapper.appendChild(elem)
     wrapper.appendChild(doc.createElement('br'))
+    pg_num = pg_num + 1
 
   return wrapper
 
@@ -414,6 +438,10 @@ def add_dom_to_template(dom, html_file_name, quiz):
   # Add the header.  By replacing this early, we allow the header to
   # contain IMG and LINK tags (or even CODE), though it would typically
   # be pure HTML
+  content = content.replace('[STYLES_SCRIPTS]', get_head());
+  content = content.replace('[SUBMIT_LABEL]', _('Submit'))
+  content = content.replace('[HIDE_LABEL]', _('Hide'))
+  content = content.replace('[TEX]', get_tex())
   content = content.replace('[HEADER]', get_header())
   content = content.replace('[TITLE]', quiz['title'])
   content = content.replace('[BODY]', dom.toprettyxml())
@@ -427,12 +455,43 @@ def add_dom_to_template(dom, html_file_name, quiz):
   content = re.sub('\|\|IMG:\s?(\S+)\|\|', r'<div><img src="\1"></div>', content)
 
   # For the links
+  content = re.sub('\|\|LINK:\s?(\S+)\s+(\S.*)\|\|', r'<a href="\1">\2</a>', content)
   content = re.sub('\|\|LINK:\s?(\S+)\|\|', r'<a href="\1">\1</a>', content)
 
   # For code blocks
   content = re.sub('\|\|CODE:(\S+):\s?(.*?)\|\|', r'<pre><code class="\1">\2</pre></code>', content,
                    flags=re.DOTALL)
 
+  content = re.sub('&lt;br\s*/&gt;', r'<br/>', content);
+  content = re.sub('&lt;hr\s*/&gt;', r'<hr/>', content);
+  content = re.sub('&lt;center&gt;', r'<span style="text-align: center;">', content);
+  content = re.sub('&lt;/center&gt;', r'</span>', content);
+  content = re.sub('&lt;blockquote&gt;', r'<blockquote>', content);
+  content = re.sub('&lt;/blockquote&gt;', r'</blockquote>', content);
+  content = re.sub('&lt;p&gt;', r'<p>', content);
+  content = re.sub('&lt;/p&gt;', r'</p>', content);
+  content = re.sub('&lt;em&gt;', r'<em>', content);
+  content = re.sub('&lt;/em&gt;', r'</em>', content);
+  content = re.sub('&lt;strong&gt;', r'<strong>', content);
+  content = re.sub('&lt;/strong&gt;', r'</strong>', content);
+  content = re.sub('&lt;code&gt;', r'<code>', content);
+  content = re.sub('&lt;/code&gt;', r'</code>', content);
+  content = re.sub('&lt;span(\s+[^&]*)&gt;', r'<span\1>', content);
+  content = re.sub('&lt;/span&gt;', r'</span>', content);
+  content = re.sub('&lt;div(\s+[^&]*)&gt;', r'<div\1>', content);
+  content = re.sub('&lt;/div&gt;', r'</div>', content);
+  content = re.sub('&lt;ul&gt;', r'<ul>', content);
+  content = re.sub('&lt;/ul&gt;', r'</ul>', content);
+  content = re.sub('&lt;ol&gt;', r'<ol>', content);
+  content = re.sub('&lt;/ol&gt;', r'</ol>', content);
+  content = re.sub('&lt;li&gt;', r'<li>', content);
+  content = re.sub('&lt;/li&gt;', r'</li>', content);
+  content = re.sub('&lt;sub&gt;', r'<sub>', content);
+  content = re.sub('&lt;/sub&gt;', r'</sub>', content);
+  content = re.sub('&lt;sup&gt;', r'<sup>', content);
+  content = re.sub('&lt;/sup&gt;', r'</sup>', content);
+  content = re.sub('&lt;u(nderline)?&gt;', r'<span style="text-decoration: underline;">', content);
+  content = re.sub('&lt;/u(nderline)?&gt;', r'</span>', content);
 
   generated_file.write(content)
   generated_file.close()
@@ -449,7 +508,7 @@ def add_dom_to_template(dom, html_file_name, quiz):
 
 def usage():
   print ("""
-  Usage: python quizgen.py SOURCE_QUIZ_FILE.
+  Usage: python quizgen.py [options] SOURCE_QUIZ_FILE.
   You may like to:
   sudo cp quizgen.py /usr/bin/quizgen
   so that you can simply type quizgen.
@@ -465,10 +524,14 @@ def usage():
   This file shows all the features of quizgen along with the format.
   
   You may provide a footer and/or header to appear on your quizzes by creating
-  a file named footer.html and/or header.html that contains an html fragment.  
+  a file named footer.html and/or header.html that contains an html fragment.
+
+  In order to shuffle questions and options use the -r option.
 
   More information and a lot of sample quizzes file can be found on:
   https://github.com/karanveerm/quizgen
+
+  With last modifications at https://github.com/wolneykien/quizgen .
   """)
 
 
@@ -494,6 +557,28 @@ def get_header():
   else:
      header = header_file.read()
   return header
+
+# If the HTML <head> contents file exist return the content of that
+# file, otherwise return the STYLES_SCRIPTS.
+custom_head = False
+def get_head():
+  global custom_head
+  try:
+     header_file = open('head.html')
+  except IOError:
+     header = STYLES_SCRIPTS
+  else:
+     header = header_file.read()
+     custom_head = True
+  return header
+
+# Returns standard TeX header with standard HTML <head> and empty
+# string otherwise.
+def get_tex():
+  if not custom_head:
+    return r"""$\newcommand{\ones}{\mathbf 1}$"""
+  else:
+    return ''
   
 # Should a footer file exist return the content of that file
 # otherwise return the standard footer
@@ -501,7 +586,21 @@ def get_footer():
   try: 
      footer_file = open('footer.html')
   except IOError:
-     footer = 'Page generated using <a href=\"https://github.com/karanveerm/quizgen\">Quizgen</a>'
+     footer = """<div id="footer_results">"""
+     footer += _('<span class="heading">Your results:</span> <span class="right_counter"><span class="value">%d</span></span> right answer(s) and <span class="wrong_counter"><span class="value">%d</span></span> mistake(s)!') % (0, 0)
+     footer += """
+  </div>"""
+     footer += _('Page generated using %s (with last modifications at %s)') % ('<a href=\"https://github.com/karanveerm/quizgen\">Quizgen</a>', '<a href=\"https://github.com/wolneykien/quizgen\">wolneykien/quizgen</a>')
+     footer += """
+  <div id="floating_results" class="results">
+    <div class="right_counter">
+      <span class="value">0</span>
+    </div>
+    <span class="delimiter">/</span>
+    <div class="wrong_counter">
+      <span class="value">0</span>
+    </div>
+  </div>"""
   else:
      footer = footer_file.read()
   return footer
@@ -513,8 +612,18 @@ def main():
   elif '-c' in sys.argv[1]:
     create_sample()
   else:
+    randomize_questions = False
+    randomize_answers = True
+    if '-r' in sys.argv[1]:
+      sys.argv.pop(1)
+      randomize_questions = True
+    if '-n' in sys.argv[1]:
+      sys.argv.pop(1)
+      randomize_answers = False
     for filename in sys.argv[1:]:
       quiz_parser = QuizParser(filename)
+      quiz_parser.randomize_questions = randomize_questions
+      quiz_parser.randomize_answers = randomize_answers
 
       quiz = quiz_parser.parse()
 
@@ -580,23 +689,49 @@ HTML = r"""
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="UTF-8" />
-    <title>Quiz</title>
-    <link href='http://fonts.googleapis.com/css?family=Josefin+Sans|Alike' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="quiz.css" type="text/css" />
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Config({
-        tex2jax: {
-          inlineMath: [ ['$','$'], ["\\(","\\)"] ],
-          processEscapes: true
-        }
-      });
+    <title>[TITLE]</title>
+    [STYLES_SCRIPTS]
+    <script type="text/javascript">
+      const SUBMIT_LABEL = '[SUBMIT_LABEL]';
+      const HIDE_LABEL = '[HIDE_LABEL]';
     </script>
-    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML.js"></script>
-    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.2/styles/default.min.css">
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.2/highlight.min.js"></script>
-    <script>hljs.initHighlightingOnLoad();</script>
+
+    <script type="text/javascript">
+      var results = {};
+      function updateResults (name, value) {
+        if (!results[name]) {
+          results[name] = value;
+        }
+
+        var right = 0;
+        var wrong = 0;
+        for (const key in results) {
+          if (results[key] > 0) {
+            right = right + 1;
+          } else if (results[key] < 0) {
+            wrong = wrong + 1;
+          }
+        };
+
+        $('.right_counter .value').each(function () {
+          this.innerText = right;
+        });
+        $('.wrong_counter .value').each(function () {
+          this.innerText = wrong;
+        });
+
+        if (right > wrong) {
+          $('.wrong_counter').toggleClass('rise', false);
+          $('.right_counter').toggleClass('rise', true);
+        } else if (wrong > right) {
+          $('.right_counter').toggleClass('rise', false);
+          $('.wrong_counter').toggleClass('rise', true);
+        } else {
+          $('.right_counter').toggleClass('rise', false);
+          $('.wrong_counter').toggleClass('rise', false);
+        }
+      }
+    </script>
 
     <script type="text/javascript">
     $(document).ready(function(){
@@ -606,12 +741,18 @@ HTML = r"""
       // toggle slide
       $('.selection').click(function(){
         // by calling sibling, we can use same div for all demos
-        $(this).siblings('.response').slideToggle('fast');
+        var name = $(this).attr('name');
+        $(this).siblings('.response').each(function () {
+          $(this).slideToggle('fast');
+          updateResults(name, $(this).hasClass('right') ? 1 : -1);
+        });
       });
 
       $('button').click(function(event){
         var $target = $(event.target);
         var $checkboxes = $target.parent('.mcq').find('input');
+        var name = $(this).attr('name');
+        var mistakes = 0;
         for (var i = 0; i < $checkboxes.length; i++) {
           var $checkbox = $checkboxes.eq(i);
           a = $checkbox;
@@ -620,20 +761,25 @@ HTML = r"""
           } else if ($checkbox[0].checked &&
               $checkbox.nextAll('.response').hasClass('wrong')) {
             $checkbox.nextAll('.incorrect-checkbox').show();
+            mistakes = mistakes + 1;
           } else if (!$checkbox[0].checked &&
               $checkbox.nextAll('.response').hasClass('right')) {
             $checkbox.nextAll('.incorrect-checkbox').show();
+            mistakes = mistakes + 1;
           } else {
             $checkbox.nextAll('.correct-checkbox').show();
           }
         }
+
+        updateResults(name, mistakes == 0 ? 1 : -1);
+
         $target.parent('.mcq').find('.response').slideToggle('fast');
-        if ($target.text() == 'Submit') {
-          $target.text('Hide');
+        if ($target.text() == SUBMIT_LABEL) {
+          $target.text(HIDE_LABEL);
         } else {
           $checkboxes.nextAll('.incorrect-checkbox').hide();
           $checkboxes.nextAll('.correct-checkbox').hide();
-          $target.text('Submit');
+          $target.text(SUBMIT_LABEL);
         }
       });
     });
@@ -641,7 +787,7 @@ HTML = r"""
   </head>
 
 <body>
-  $\newcommand{\ones}{\mathbf 1}$
+  [TEX]
   [HEADER]
   [BODY]
   <footer>
@@ -752,12 +898,14 @@ legend {
   padding: 8px 10px;
   color: #D8000C;
   background-color: #FFBABA;
+  display: none;
 }
 
 .response.right{
   padding: 8px 10px;
   color: #4F8A10;
   background-color: #DFF2BF;
+  display: none;
 }
 
 footer {
@@ -790,8 +938,88 @@ button:hover{
 button:focus {
     outline: none;
 }
+
+#floating_results {
+  position: fixed;
+  bottom: 0px;
+  right: 0px;
+  margin: 1em;
+}
+
+#floating_results .right_counter,
+#floating_results .wrong_counter,
+#floating_results .delimiter {
+  display: inline-block;
+  font-size: 150%;
+  font-weight: bold;
+  margin: 0px 0px;
+  text-align: center;
+  vertical-align: middle;
+}
+
+#floating_results .right_counter,
+#floating_results .wrong_counter {
+  border-radius: 50%;
+  color: white;
+  padding: 0.3em 0.6em;
+  transition: padding 0.5s;
+}
+
+#floating_results .right_counter {
+  background-color: green;
+}
+
+#floating_results .delimiter {
+  background-color: transparent;
+  padding: 0px 0px;
+  margin: 0px 0px;
+}
+
+#floating_results .wrong_counter {
+  background-color: red;
+}
+
+#floating_results .right_counter.rise,
+#floating_results .wrong_counter.rise {
+  padding: 0.5em 0.9em;
+  transition: padding 0.5s;
+}
+
+#footer_results {
+  margin: 1em 1em 3em 1em;
+  text-align: center;
+  font-size: 150%;
+}
+
+#footer_results .heading {
+  font-style: italic;
+  text-decoration: underline;
+}
+
+#footer_results .right_counter,
+#footer_results .wrong_counter {
+  font-style: italic;
+  font-weight: bold;
+}
 """
 
+STYLES_SCRIPTS = r"""<meta charset="UTF-8" />
+    <link href='https://fonts.googleapis.com/css?family=Josefin+Sans|Alike' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="quiz.css" type="text/css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+          processEscapes: true
+        }
+      });
+    </script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.2/styles/default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.2/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+"""
 
 if __name__ == '__main__':
   main()
