@@ -530,6 +530,8 @@ def usage():
 
   More information and a lot of sample quizzes file can be found on:
   https://github.com/karanveerm/quizgen
+
+  With last modifications at https://github.com/wolneykien/quizgen .
   """)
 
 
@@ -588,7 +590,7 @@ def get_footer():
      footer += _('<span class="heading">Your results:</span> <span class="right_counter"><span class="value">%d</span></span> right answer(s) and <span class="wrong_counter"><span class="value">%d</span></span> mistake(s)!') % (0, 0)
      footer += """
   </div>"""
-     footer += _('Page generated using %s') % '<a href=\"https://github.com/karanveerm/quizgen\">Quizgen</a>'
+     footer += _('Page generated using %s (with last modifications at %s)') % ('<a href=\"https://github.com/karanveerm/quizgen\">Quizgen</a>', '<a href=\"https://github.com/wolneykien/quizgen\">wolneykien/quizgen</a>')
      footer += """
   <div id="floating_results" class="results">
     <div class="right_counter">
